@@ -14,8 +14,6 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
         }
         .btn-voltar { color: white; text-decoration: none; font-size: 24px; font-weight: bold; }
         .header h1 { color: white; margin: 0; font-size: 22px; font-weight: bold; }
@@ -27,7 +25,7 @@
             border-radius: 24px;
             padding: 25px 20px;
             border: 1px solid #eef2f6;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
             margin-bottom: 25px;
         }
         .box-title { font-size: 22px; font-weight: bold; color: #ff5e00; margin: 0 0 10px 0; }
@@ -54,9 +52,8 @@
             font-weight: bold;
             cursor: pointer;
         }
-        .btn-sugerir:hover { background: #d35400; }
 
-        .list-title { font-size: 13px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .list-title { font-size: 12px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
         
         .sugestao-item {
             background: white;
@@ -67,32 +64,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
         }
         .sugestao-texto { font-size: 15px; color: #334155; font-weight: bold; }
         .btn-deletar { background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 16px; }
         .btn-deletar:hover { color: #ef4444; }
-        .sem-sugestoes { text-align: center; color: #94a3b8; font-size: 14px; margin-top: 30px; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <a href="index.html" class="btn-voltar">←</a>
-        <h1>Central de Interação</h1>
+        <h1>Caixa de Sugestões</h1>
     </div>
 
     <div class="container">
         <div class="box-sugestao">
-            <div class="box-title">💡 Caixa de Sugestões</div>
+            <div class="box-title">💡 Enviar Sugestão</div>
             <div class="box-desc">Diga qual prato você quer ver no site! Todo mundo pode sugerir, mas só o dono pode apagar.</div>
             <div class="form-group">
-                <input type="text" id="inputSugestao" placeholder="Ex: Estrogonofe de Camarão, Lasanha...">
+                <input type="text" id="inputSugestao" placeholder="Ex: Estrogonofe, Lasanha...">
                 <button class="btn-sugerir" onclick="adicionarSugestao()">Sugerir</button>
             </div>
         </div>
 
-        <div class="list-title">Sugestões da Comunidade</div>
+        <div class="list-title">Sugestões Recebidas</div>
         <div id="listaSugestoes"></div>
     </div>
 
@@ -104,7 +99,7 @@
         container.innerHTML = '';
 
         if (listaLocal.length === 0) {
-            container.innerHTML = '<div class="sem-sugestoes">Nenhuma sugestão ainda. Seja o primeiro!</div>';
+            container.innerHTML = '<div style="text-align:center; color:#94a3b8; font-size:14px; margin-top:20px;">Nenhuma sugestão ainda. Seja o primeiro!</div>';
             return;
         }
 
@@ -122,11 +117,7 @@
     function adicionarSugestao() {
         const campo = document.getElementById('inputSugestao');
         const valor = campo.value.trim();
-
-        if (valor === '') {
-            alert('Por favor, digite uma sugestão!');
-            return;
-        }
+        if (valor === '') return;
 
         listaLocal.push(valor);
         localStorage.setItem('sugestoes_banco', JSON.stringify(listaLocal));
@@ -135,7 +126,7 @@
     }
 
     function removerSugestao(index) {
-        const senha = prompt("Apenas o administrador pode apagar. Digite a senha:");
+        const senha = prompt("Digite a senha de administrador para excluir:");
         if (senha === "123") {
             listaLocal.splice(index, 1);
             localStorage.setItem('sugestoes_banco', JSON.stringify(listaLocal));
