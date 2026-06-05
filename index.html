@@ -8,7 +8,6 @@
         * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #f7f9fc; margin: 0; padding: 0; color: #333; }
         
-        /* CABEÇALHO DA FOTO 11 */
         .header {
             background: linear-gradient(135deg, #ff5e00, #e62222);
             padding: 25px 20px 30px 20px;
@@ -29,7 +28,6 @@
         }
         .header h1 { color: white; margin: 0; font-size: 26px; font-weight: bold; }
         
-        /* ☰ BOTÃO DO MENU ADICIONADO NO TOPO DIREITO */
         .btn-menu {
             position: absolute;
             top: 28px;
@@ -41,7 +39,6 @@
             z-index: 10;
         }
 
-        /* CAIXA DE BUSCA DA FOTO 11 */
         .search-container { position: relative; width: 100%; }
         .search-container input {
             width: 100%;
@@ -61,10 +58,8 @@
             color: #999;
         }
 
-        /* CONTAINER DOS CARDS REPLICANDO A FOTO 11 */
         .container { padding: 20px 15px; }
 
-        /* CARD BRANCO CLÁSSICO DA FOTO 11 */
         .recipe-card {
             background: white;
             border-radius: 18px;
@@ -74,7 +69,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
         }
         
-        /* TOPO DO CARD COM CLIQUE PARA EXPANDIR */
         .recipe-header { 
             padding: 20px; 
             cursor: pointer; 
@@ -84,7 +78,6 @@
         }
         .recipe-title { font-size: 18px; font-weight: bold; color: #1e293b; margin: 0 0 6px 0; }
         
-        /* BADGE DA CATEGORIA ABAIXO DO TÍTULO (FOTO 11) */
         .category-badge {
             background: #fff3eb;
             color: #e67e22;
@@ -97,23 +90,19 @@
             letter-spacing: 0.5px;
         }
         
-        /* SETINHA DA DIREITA (FOTO 11) */
         .arrow-icon { 
             font-size: 16px; 
             color: #cbd5e1; 
             transition: transform 0.3s; 
         }
         
-        /* LÓGICA DE EXPANDE / RECOLHE */
         .recipe-card.collapsed .recipe-content { display: none; }
         .recipe-card.collapsed .arrow-icon { transform: rotate(0deg); }
         .recipe-card:not(.collapsed) .arrow-icon { transform: rotate(180deg); }
 
-        /* CONTEÚDO INTERNO DAS RECEITAS */
         .recipe-content { padding: 0 20px 20px 20px; border-top: 1px solid #f8fafc; }
         .recipe-desc { font-style: italic; color: #64748b; margin: 15px 0; font-size: 14px; line-height: 1.4; }
 
-        /* CONTROLES INTERNOS (VARIAÇÃO E RENDIMENTO) */
         .control-label { font-size: 11px; font-weight: bold; color: #b25900; letter-spacing: 0.5px; margin-bottom: 6px; display: block; text-transform: uppercase; }
         .select-variation {
             width: 100%;
@@ -148,7 +137,6 @@
             border: 1px solid #fbe6d4;
         }
 
-        /* SEÇÕES DE LISTAS (INGREDIENTES / PASSOS) */
         .section-title { font-size: 14px; font-weight: bold; color: #64748b; margin: 20px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px; }
         
         .list-item {
@@ -167,7 +155,6 @@
         .list-item.checked span { text-decoration: line-through; color: #94a3b8; }
         .num-destaque { color: #e67e22; font-weight: bold; }
 
-        /* FINALIZAÇÃO SEM CHECKS */
         .fin-item {
             background: #f8fafc;
             border-left: 4px solid #e67e22;
@@ -185,48 +172,45 @@
 </head>
 <body>
 
-    <!-- CABEÇALHO DA FOTO 11 COM BOTÃO DE MENU -->
     <div class="header">
         <div class="logo-container">
             <div class="logo-circle">🍴</div>
             <h1>Sem Receitas</h1>
         </div>
-        
-        <!-- Botão Hambúrguer apontando para o arquivo correto -->
         <a href="sugestoes.html" class="btn-menu">☰</a>
 
-        <!-- Caixa de Busca com o texto ajustado -->
         <div class="search-container">
-            <input type="text" id="inputBusca" placeholder="Busque sua receita, ou nos deixe uma sugestão👉🏾" oninput="filtrarReceitas()">
+            <input type="text" id="inputBusca" placeholder="Busque sua receita, ou nos deixe uma sugestão👉" oninput="filtrarReceitas()">
         </div>
     </div>
 
-    <!-- LISTA CONTAINER PRINCIPAL -->
     <div class="container" id="listaReceitas">
-        <!-- Carregando via receitas.json... -->
+        <p style="text-align:center; color:#64748b; margin-top:40px;">Carregando receitas...</p>
     </div>
 
 <script>
     let bancoDeDados = [];
     let porcoesSelecionadas = {};
 
-    // BUSCA PERMANENTE DO SEU ARQUIVO RECEITAS.JSON
     function carregarDadosDoJson() {
-        fetch('receitas.json')
+        // ./ garante que o caminho busque na mesma pasta do repositório do GitHub
+        fetch('./receitas.json')
             .then(resposta => {
-                if (!resposta.ok) throw new Error("Erro ao carregar receitas.json");
+                if (!resposta.ok) throw new Error("Arquivo receitas.json não encontrado ou erro no servidor.");
                 return resposta.json();
             })
             .then(dados => {
                 bancoDeDados = dados;
-                // Inicia todas as receitas fechadas e com padrão de 2 porções
                 bancoDeDados.forEach(r => { porcoesSelecionadas[r.id] = 2; });
                 renderizarReceitas(bancoDeDados);
             })
             .catch(erro => {
-                console.error(erro);
+                console.error("Erro detalhado:", erro);
                 document.getElementById('listaReceitas').innerHTML = 
-                    `<p style="text-align:center; color:red; margin-top:40px;">Não foi possível carregar as receitas do arquivo .json</p>`;
+                    `<p style="text-align:center; color:red; margin-top:40px; font-weight:bold;">
+                        Não foi possível carregar as receitas do arquivo .json<br>
+                        <span style="font-size:12px; color:#64748b; font-weight:normal;">Verifique se o arquivo foi enviado corretamente ou se há erros de sintaxe nele.</span>
+                    </p>`;
             });
     }
 
@@ -241,7 +225,6 @@
 
         lista.forEach(receita => {
             const card = document.createElement('div');
-            // Começa fechado (collapsed) igual ao layout original limpo
             card.className = "recipe-card collapsed";
             card.id = `card_${receita.id}`;
 
@@ -250,7 +233,6 @@
             const pAtuais = porcoesSelecionadas[receita.id];
 
             card.innerHTML = `
-                <!-- Topo estruturado igualzinho à foto 11 -->
                 <div class="recipe-header" onclick="toggleCard(${receita.id})">
                     <div>
                         <div class="recipe-title">${receita.titulo}</div>
@@ -259,7 +241,6 @@
                     <div class="arrow-icon">🡫</div>
                 </div>
                 
-                <!-- Miolo expansível -->
                 <div class="recipe-content">
                     <div class="recipe-desc">${receita.descricao || ''}</div>
                     
@@ -344,7 +325,7 @@
         elemento.classList.toggle('checked', box.checked);
     }
 
-    function actualizarPorcoes(id, valor, varIdx) {
+    function atualizarPorcoes(id, valor, varIdx) {
         porcoesSelecionadas[id] = parseInt(valor);
         const card = document.getElementById(`card_${id}`);
         card.querySelector('.yield-badge span').innerText = valor;
@@ -370,7 +351,7 @@
         document.getElementById(`finalizacoes_${id}`).innerHTML = renderFinalizacao(variacaoAtiva.finalizacoes, id);
         
         const card = document.getElementById(`card_${id}`);
-        card.querySelector('.yield-slider').setAttribute('oninput', `actualizarPorcoes(${id}, this.value, ${varIdx})`);
+        card.querySelector('.yield-slider').setAttribute('oninput', `atualizarPorcoes(${id}, this.value, ${varIdx})`);
     }
 
     function filtrarReceitas() {
