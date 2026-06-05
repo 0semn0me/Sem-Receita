@@ -1,0 +1,1157 @@
+[
+  {
+    "id": "1",
+    "name": "Bolo de Cenoura",
+    "description": "[Categoria: Bolos] O clássico da tarde com calda de chocolate craquelada.",
+    "variations": [{
+      "name": "Tradicional de Liquidificador", "basePortions": 8,
+      "ingredients": [{"name": "Cenouras", "baseQty": 3, "unit": "unidades"}, {"name": "Farinha de trigo", "baseQty": 2, "unit": "xícaras"}, {"name": "Açúcar", "baseQty": 2, "unit": "xícaras"}, {"name": "Óleo", "baseQty": 0.5, "unit": "xícara"}, {"name": "Fermento", "baseQty": 1, "unit": "colher de sopa"}],
+      "steps": ["Bata as cenouras, ovos e óleo no liquidificador.", "Misture o açúcar, farinha e fermento manualmente.", "Asse a 180°C por 40 minutos."],
+      "finishing": ["Cubra com calda quente de chocolate e cacau."]
+    }]
+  },
+  {
+    "id": "2",
+    "name": "Bolo de Chocolate Festivo",
+    "description": "[Categoria: Bolos] Massa úmida e escura com cobertura generosa.",
+    "variations": [{
+      "name": "Nega Maluca Prática", "basePortions": 8,
+      "ingredients": [{"name": "Chocolate em pó", "baseQty": 1, "unit": "xícara"}, {"name": "Farinha", "baseQty": 2, "unit": "xícaras"}, {"name": "Açúcar", "baseQty": 1, "unit": "xícara"}, {"name": "Água fervente", "baseQty": 1, "unit": "xícara"}],
+      "steps": ["Misture os secos em uma tigela.", "Adicione o óleo e a água fervente mexendo bem.", "Asse por 35 minutos."],
+      "finishing": ["Faça furos e jogue brigadeiro mole por cima."]
+    }]
+  },
+  {
+    "id": "3",
+    "name": "Bolo de Fubá Cremoso",
+    "description": "[Categoria: Bolos] Aquele que já sai com consistência de pudim no meio.",
+    "variations": [{
+      "name": "Estilo Caipira", "basePortions": 6,
+      "ingredients": [{"name": "Fubá", "baseQty": 1.5, "unit": "xícaras"}, {"name": "Leite integral", "baseQty": 3, "unit": "xícaras"}, {"name": "Açúcar", "baseQty": 2, "unit": "xícaras"}, {"name": "Queijo parmesão", "baseQty": 50, "unit": "g"}],
+      "steps": ["Bata todos os ingredientes no liquidificador.", "A massa fica bem líquida, é normal.", "Asse em forma untada até dourar."],
+      "finishing": ["Polvilhe açúcar com canela assim que tirar do forno."]
+    }]
+  },
+  {
+    "id": "4",
+    "name": "Bolo de Laranja Caseiro",
+    "description": "[Categoria: Bolos] Perfumado, fofinho e com uma calda azedinha natural.",
+    "variations": [{
+      "name": "Com Casca e Tudo", "basePortions": 6,
+      "ingredients": [{"name": "Laranja inteira sem sementes", "baseQty": 1, "unit": "unidade"}, {"name": "Ovos", "baseQty": 3, "unit": "unidades"}, {"name": "Farinha", "baseQty": 2, "unit": "xícaras"}],
+      "steps": ["Bata a laranja picada com óleo e ovos.", "Peneire a farinha com açúcar e incorpore o líquido.", "Leve ao forno por 40 minutos."],
+      "finishing": ["Regue com suco puro de laranja misturado com açúcar."]
+    }]
+  },
+  {
+    "id": "5",
+    "name": "Bolo de Limão com Merengue",
+    "description": "[Categoria: Bolos] Massa leve de limão coberta com marshmallow tostado.",
+    "variations": [{
+      "name": "Limão Siciliano Elegante", "basePortions": 6,
+      "ingredients": [{"name": "Iogurte natural", "baseQty": 1, "unit": "pote"}, {"name": "Suco de limão", "baseQty": 4, "unit": "colheres de sopa"}, {"name": "Farinha", "baseQty": 2, "unit": "xícaras"}],
+      "steps": ["Bata o iogurte, açúcar, óleo e suco de limão.", "Adicione a farinha e o fermento delicadamente.", "Asse até passar no teste do palito."],
+      "finishing": ["Cubra com claras em neve batidas com açúcar e raspa de limão."]
+    }]
+  },
+  {
+    "id": "6",
+    "name": "Bolo de Coco Gelado",
+    "description": "[Categoria: Bolos] O clássico embrulhado no papel alumínio super molhado.",
+    "variations": [{
+      "name": "Toalha Felpuda", "basePortions": 8,
+      "ingredients": [{"name": "Leite de coco", "baseQty": 1, "unit": "vidro"}, {"name": "Leite condensado", "baseQty": 1, "unit": "lata"}, {"name": "Coco ralado", "baseQty": 100, "unit": "g"}],
+      "steps": ["Faça uma massa de bolo simples de baunilha e asse.", "Corte o bolo ainda morno em quadrados uniformes."],
+      "finishing": ["Mergulhe os pedços na calda de leites e passe no coco ralado."]
+    }]
+  },
+  {
+    "id": "7",
+    "name": "Bolo de Milho de Lata",
+    "description": "[Categoria: Bolos] Praticidade pura usando a própria lata como medida.",
+    "variations": [{
+      "name": "De Liquidificador Rápido", "basePortions": 6,
+      "ingredients": [{"name": "Milho verde em conserva", "baseQty": 1, "unit": "lata"}, {"name": "Flocão de milho", "baseQty": 1, "unit": "lata"}, {"name": "Leite", "baseQty": 1, "unit": "lata"}],
+      "steps": ["Bata o milho escorrido, leite, ovos, açúcar e flocão.", "Adicione o fermento e misture na velocidade mínima.", "Asse por 35 minutos."],
+      "finishing": ["Sirva morno acompanhado de café fresco."]
+    }]
+  },
+  {
+    "id": "8",
+    "name": "Bolo de Mandioca Cremoso",
+    "description": "[Categoria: Bolos] Também conhecido como bolo de aipim ou macaxeira.",
+    "variations": [{
+      "name": "Tradicional com Coco", "basePortions": 8,
+      "ingredients": [{"name": "Mandioca ralada fresca", "baseQty": 500, "unit": "g"}, {"name": "Manteiga", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Coco ralado", "baseQty": 50, "unit": "g"}],
+      "steps": ["Misture a mandioca ralada com os ovos batidos e açúcar.", "Adicione a manteiga derretida e o coco ralado.", "Asse em forma bem untada até dourar."],
+      "finishing": ["Pincele leite de coco por cima ao sair do forno."]
+    }]
+  },
+  {
+    "id": "9",
+    "name": "Bolo de Banana com Canela",
+    "description": "[Categoria: Bolos] Perfeito para aproveitar aquelas bananas bem maduras da fruteira.",
+    "variations": [{
+      "name": "Versão Invertida Caramelizada", "basePortions": 6,
+      "ingredients": [{"name": "Bananas nanicas", "baseQty": 4, "unit": "unidades"}, {"name": "Açúcar para o caramelo", "baseQty": 1, "unit": "xícara"}, {"name": "Canela em pó", "baseQty": 1, "unit": "colher de chá"}],
+      "steps": ["Caramelize o fundo da forma e distribua as bananas em fatias.", "Faça uma massa simples batendo 2 bananas junto no liquidificador.", "Despeje sobre as bananas e asse."],
+      "finishing": ["Desenforme o bolo ainda quente para o caramelo não grudar."]
+    }]
+  },
+  {
+    "id": "10",
+    "name": "Bolo de Nozes Requintado",
+    "description": "[Categoria: Bolos] Massa texturizada fina com pedacinhos crocantes.",
+    "variations": [{
+      "name": "Com Recheio de Doce de Leite", "basePortions": 6,
+      "ingredients": [{"name": "Nozes trituradas", "baseQty": 1, "unit": "xícara"}, {"name": "Ovos (claras em neve)", "baseQty": 4, "unit": "unidades"}, {"name": "Doce de leite firme", "baseQty": 300, "unit": "g"}],
+      "steps": ["Bata as gemas com açúcar e adicione as nozes e farinha.", "Incorpore as claras em neve delicadamente.", "Asse em duas formas baixas."],
+      "finishing": ["Recheie e cubra com o doce de leite salpicado de nozes."]
+    }]
+  },
+  {
+    "id": "11",
+    "name": "Torta de Frango de Liquidificador",
+    "description": "[Categoria: Tortas] A campeã de audiência dos lanches rápidos e jantares práticos.",
+    "variations": [{
+      "name": "Clássica Cremosa", "basePortions": 6,
+      "ingredients": [{"name": "Frango desfiado temperado", "baseQty": 400, "unit": "g"}, {"name": "Requeijão", "baseQty": 1, "unit": "copo"}, {"name": "Leite", "baseQty": 1.5, "unit": "xícaras"}, {"name": "Farinha", "baseQty": 1.5, "unit": "xícaras"}],
+      "steps": ["Bata os ingredientes da massa no liquidificador.", "Coloque metade da massa na forma, adicione o recheio e requeijão.", "Cubra com o resto e asse por 35 min."],
+      "finishing": ["Salpique orégano e queijo ralado antes de assar."]
+    }]
+  },
+  {
+    "id": "12",
+    "name": "Torta de Palmito",
+    "description": "[Categoria: Tortas] Massa que derrete na boca com recheio cremoso de palmito.",
+    "variations": [{
+      "name": "Com Massa Podre Tradicional", "basePortions": 6,
+      "ingredients": [{"name": "Palmito picado", "baseQty": 1, "unit": "vidro"}, {"name": "Manteiga gelada", "baseQty": 150, "unit": "g"}, {"name": "Farinha de trigo", "baseQty": 2.5, "unit": "xícaras"}, {"name": "Ervilhas", "baseQty": 0.5, "unit": "lata"}],
+      "steps": ["Misture a farinha e manteiga com as mãos até virar farofa.", "Ligue a massa com um ovo e forre a forma.", "Refogue o palmito com amido e leite para engrossar e recheie."],
+      "finishing": ["Pincele uma gema por cima da tampa de massa antes do forno."]
+    }]
+  },
+  {
+    "id": "13",
+    "name": "Torta de Carne Seca com Requeijão",
+    "description": "[Categoria: Tortas] Combinação perfeita do salgadinho da carne com a cremosidade do queijo.",
+    "variations": [{
+      "name": "Massa de Mandioca", "basePortions": 6,
+      "ingredients": [{"name": "Carne seca dessalgada e desfiada", "baseQty": 300, "unit": "g"}, {"name": "Mandioca cozida", "baseQty": 400, "unit": "g"}, {"name": "Catupiry ou Requeijão", "baseQty": 1, "unit": "copo"}],
+      "steps": ["Bata a mandioca cozida com leite e ovos no liquidificador.", "Refogue a carne seca com bastante cebola.", "Monte em camadas intercalando massa, carne e requeijão."],
+      "finishing": ["Asse até dourar bem as bordas."]
+    }]
+  },
+  {
+    "id": "14",
+    "name": "Torta de Limão Clássica",
+    "description": "[Categoria: Tortas] Sobremesa azedinha equilibrada com base de biscoito crocante.",
+    "variations": [{
+      "name": "Tradicional de Geladeira", "basePortions": 6,
+      "ingredients": [{"name": "Biscoito maisena", "baseQty": 1, "unit": "pacote"}, {"name": "Manteiga derretida", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Leite condensado", "baseQty": 1, "unit": "lata"}, {"name": "Suco de limão puro", "baseQty": 0.5, "unit": "xícara"}],
+      "steps": ["Triture o biscoito e misture com a manteiga para fazer a base.", "Asse a base por 10 minutos.", "Bata o leite condensado com o suco de limão no batedor manual."],
+      "finishing": ["Despeje o creme na base e decore com muitas raspas de limão."]
+    }]
+  },
+  {
+    "id": "15",
+    "name": "Torta Holandesa Cremosa",
+    "description": "[Categoria: Tortas] Creme leve de baunilha com cobertura espelhada de ganache.",
+    "variations": [{
+      "name": "Estilo Confeitaria", "basePortions": 8,
+      "ingredients": [{"name": "Creme de leite fresco", "baseQty": 1, "unit": "garrafa"}, {"name": "Chocolate meio amargo", "baseQty": 200, "unit": "g"}, {"name": "Biscoito Calipso", "baseQty": 1, "unit": "pacote"}],
+      "steps": ["Bata o creme de leite em ponto de chantilly com leite condensado.", "Forre as laterais da forma com os biscoitos redondos.", "Preencha com o creme e leve para gelar."],
+      "finishing": ["Derreta o chocolate com creme de leite e jogue por cima."]
+    }]
+  },
+  {
+    "id": "16",
+    "name": "Torta Banoffee Pie",
+    "description": "[Categoria: Tortas] Tendência absoluta: camadas de doce de leite, banana e chantilly.",
+    "variations": [{
+      "name": "Inglesa Prática", "basePortions": 6,
+      "ingredients": [{"name": "Doce de leite pastoso", "baseQty": 400, "unit": "g"}, {"name": "Bananas em rodelas", "baseQty": 4, "unit": "unidades"}, {"name": "Chantilly batido", "baseQty": 200, "unit": "ml"}, {"name": "Canela", "baseQty": 1, "unit": "colher de chá"}],
+      "steps": ["Faça uma base de biscoito triturado igual à de limão.", "Espalhe todo o doce de leite sobre a base.", "Arrume as rodelas de banana bem juntas por cima."],
+      "finishing": ["Cubra com o chantilly e salpique canela em pó generosamente."]
+    }]
+  },
+  {
+    "id": "17",
+    "name": "Torta de Maçã Americana",
+    "description": "[Categoria: Tortas] A famosa Apple Pie dos filmes, quentinha e aromática.",
+    "variations": [{
+      "name": "Com Massa Folhada", "basePortions": 6,
+      "ingredients": [{"name": "Maçãs fatiadas finas", "baseQty": 4, "unit": "unidades"}, {"name": "Açúcar mascavo", "baseQty": 0.5, "unit": "xícara"}, {"name": "Massa folhada pronta", "baseQty": 1, "unit": "pacote"}],
+      "steps": ["Cozinhe as maçãs com açúcar mascavo, canela e amido.", "Forre a forma com a massa, coloque as maçãs frias.", "Cubra com tiras trançadas de massa folhada."],
+      "finishing": ["Pincele açúcar cristal por cima e asse até dourar."]
+    }]
+  },
+  {
+    "id": "18",
+    "name": "Torta de Morango com Creme",
+    "description": "[Categoria: Tortas] Base crocante com creme de confeiteiro e morangos brilhantes.",
+    "variations": [{
+      "name": "Espelhada Tradicional", "basePortions": 6,
+      "ingredients": [{"name": "Morangos frescos", "baseQty": 1, "unit": "caixa"}, {"name": "Gelatina de morango", "baseQty": 1, "unit": "sachê"}, {"name": "Amido de milho", "baseQty": 2, "unit": "colheres de sopa"}],
+      "steps": ["Faça um creme no fogo com leite, amido, gema e leite condensado.", "Coloque o creme frio na base de torta assada.", "Arrume os morangos cortados ao meio por cima."],
+      "finishing": ["Pincele a gelatina semi-fria por cima para dar brilho de vitrine."]
+    }]
+  },
+  {
+    "id": "19",
+    "name": "Torta de Atum Rápida",
+    "description": "[Categoria: Tortas] Salvadora de jantares tardios com ingredientes de despensa.",
+    "variations": [{
+      "name": "Liquidificador express", "basePortions": 4,
+      "ingredients": [{"name": "Atum em conserva", "baseQty": 1, "unit": "lata"}, {"name": "Ervilha e milho", "baseQty": 1, "unit": "lata"}, {"name": "Ovos", "baseQty": 3, "unit": "unidades"}],
+      "steps": ["Bata a massa clássica (leite, óleo, ovos, farinha).", "Misture o atum escorrido com os vegetais direto na massa.", "Despeje na forma e asse por 30 minutos."],
+      "finishing": ["Sirva quente ou fria acompanhada de salada verde."]
+    }]
+  },
+  {
+    "id": "20",
+    "name": "Torta de Legumes Fit",
+    "description": "[Categoria: Tortas] Versão low carb e nutritiva sem farinha de trigo refinada.",
+    "variations": [{
+      "name": "Com Aveia e Brócolis", "basePortions": 4,
+      "ingredients": [{"name": "Brócolis picadinho", "baseQty": 1, "unit": "xícara"}, {"name": "Cenoura ralada", "baseQty": 0.5, "unit": "xícara"}, {"name": "Farelo de aveia", "baseQty": 4, "unit": "colheres de sopa"}],
+      "steps": ["Bata ovos, cottage e aveia para formar a base líquida.", "Incorpore todos os legumes crus bem picados à mistura.", "Asse em forminhas individuais ou refratário pequeno."],
+      "finishing": ["Finalize com sementes de girassol ou gergelim no topo."]
+    }]
+  },
+  {
+    "id": "21",
+    "name": "Estrogonofe de Frango",
+    "description": "[Categoria: Comidas] O prato do dia a dia mais amado do Brasil.",
+    "variations": [{
+      "name": "Clássico Cremoso", "basePortions": 4,
+      "ingredients": [{"name": "Peito de frango em cubos", "baseQty": 500, "unit": "g"}, {"name": "Creme de leite", "baseQty": 1, "unit": "caixinha"}, {"name": "Ketchup", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Champignon", "baseQty": 100, "unit": "g"}],
+      "steps": ["Doure o frango com alho e cebola na panela.", "Adicione o ketchup, mostarda e champignon.", "Desligue o fogo e misture o creme de leite."],
+      "finishing": ["Sirva com arroz branco e muita batata palha."]
+    }]
+  },
+  {
+    "id": "22",
+    "name": "Lasanha à Bolonhesa",
+    "description": "[Categoria: Comidas] Almoço de domingo garantido com camadas perfeitas.",
+    "variations": [{
+      "name": "Com Massa Direto ao Forno", "basePortions": 6,
+      "ingredients": [{"name": "Carne moída", "baseQty": 400, "unit": "g"}, {"name": "Molho de tomate", "baseQty": 2, "unit": "sachês"}, {"name": "Massa de lasanha", "baseQty": 1, "unit": "pacote"}, {"name": "Muçarela fatiada", "baseQty": 300, "unit": "g"}],
+      "steps": ["Faça um molho bolonhesa bem suculento e líquido.", "Monte em um refratário: molho, massa, presunto, muçarela.", "Repita as camadas e cubra com papel alumínio para assar."],
+      "finishing": ["Retire o alumínio nos últimos 10 minutos para gratinar."]
+    }]
+  },
+  {
+    "id": "23",
+    "name": "Feijoada Completa",
+    "description": "[Categoria: Comidas] Feijão gordo bem apurado com carnes tradicionais.",
+    "variations": [{
+      "name": "Panela de Pressão Rápida", "basePortions": 6,
+      "ingredients": [{"name": "Feijão preto", "baseQty": 500, "unit": "g"}, {"name": "Calabresa fatiada", "baseQty": 1, "unit": "gargalo"}, {"name": "Bacon em cubos", "baseQty": 150, "unit": "g"}, {"name": "Carne seca dessalgada", "baseQty": 250, "unit": "g"}],
+      "steps": ["Cozinhe o feijão com as carnes duras na pressão por 25 min.", "Abra, junte a calabresa e o paio e deixe ferver aberto.", "Abafe e espere o caldo engrossar bem."],
+      "finishing": ["Sirva com couve refogada na manteiga e fatias de laranja."]
+    }]
+  },
+  {
+    "id": "24",
+    "name": "Moqueca Baiana",
+    "description": "[Categoria: Comidas] Peixe cozido com perfume de azeite de dendê e leite de coco.",
+    "variations": [{
+      "name": "De Cação de Panela", "basePortions": 4,
+      "ingredients": [{"name": "Postas de cação", "baseQty": 600, "unit": "g"}, {"name": "Leite de coco", "baseQty": 1, "unit": "vidro"}, {"name": "Azeite de dendê", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Pimentões coloridos", "baseQty": 2, "unit": "unidades"}],
+      "steps": ["Marque o peixe no limão e sal por 15 minutos.", "Faça camadas de cebola, pimentão, tomate e peixe na panela.", "Regue com o dendê e o leite de coco e cozinhe por 20 min sem mexer."],
+      "finishing": ["Salpique bastante coentro fresco picado antes de desligar."]
+    }]
+  },
+  {
+    "id": "25",
+    "name": "Galinhada Caipira",
+    "description": "[Categoria: Comidas] Arroz amarelinho cozido junto com o frango pedaçudo.",
+    "variations": [{
+      "name": "De Panela de Ferro", "basePortions": 4,
+      "ingredients": [{"name": "Frango em pedaços (coxa/sobrecoxa)", "baseQty": 800, "unit": "g"}, {"name": "Arroz agulhinha", "baseQty": 1.5, "unit": "xícaras"}, {"name": "Açafrão da terra", "baseQty": 1, "unit": "colher de chá"}],
+      "steps": ["Doure muito bem o frango na gordura até criar fundo de panela.", "Adicione cebola, alho, açafrão e o arroz cru.", "Cubra com água fervente e cozinhe em fogo baixo até secar."],
+      "finishing": ["Finalize com milho verde e cheiro-verde picadinho."]
+    }]
+  },
+  {
+    "id": "26",
+    "name": "Filé à Parmegiana",
+    "description": "[Categoria: Comidas] Carne empanada crocante afogada em queijo e molho artesanal.",
+    "variations": [{
+      "name": "De Alcatra Tradicional", "basePortions": 4,
+      "ingredients": [{"name": "Bifes de alcatra limpos", "baseQty": 500, "unit": "g"}, {"name": "Farinha panko", "baseQty": 1, "unit": "xícara"}, {"name": "Muçarela fatiada", "baseQty": 200, "unit": "g"}, {"name": "Molho de tomate caseiro", "baseQty": 1, "unit": "xícara"}],
+      "steps": ["Tempere os bifes, passe no ovo e depois na farinha panko.", "Frite em óleo quente até dourar e escorra.", "Arrume no refratário, coloque o molho quente e cubra com queijo."],
+      "finishing": ["Leve ao forno bem forte só para derreter e gratinar o queijo."]
+    }]
+  },
+  {
+    "id": "27",
+    "name": "Arroz Carreteiro",
+    "description": "[Categoria: Comidas] Receita gaúcha tradicional para aproveitar sobra de churrasco ou charque.",
+    "variations": [{
+      "name": "Com Carne Seca e Linguiça", "basePortions": 4,
+      "ingredients": [{"name": "Carne seca cozida e desfatiada", "baseQty": 250, "unit": "g"}, {"name": "Calabresa em cubos", "baseQty": 1, "unit": "unidade"}, {"name": "Arroz", "baseQty": 1.5, "unit": "xícaras"}],
+      "steps": ["Frite o bacon e a calabresa até soltar gordura.", "Refogue o alho, cebola e a carne seca na mesma panela.", "Coloque o arroz, refogue bem e cozinhe com água quente."],
+      "finishing": ["Sirva com ovo frito de gema mole por cima."]
+    }]
+  },
+  {
+    "id": "28",
+    "name": "Escondidinho de Carne Seca",
+    "description": "[Categoria: Comidas] Purê cremoso cobrindo um recheio salgadinho perfeito.",
+    "variations": [{
+      "name": "Com Purê de Mandioca", "basePortions": 4,
+      "ingredients": [{"name": "Mandioca cozida", "baseQty": 600, "unit": "g"}, {"name": "Carne seca acebolada", "baseQty": 300, "unit": "g"}, {"name": "Manteiga", "baseQty": 2, "unit": "colheres de sopa"}],
+      "steps": ["Bata a mandioca com leite e manteiga até virar um purê liso.", "Coloque a carne seca refogada no fundo da travessa.", "Espalhe o purê por cima cobrindo tudo."],
+      "finishing": ["Cubra com queijo coalho ralado e doure no forno."]
+    }]
+  },
+  {
+    "id": "29",
+    "name": "Bobó de Camarão",
+    "description": "[Categoria: Comidas] Creme aveludado de mandioca com camarões salteados.",
+    "variations": [{
+      "name": "Estilo Baiano Limpo", "basePortions": 4,
+      "ingredients": [{"name": "Camarões limpos", "baseQty": 400, "unit": "g"}, {"name": "Mandioca cozida", "baseQty": 500, "unit": "g"}, {"name": "Leite de coco", "baseQty": 1, "unit": "vidro"}],
+      "steps": ["Bata a mandioca cozida com o leite de coco no liquidificador.", "Grelhe os camarões rapidamente com alho (2 min por lado).", "Adicione o creme de mandioca na panela dos camarões com um fio de dendê."],
+      "finishing": ["Sirva imediatamente com arroz de coco."]
+    }]
+  },
+  {
+    "id": "30",
+    "name": "Nhoque ao Sugo",
+    "description": "[Categoria: Comidas] Massa caseira de batata que derrete na boca.",
+    "variations": [{
+      "name": "De Batata Tradicional", "basePortions": 4,
+      "ingredients": [{"name": "Batatas cozidas espremidas", "baseQty": 500, "unit": "g"}, {"name": "Farinha de trigo", "baseQty": 1, "unit": "xícara"}, {"name": "Gema de ovo", "baseQty": 1, "unit": "unidade"}],
+      "steps": ["Misture a batata morna com a gema e vá jogando farinha até dar ponto.", "Faça rolinhos, corte os nhoques e cozinhe em água fervendo.", "Retire assim que eles subirem para a superfície."],
+      "finishing": ["Misture ao molho de tomate aquecido e sirva com parmesão."]
+    }]
+  },
+  {
+    "id": "31",
+    "name": "Risoto de Alho Poró",
+    "description": "[Categoria: Comidas] Elegante, cremoso e feito com arroz arbóreo.",
+    "variations": [{
+      "name": "Com Vinho Branco", "basePortions": 2,
+      "ingredients": [{"name": "Arroz arbóreo", "baseQty": 1, "unit": "xícara"}, {"name": "Alho poró fatiado", "baseQty": 1, "unit": "unidade"}, {"name": "Vinho branco seco", "baseQty": 0.5, "unit": "xícara"}, {"name": "Manteiga gelada", "baseQty": 2, "unit": "colheres de sopa"}],
+      "steps": ["Refogue o alho poró na manteiga e adicione o arroz.", "Coloque o vinho e mexa até evaporar.", "Vá jogando caldo de legumes quente aos poucos, mexendo sempre."],
+      "finishing": ["Desligue o fogo, junte uma colher de manteiga gelada e parmesão."]
+    }]
+  },
+  {
+    "id": "32",
+    "name": "Feijão Tropeiro",
+    "description": "[Categoria: Comidas] Prato mineiro clássico seco, saboroso e rico.",
+    "variations": [{
+      "name": "Estilo Mineiro", "basePortions": 4,
+      "ingredients": [{"name": "Feijão carioca cozido sem caldo", "baseQty": 2, "unit": "xícaras"}, {"name": "Farinha de mandioca", "baseQty": 1, "unit": "xícara"}, {"name": "Couve fatiada fina", "baseQty": 1, "unit": "xícara"}],
+      "steps": ["Frite o bacon e a calabresa. Reserve.", "Na mesma gordura, frite os ovos e mexa grosseiramente.", "Misture o feijão, as carnes, a couve e adicione a farinha aos poucos."],
+      "finishing": ["Sirva com torresmo estalando por cima."]
+    }]
+  },
+  {
+    "id": "33",
+    "name": "Panqueca de Carne Moída",
+    "description": "[Categoria: Comidas] Massa leve de liquidificador com recheio tradicional bem temperado.",
+    "variations": [{
+      "name": "Caseira de Mãe", "basePortions": 4,
+      "ingredients": [{"name": "Leite", "baseQty": 1, "unit": "xícara"}, {"name": "Farinha", "baseQty": 1, "unit": "xícara"}, {"name": "Carne moída refogada", "baseQty": 300, "unit": "g"}],
+      "steps": ["Bata leite, ovo e farinha para fazer a massa fluida.", "Frite discos finos em uma frigideira antiaderente untada.", "Recheie com a carne moída e enrole com cuidado."],
+      "finishing": ["Arrume os rolos no refratário, jogue molho por cima e aqueça."]
+    }]
+  },
+  {
+    "id": "34",
+    "name": "Frango Xadrez Rápido",
+    "description": "[Categoria: Comidas] Prato oriental adaptado com molho de soja encorpado.",
+    "variations": [{
+      "name": "Com Pimentões e Amendoim", "basePortions": 4,
+      "ingredients": [{"name": "Peito de frango em cubos", "baseQty": 400, "unit": "g"}, {"name": "Molho de soja (Shoyu)", "baseQty": 0.5, "unit": "xícara"}, {"name": "Amendoim torrado", "baseQty": 0.5, "unit": "xícara"}],
+      "steps": ["Sele o frango em fogo bem alto para não soltar água.", "Junte cebola e pimentões cortados em quadrados grandes.", "Adicione o shoyu engrossado com uma colher de amido de milho."],
+      "finishing": ["Salpique o amendoim crocante logo antes de comer."]
+    }]
+  },
+  {
+    "id": "35",
+    "name": "Yakisoba Misto",
+    "description": "[Categoria: Comidas] Macarrão frito oriental com carnes e vegetais crocantes.",
+    "variations": [{
+      "name": "Prático de Frigideira", "basePortions": 4,
+      "ingredients": [{"name": "Macarrão para yakisoba", "baseQty": 250, "unit": "g"}, {"name": "Iscas de carne e frango", "baseQty": 300, "unit": "g"}, {"name": "Acelga picada", "baseQty": 2, "unit": "xícaras"}],
+      "steps": ["Cozinhe o macarrão e frite-o levemente no óleo de gergelim.", "Grelhe as carnes e adicione os vegetais (cenoura, brócolis, acelga).", "Junte o molho específico para yakisoba e misture tudo."],
+      "finishing": ["Sirva bem quente em tigelas fundas."]
+    }]
+  },
+  {
+    "id": "36",
+    "name": "Picadinho de Carne",
+    "description": "[Categoria: Comidas] Carne cortada na ponta da faca com molho ferrugem denso.",
+    "variations": [{
+      "name": "Tradicional Boêmio", "basePortions": 4,
+      "ingredients": [{"name": "Filé mignon ou alcatra picada", "baseQty": 500, "unit": "g"}, {"name": "Caldo de carne", "baseQty": 1, "unit": "xícara"}, {"name": "Cebola picadinha", "baseQty": 1, "unit": "unidade"}],
+      "steps": ["Frite a carne em levas pequenas para dourar sem juntar água.", "Refogue a cebola no fundo queimadinho da panela.", "Adicione o caldo e deixe reduzir até engrossar naturalmente."],
+      "finishing": ["Acompanhe com ovo pochê, banana frita e farofa."]
+    }]
+  },
+  {
+    "id": "37",
+    "name": "Bife Rolê Clássico",
+    "description": "[Categoria: Comidas] Bifes recheados cozidos lentamente no molho de tomate.",
+    "variations": [{
+      "name": "Com Bacon e Cenoura", "basePortions": 4,
+      "ingredients": [{"name": "Bifes de coxão mole", "baseQty": 4, "unit": "unidades"}, {"name": "Tiras de bacon", "baseQty": 4, "unit": "unidades"}, {"name": "Cenoura em palito", "baseQty": 1, "unit": "unidade"}],
+      "steps": ["Abra os bifes, coloque uma tira de bacon e uma de cenoura.", "Enrole os bifes bem firmes e prenda com palitos de dente.", "Doure na panela de pressão e cozinhe no molho por 20 minutos."],
+      "finishing": ["Remova os palitos antes de transferir para a travessa."]
+    }]
+  },
+  {
+    "id": "38",
+    "name": "Almôndegas ao Molho",
+    "description": "[Categoria: Comidas] Bolinhas de carne macias e suculentas cozidas no tomate puro.",
+    "variations": [{
+      "name": "Assadas e Cozidas", "basePortions": 4,
+      "ingredients": [{"name": "Carne moída", "baseQty": 500, "unit": "g"}, {"name": "Sopa de cebola em pó", "baseQty": 2, "unit": "colheres de sopa"}, {"name": "Molho de tomate", "baseQty": 1, "unit": "sachê"}],
+      "steps": ["Misture a carne moída com a sopa de cebola e modele as esferas.", "Dê um choque na frigideira com óleo para selar os lados.", "Transfira para a panela com o molho fervendo por 10 minutos."],
+      "finishing": ["Sirva cobrindo uma bela porção de espaguete."]
+    }]
+  },
+  {
+    "id": "39",
+    "name": "Tutu de Feijão",
+    "description": "[Categoria: Comidas] Feijão batido e engrossado com farinha, bem típico.",
+    "variations": [{
+      "name": "Estilo Paulista", "basePortions": 4,
+      "ingredients": [{"name": "Feijão cozido com caldo", "baseQty": 2, "unit": "xícaras"}, {"name": "Farinha de mandioca torrada", "baseQty": 0.5, "unit": "xícara"}, {"name": "Bacon picado", "baseQty": 100, "unit": "g"}],
+      "steps": ["Bata o feijão com o próprio caldo no liquidificador.", "Frite o bacon com alho e junte o feijão batido.", "Vá salpicando a farinha aos poucos com o fogo baixo, mexendo sempre."],
+      "finishing": ["Decore o topo com rodelas de ovo cozido e salsa."]
+    }]
+  },
+  {
+    "id": "40",
+    "name": "Carne de Panela com Batata",
+    "description": "[Categoria: Comidas] Carne desmanchando com batatas infundidas no molho.",
+    "variations": [{
+      "name": "De Músculo ou Acém", "basePortions": 4,
+      "ingredients": [{"name": "Carne em cubos grandes", "baseQty": 600, "unit": "g"}, {"name": "Batatas em cubos grandes", "baseQty": 3, "unit": "unidades"}, {"name": "Extrato de tomate", "baseQty": 2, "unit": "colheres de sopa"}],
+      "steps": ["Doure a carne na pressão com óleo e cebola picada.", "Feche a panela com um dedinho de água e cozinhe por 30 min.", "Abra, coloque as batatas e cozinhe sem pressão até ficarem macias."],
+      "finishing": ["Deixe o molho apurar bem até ficar denso."]
+    }]
+  },
+  {
+    "id": "41",
+    "name": "Costelinha com Quiabo",
+    "description": "[Categoria: Comidas] Clássico mineiro sem a baba chata do quiabo.",
+    "variations": [{
+      "name": "Tradicional de Vó", "basePortions": 4,
+      "ingredients": [{"name": "Costelinha de porco", "baseQty": 600, "unit": "g"}, {"name": "Quiabo fresco limpo", "baseQty": 200, "unit": "g"}, {"name": "Limão", "baseQty": 1, "unit": "unidade"}],
+      "steps": ["Frite o quiabo fatiado com óleo e limão para tirar a baba. Reserve.", "Doure as costelinhas na própria gordura até ficarem macias.", "Junte tudo na mesma panela e deixe pegar sabor por 5 minutos."],
+      "finishing": ["Sirva com angu ou polenta mole."]
+    }]
+  },
+  {
+    "id": "42",
+    "name": "Baião de Dois",
+    "description": "[Categoria: Comidas] Mistura cearense perfeita de arroz, feijão fradinho e queijo coalho.",
+    "variations": [{
+      "name": "Completo do Nordeste", "basePortions": 4,
+      "ingredients": [{"name": "Feijão fradinho cozido", "baseQty": 1.5, "unit": "xícaras"}, {"name": "Arroz cru", "baseQty": 1, "unit": "xícara"}, {"name": "Queijo coalho em cubos", "baseQty": 150, "unit": "g"}, {"name": "Coentro", "baseQty": 0.5, "unit": "maço"}],
+      "steps": ["Frite bacon e carne seca desfiada com manteiga de garrafa.", "Adicione o arroz e o feijão cozido firme.", "Cozinhe tudo junto usando a água do cozimento do feijão."],
+      "finishing": ["Misture os cubos de queijo coalho com o fogo recém-apagado."]
+    }]
+  },
+  {
+    "id": "43",
+    "name": "Peixe Frito Tradicional",
+    "description": "[Categoria: Comidas] Iscas ou postas sequinhas com casquinha crocante.",
+    "variations": [{
+      "name": "Empanado no Fubá", "basePortions": 3,
+      "ingredients": [{"name": "Filé de peixe branco (Tilápia)", "baseQty": 500, "unit": "g"}, {"name": "Fubá mimoso", "baseQty": 1, "unit": "xícara"}, {"name": "Limão e sal", "baseQty": 1, "unit": "kit"}],
+      "steps": ["Tempere o peixe com limão, sal e pimenta-do-reino.", "Passe as iscas no fubá seco apertando bem com as mãos.", "Frite em imersão de óleo bem quente (não mexa muito para não quebrar)."],
+      "finishing": ["Escorra em papel toalha e sirva com gomos de limão craveiro."]
+    }]
+  },
+  {
+    "id": "44",
+    "name": "Macarronada de Domingo",
+    "description": "[Categoria: Comidas] Aquele espaguete com molho carregado e afetivo.",
+    "variations": [{
+      "name": "Ao Molho de Tomate Rústico", "basePortions": 4,
+      "ingredients": [{"name": "Macarrão espaguete", "baseQty": 300, "unit": "g"}, {"name": "Tomates maduros pelados", "baseQty": 1, "unit": "lata"}, {"name": "Manjericão fresco", "baseQty": 1, "unit": "punhado"}],
+      "steps": ["Cozinhe o macarrão em bastante água salgada até ficar al dente.", "Aperte os tomates pelados na panela com azeite e alho.", "Misture o macarrão direto na panela do molho com um pouco da água dele."],
+      "finishing": ["Sirva imediatamente com folhas frescas de manjericão."]
+    }]
+  },
+  {
+    "id": "45",
+    "name": "Strogonofe de Carne",
+    "description": "[Categoria: Comidas] Versão rica e encorpada usando carne bovina macia.",
+    "variations": [{
+      "name": "Com Alcatra ou Filé", "basePortions": 4,
+      "ingredients": [{"name": "Carne em tiras delgadas", "baseQty": 500, "unit": "g"}, {"name": "Mostarda escura", "baseQty": 1, "unit": "colher de sopa"}, {"name": "Creme de leite", "baseQty": 1, "unit": "caixinha"}],
+      "steps": ["Flambe ou doure a carne rapidamente em frigideira muito quente.", "Junte cebola, ketchup, mostarda e molho inglês.", "Adicione o creme de leite com o fogo desligado para não talhar."],
+      "finishing": ["Combine com arroz com passas ou batata rústica."]
+    }]
+  },
+  {
+    "id": "46",
+    "name": "Picadinho de Porco",
+    "description": "[Categoria: Comidas] Carne suína macia dourada com toque de limão.",
+    "variations": [{
+      "name": "Agridoce Prático", "basePortions": 3,
+      "ingredients": [{"name": "Lombo ou pernil em cubinhos", "baseQty": 500, "unit": "g"}, {"name": "Mel de abelha", "baseQty": 1, "unit": "colher de sopa"}, {"name": "Molho de soja", "baseQty": 3, "unit": "colheres de sopa"}],
+      "steps": ["Fríte a carne de porco até ficar bem dourada.", "Adicione alho e regue com o shoyu e o mel.", "Deixe o molho reduzir por 3 minutos envolvendo a carne."],
+      "finishing": ["Salpique gergelim ou cebolinha fatiada."]
+    }]
+  },
+  {
+    "id": "47",
+    "name": "Arroz de Forno",
+    "description": "[Categoria: Comidas] A melhor forma de reaproveitar o arroz amanhecido com sofisticação.",
+    "variations": [{
+      "name": "Colorido Recheado", "basePortions": 4,
+      "ingredients": [{"name": "Arroz cozido amanhecido", "baseQty": 3, "unit": "xícaras"}, {"name": "Presunto e muçarela picados", "baseQty": 200, "unit": "g"}, {"name": "Seleta de legumes", "baseQty": 1, "unit": "lata"}],
+      "steps": ["Misture o arroz com os frios, os legumes e uma colher de maionese.", "Coloque tudo em um refratário untado com manteiga.", "Cubra com queijo ralado grosso."],
+      "finishing": ["Asse por 15 minutos até criar casquinha dourada por cima."]
+    }]
+  },
+  {
+    "id": "48",
+    "name": "Caldo Verde",
+    "description": "[Categoria: Comidas] Sopa portuguesa aconchegante à base de batata e couve.",
+    "variations": [{
+      "name": "Tradicional de Inverno", "basePortions": 4,
+      "ingredients": [{"name": "Batatas descascadas", "baseQty": 4, "unit": "unidades"}, {"name": "Couve fatiada ultra fina", "baseQty": 1, "unit": "xícara"}, {"name": "Calabresa em rodelas", "baseQty": 1, "unit": "unidade"}],
+      "steps": ["Cozinhe as batatas com alho até desmanchar e bata no liquidificador com a água.", "Frite a calabresa na panela.", "Despeje o creme de batatas sobre a calabresa e cozinhe por 5 min."],
+      "finishing": ["Junte a couve crua, apague o fogo e abafe por 2 minutos antes de servir."]
+    }]
+  },
+  {
+    "id": "49",
+    "name": "Canja de Galinha",
+    "description": "[Categoria: Comidas] Conforto em forma de sopa para dias amenos ou resfriados.",
+    "variations": [{
+      "name": "Nutritiva de Vó", "basePortions": 4,
+      "ingredients": [{"name": "Frango com osso (Peito ou coxinha)", "baseQty": 400, "unit": "g"}, {"name": "Arroz agulhinha cru", "baseQty": 0.5, "unit": "xícara"}, {"name": "Cenoura em cubinhos", "baseQty": 1, "unit": "unidade"}],
+      "steps": ["Cozinhe o frango com temperos e desfie, guardando o caldo.", "Volte o frango desfiado para o caldo com as cenouras e o arroz.", "Cozinhe em fogo médio até o arroz ficar bem macio."],
+      "finishing": ["Sirva bem quente com gotas de limão e salsinha."]
+    }]
+  },
+  {
+    "id": "50",
+    "name": "Sopão de Legumes com Carne",
+    "description": "[Categoria: Comidas] Refeição completa de uma panela só, rica em fibras.",
+    "variations": [{
+      "name": "Com Macarrão Pai Nosso", "basePortions": 4,
+      "ingredients": [{"name": "Músculo bovino em cubinhos", "baseQty": 300, "unit": "g"}, {"name": "Legumes picados (batata, chuchu, cenoura)", "baseQty": 3, "unit": "xícaras"}, {"name": "Macarrão curto de sopa", "baseQty": 1, "unit": "xícara"}],
+      "steps": ["Cozinhe a carne na pressão com temperos até amaciar.", "Abra a panela, adicione os legumes e água extra se necessário.", "Quando ferver, junte o macarrão e cozinhe por 8 minutos."],
+      "finishing": ["Sirva com torradas amanhecidas com alho."]
+    }]
+  },
+  {
+    "id": "51",
+    "name": "Pudim de Leite",
+    "description": "[Categoria: Sobremesas] O rei supremo das sobremesas caseiras.",
+    "variations": [{
+      "name": "Lisinho Sem Furinhos", "basePortions": 8,
+      "ingredients": [{"name": "Leite condensado", "baseQty": 1, "unit": "lata"}, {"name": "Leite morno", "baseQty": 1, "unit": "medida da lata"}, {"name": "Ovos inteiros", "baseQty": 3, "unit": "unidades"}, {"name": "Açúcar para calda", "baseQty": 1, "unit": "xícara"}],
+      "steps": ["Misture os ingredientes à mão delicadamente (sem bater).", "Caramelize a forma com o açúcar derretido.", "Asse em banho-maria coberto com alumínio a 160°C por 1h30."],
+      "finishing": ["Gele por 6 horas antes de passar a faca na borda e desenformar."]
+    }]
+  },
+  {
+    "id": "52",
+    "name": "Quindim Tradicional",
+    "description": "[Categoria: Sobremesas] Doce brilhante à base de gemas e coco que derrete na boca.",
+    "variations": [{
+      "name": "De Padaria Fina", "basePortions": 6,
+      "ingredients": [{"name": "Gemas peneiradas", "baseQty": 10, "unit": "unidades"}, {"name": "Açúcar", "baseQty": 1, "unit": "xícara"}, {"name": "Coco ralado seco", "baseQty": 50, "unit": "g"}],
+      "steps": ["Misture o coco no açúcar e adicione as gemas sem bater.", "Deixe a mistura descansar por 15 minutos.", "Despeje em forminhas muito untadas com manteiga e açúcar."],
+      "finishing": ["Asse em banho-maria até o topo ficar firme e dourado."]
+    }]
+  },
+  {
+    "id": "53",
+    "name": "Mousse de Maracujá",
+    "description": "[Categoria: Sobremesas] Sobremesa aerada de 3 ingredientes que fica pronta em minutos.",
+    "variations": [{
+      "name": "Rápida Sem Gelatina", "basePortions": 4,
+      "ingredients": [{"name": "Leite condensado", "baseQty": 1, "unit": "lata"}, {"name": "Creme de leite", "baseQty": 1, "unit": "caixinha"}, {"name": "Suco concentrado de maracujá", "baseQty": 1, "unit": "copo"}],
+      "steps": ["Bata o leite condensado e o creme de leite por 1 minuto.", "Com o liquidificador ligado, vá vertendo o suco aos poucos.", "O creme vai engrossar sozinho devido à acidez do maracujá."],
+      "finishing": ["Despeje em taças e decore com sementes da fruta fresca."]
+    }]
+  },
+  {
+    "id": "54",
+    "name": "Pavê de Chocolate",
+    "description": "[Categoria: Sobremesas] O famoso doce de camadas alternadas irresistível.",
+    "variations": [{
+      "name": "Com Biscoito Champagne", "basePortions": 6,
+      "ingredients": [{"name": "Biscoito champagne", "baseQty": 1, "unit": "pacote"}, {"name": "Creme branco base", "baseQty": 1, "unit": "receita"}, {"name": "Chocolate derretido", "baseQty": 150, "unit": "g"}],
+      "steps": ["Faça um creme com leite condensado, leite e amido.", "Umedeça os biscoitos rapidamente no leite com chocolate.", "Monte em camadas alternadas de creme e biscoito."],
+      "finishing": ["Cubra com ganache de chocolate e raspas brancas."]
+    }]
+  },
+  {
+    "id": "55",
+    "name": "Manjar de Coco com Ameixa",
+    "description": "[Categoria: Sobremesas] Doce tradicional de textura sedosa com calda escura clássica.",
+    "variations": [{
+      "name": "Branco Tradicional", "basePortions": 6,
+      "ingredients": [{"name": "Leite de coco", "baseQty": 1, "unit": "vidro"}, {"name": "Amido de milho", "baseQty": 0.5, "unit": "xícara"}, {"name": "Ameixas em calda", "baseQty": 100, "unit": "g"}],
+      "steps": ["Dissolva o amido no leite e junte o leite de coco e açúcar.", "Leve ao fogo mexendo sem parar até engrossar bem.", "Coloque em forma molhada com água e leve para gelar."],
+      "finishing": ["Desenforme e derrame a calda com as ameixas pretas por cima."]
+    }]
+  },
+  {
+    "id": "56",
+    "name": "Romeu e Julieta de Colher",
+    "description": "[Categoria: Sobremesas] A clássica união de queijo com goiabada em formato cremoso.",
+    "variations": [{
+      "name": "Na Taça Express", "basePortions": 4,
+      "ingredients": [{"name": "Cream cheese ou ricota cremosa", "baseQty": 200, "unit": "g"}, {"name": "Goiabada cascão", "baseQty": 150, "unit": "g"}, {"name": "Creme de leite", "baseQty": 0.5, "unit": "caixinha"}],
+      "steps": ["Bata o cream cheese com o creme de leite e um fio de açúcar.", "Derreta a goiabada no microondas com um dedinho de água.", "Monte em taças colocando a base de queijo e o topo de goiabada morna."],
+      "finishing": ["Sirva gelado com uma folha de hortelã."]
+    }]
+  },
+  {
+    "id": "57",
+    "name": "Ambrosia Caseira",
+    "description": "[Categoria: Sobremesas] Doce de leite talhado com ovos e especiarias de fazenda.",
+    "variations": [{
+      "name": "Estilo Gaúcho", "basePortions": 4,
+      "ingredients": [{"name": "Leite integral", "baseQty": 1, "unit": "litro"}, {"name": "Açúcar", "baseQty": 2, "unit": "xícaras"}, {"name": "Ovos inteiros batidos", "baseQty": 4, "unit": "unidades"}, {"name": "Suco de limão", "baseQty": 2, "unit": "colheres"}],
+      "steps": ["Ferva o leite com açúcar, cravos e canela.", "Adicione os ovos batidos e o limão de uma vez e não mexa muito.", "Deixe cozinhar em fogo baixo até formar os grumos e secar o líquido."],
+      "finishing": ["Sirva bem fria em compoteiras de vidro."]
+    }]
+  },
+  {
+    "id": "58",
+    "name": "Doce de Abóbora em Calda",
+    "description": "[Categoria: Sobremesas] Pedacinhos com casca firme e interior derretendo.",
+    "variations": [{
+      "name": "Com Cal de Culinária", "basePortions": 6,
+      "ingredients": [{"name": "Abóbora de pescoço em cubos", "baseQty": 500, "unit": "g"}, {"name": "Açúcar", "baseQty": 300, "unit": "g"}, {"name": "Cal de pintor/culinária", "baseQty": 1, "unit": "colher de sopa"}],
+      "steps": ["Deixe os cubos de abóbora na água com cal por 30 minutos.", "Lave muito bem em água corrente.", "Cozinhe em calda de açúcar mole com cravo até ficarem translúcidos."],
+      "finishing": ["Espere esfriar na própria calda antes de guardar em potes."]
+    }]
+  },
+  {
+    "id": "59",
+    "name": "Doce de Leite de Corte",
+    "description": "[Categoria: Sobremesas] Receita tradicional mineira de ponto firme.",
+    "variations": [{
+      "name": "Caseiro de Panela", "basePortions": 6,
+      "ingredients": [{"name": "Leite integral", "baseQty": 1, "unit": "litro"}, {"name": "Açúcar", "baseQty": 2, "unit": "xícaras"}, {"name": "Bicarbonato de sódio", "baseQty": 1, "unit": "pitada"}],
+      "steps": ["Cozinhe todos os ingredientes em fogo baixo mexendo sempre.", "O doce vai escurecer e desgrudar do fundo da panela.", "Bata vigorosamente com colher de pau fora do fogo por 2 minutos."],
+      "finishing": ["Despeje em pia de pedra untada, espere amornar e corte em quadradinhos."]
+    }]
+  },
+  {
+    "id": "60",
+    "name": "Maria-Mole Branca",
+    "description": "[Categoria: Sobremesas] Doce aerado e fofinho coberto com coco ralado.",
+    "variations": [{
+      "name": "Clássica de Gelatina", "basePortions": 6,
+      "ingredients": [{"name": "Gelatina incolor", "baseQty": 1, "unit": "sachê"}, {"name": "Água fervendo", "baseQty": 1, "unit": "xícara"}, {"name": "Açúcar", "baseQty": 1.5, "unit": "xícaras"}, {"name": "Coco ralado", "baseQty": 50, "unit": "g"}],
+      "steps": ["Dissolva a gelatina na água fervente.", "Coloque na batedeira com o açúcar e bata em velocidade máxima por 15 min.", "Despeje em assadeira polvilhada com coco."],
+      "finishing": ["Gele por 2 horas, corte em cubos e passe no resto do coco."]
+    }]
+  },
+  {
+    "id": "61",
+    "name": "Brigadeiro Gourmet",
+    "description": "[Categoria: Doces] O doce brasileiro mais famoso do mundo estruturado.",
+    "variations": [{
+      "name": "De Panela Tradicional", "basePortions": 4,
+      "ingredients": [{"name": "Leite condensado", "baseQty": 1, "unit": "lata"}, {"name": "Chocolate em pó 50%", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Manteiga", "baseQty": 1, "unit": "colher de sopa"}],
+      "steps": ["Misture tudo na panela de fundo grosso ainda desligada.", "Cozinhe em fogo baixo mexendo com espátula de silicone.", "Retire assim que desgrudar totalmente do fundo."],
+      "finishing": ["Deixe esfriar em prato untado, enrole e passe no granulado."]
+    }]
+  },
+  {
+    "id": "62",
+    "name": "Beijinho de Coco",
+    "description": "[Categoria: Doces] Par constante do brigadeiro nas festas de aniversário.",
+    "variations": [{
+      "name": "Com Cravo da Índia", "basePortions": 4,
+      "ingredients": [{"name": "Leite condensado", "baseQty": 1, "unit": "lata"}, {"name": "Coco ralado fino seco", "baseQty": 100, "unit": "g"}, {"name": "Manteiga", "baseQty": 1, "unit": "colher de sopa"}],
+      "steps": ["Cozinhe o leite condensado, manteiga e metade do coco.", "Mexa até dar ponto de enrolar (soltar do fundo).", "Espere esfriar por completo."],
+      "finishing": ["Modele as bolinhas, passe no coco restante e espete um cravo no topo."]
+    }]
+  },
+  {
+    "id": "63",
+    "name": "Cocada Cremosa",
+    "description": "[Categoria: Doces] Doce de colher puxa-puxa muito rico.",
+    "variations": [{
+      "name": "De Coco Fresco", "basePortions": 4,
+      "ingredients": [{"name": "Coco fresco ralado grosso", "baseQty": 2, "unit": "xícaras"}, {"name": "Açúcar", "baseQty": 1.5, "unit": "xícaras"}, {"name": "Água", "baseQty": 0.5, "unit": "xícara"}],
+      "steps": ["Faça uma calda em ponto de fio com a água e o açúcar.", "Junte o coco ralado fresco e mexa em fogo brando.", "Cozinhe até soltar do fundo, mas sem secar completamente."],
+      "finishing": ["Sirva morna em potinhos ou faça montinhos para secar."]
+    }]
+  },
+  {
+    "id": "64",
+    "name": "Canudinho de Doce de Leite",
+    "description": "[Categoria: Doces] Massa frita super crocante transbordando recheio.",
+    "variations": [{
+      "name": "Prático Com Massa Pronta", "basePortions": 4,
+      "ingredients": [{"name": "Canudinhos de massa frita prontos", "baseQty": 12, "unit": "unidades"}, {"name": "Doce de leite firme", "baseQty": 300, "unit": "g"}],
+      "steps": ["Coloque o doce de leite em um saco de confeitar ou saquinho limpo.", "Corte a pontinha do saco.", "Introduza o saco no fundo do canudinho e aperte recuando lentamente."],
+      "finishing": ["Passe a base do recheio em coco ralado ou castanha xerém."]
+    }]
+  },
+  {
+    "id": "65",
+    "name": "Cajuzinho de Amendoim",
+    "description": "[Categoria: Doces] Doce tradicional de amendoim com formato característico.",
+    "variations": [{
+      "name": "Clássico de Festa", "basePortions": 4,
+      "ingredients": [{"name": "Amendoim torrado e moído sem sal", "baseQty": 1, "unit": "xícara"}, {"name": "Leite condensado", "baseQty": 0.5, "unit": "lata"}, {"name": "Chocolate em pó", "baseQty": 1, "unit": "colher de sopa"}],
+      "steps": ["Misture o amendoim, o chocolate e vá adicionando leite condensado.", "Amasse até virar uma liga firme que desgruda das mãos.", "Modele no formato de mini cajus."],
+      "finishing": ["Passe no açúcar cristal e coloque metade de um amendoim na ponta."]
+    }]
+  },
+  {
+    "id": "66",
+    "name": "Olho de Sogra",
+    "description": "[Categoria: Doces] A união elegante do beijinho de coco com a ameixa preta.",
+    "variations": [{
+      "name": "Sofisticado de Vitrine", "basePortions": 4,
+      "ingredients": [{"name": "Ameixas pretas sem caroço", "baseQty": 15, "unit": "unidades"}, {"name": "Massa de beijinho fria", "baseQty": 1, "unit": "receita"}],
+      "steps": ["Abra as ameixas pretas ao meio sem separar as metades totalmente.", "Enrole porções da massa de beijinho em formato oval."],
+      "finishing": ["Acomode o doce de coco dentro da abertura da ameixa e passe no açúcar."]
+    }]
+  },
+  {
+    "id": "67",
+    "name": "Palha Italiana",
+    "description": "[Categoria: Doces] Brigadeiro denso estruturado com pedaços de biscoito.",
+    "variations": [{
+      "name": "De Biscoito Maisena", "basePortions": 4,
+      "ingredients": [{"name": "Biscoito maisena picado", "baseQty": 0.5, "unit": "pacote"}, {"name": "Massa de brigadeiro quente", "baseQty": 1, "unit": "receita"}],
+      "steps": ["Faça um brigadeiro tradicional um pouco mais mole.", "Desligue o fogo e misture os biscoitos quebrados grosseiramente.", "Espalhe em um refratário untado apertando bem."],
+      "finishing": ["Corte em quadrados após esfriar e passe no leite em pó ou açúcar."]
+    }]
+  },
+  {
+    "id": "68",
+    "name": "Brownie Fofinho",
+    "description": "[Categoria: Doces] Bolo denso americano com casquinha craquelada por cima.",
+    "variations": [{
+      "name": "Intenso Meio Amargo", "basePortions": 4,
+      "ingredients": [{"name": "Chocolate meio amargo derretido", "baseQty": 150, "unit": "g"}, {"name": "Manteiga", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Farinha de trigo", "baseQty": 0.5, "unit": "xícara"}],
+      "steps": ["Derreta o chocolate com a manteiga.", "Misture os ovos batidos com açúcar e incorpore a farinha.", "Asse em forma forrada com papel manteiga por apenas 20 min a 180°C."],
+      "finishing": ["Sirva morno sozinho ou com calda fria."]
+    }]
+  },
+  {
+    "id": "69",
+    "name": "Petit Gâteau",
+    "description": "[Categoria: Doces] Bolinho individual com recheio de chocolate líquido quente.",
+    "variations": [{
+      "name": "Clássico de Restaurante", "basePortions": 2,
+      "ingredients": [{"name": "Chocolate meio amargo", "baseQty": 100, "unit": "g"}, {"name": "Manteiga", "baseQty": 2, "unit": "colheres de sopa"}, {"name": "Farinha", "baseQty": 2, "unit": "colheres de sopa"}],
+      "steps": ["Derreta o chocolate e a manteiga. Junte gemas, ovo e açúcar.", "Incorpore a farinha peneirada rapidamente.", "Asse em forminhas muito untadas por exatos 6 a 8 minutos a 200°C."],
+      "finishing": ["Desenforme direto no prato de servir com cuidado."]
+    }]
+  },
+  {
+    "id": "70",
+    "name": "Churros Caseiros",
+    "description": "[Categoria: Doces] Massa frita passada no açúcar com canela.",
+    "variations": [{
+      "name": "Fáceis de Caneca", "basePortions": 4,
+      "ingredients": [{"name": "Farinha de trigo", "baseQty": 1, "unit": "xícara"}, {"name": "Água", "baseQty": 1, "unit": "xícara"}, {"name": "Doce de leite para mergulhar", "baseQty": 150, "unit": "g"}],
+      "steps": ["Ferva a água com uma colher de manteiga e pitada de sal.", "Junte a farinha de vez e mexa vigorosamente até desgrudar da panela.", "Modele os palitos com saco de confeiteiro firme e frite em óleo quente."],
+      "finishing": ["Escorra, passe na mistura de açúcar com canela em pó."]
+    }]
+  },
+  {
+    "id": "71",
+    "name": "Sorvete de Baunilha",
+    "description": "[Categoria: Sorvetes] Base cremosa e aveludada excelente para combinações.",
+    "variations": [{
+      "name": "Cremoso de Geladeira", "basePortions": 6,
+      "ingredients": [{"name": "Creme de leite gelado", "baseQty": 2, "unit": "caixinhas"}, {"name": "Leite condensado", "baseQty": 1, "unit": "lata"}, {"name": "Essência de baunilha", "baseQty": 1, "unit": "colher de sopa"}],
+      "steps": ["Bata o creme de leite bem gelado na batedeira até firmar.", "Incorpore o leite condensado e a baunilha misturando devagar.", "Coloque em pote fechado e congele por 6 horas."],
+      "finishing": ["Retire do congelador 5 minutos antes de fazer as bolas."]
+    }]
+  },
+  {
+    "id": "72",
+    "name": "Sorvete de Chocolate Belga",
+    "description": "[Categoria: Sorvetes] Sabor intenso e textura macia de chocolate real.",
+    "variations": [{
+      "name": "Com Cacau em Pó 100%", "basePortions": 6,
+      "ingredients": [{"name": "Cacau em pó", "baseQty": 0.5, "unit": "xícara"}, {"name": "Creme de leite fresco", "baseQty": 1, "unit": "garrafa"}, {"name": "Leite condensado", "baseQty": 1, "unit": "lata"}],
+      "steps": ["Aqueça um pouco do creme para dissolver o cacau por completo.", "Bata o restante do creme em ponto de chantilly.", "Misture o creme de cacau frio e o leite condensado batendo levemente."],
+      "finishing": ["Misture raspas de chocolate meio amargo antes de congelar."]
+    }]
+  },
+  {
+    "id": "73",
+    "name": "Sorvete de Morango Silvestre",
+    "description": "[Categoria: Sorvetes] Frescor da fruta natural batida sem corantes artificiais.",
+    "variations": [{
+      "name": "Com Frutas Reais", "basePortions": 4,
+      "ingredients": [{"name": "Morangos congelados", "baseQty": 2, "unit": "xícaras"}, {"name": "Iogurte grego natural", "baseQty": 2, "unit": "potes"}, {"name": "Mel", "baseQty": 3, "unit": "colheres de sopa"}],
+      "steps": ["Bata os morangos congelados diretamente no processador com o iogurte.", "Adicione o mel e processe até virar um creme homogêneo grosso.", "Pode ser consumido imediatamente ou levado ao freezer para firmar."],
+      "finishing": ["Decore com pedaços pequenos de morango fresco."]
+    }]
+  },
+  {
+    "id": "74",
+    "name": "Sorvete de Flocos Clássico",
+    "description": "[Categoria: Sorvetes] Creme de nata leve pontilhado com flocos crocantes.",
+    "variations": [{
+      "name": "Tradicional de Sorveteria", "basePortions": 6,
+      "ingredients": [{"name": "Leite condensado", "baseQty": 1, "unit": "lata"}, {"name": "Creme de leite", "baseQty": 2, "unit": "caixinhas"}, {"name": "Chocolate meio amargo picado miúdo", "baseQty": 100, "unit": "g"}],
+      "steps": ["Bata a base de leites no liquidificador por 3 minutos.", "Leve ao freezer por 2 horas até começar a firmar nas bordas.", "Retire, bata na batedeira para dar ar e junte os flocos de chocolate."],
+      "finishing": ["Volte ao freezer até atingir a consistência ideal."]
+    }]
+  },
+  {
+    "id": "75",
+    "name": "Sorvete de Creme com Passas",
+    "description": "[Categoria: Sorvetes] Clássico vintage sofisticado com toque rum.",
+    "variations": [{
+      "name": "Ao Rum Fino", "basePortions": 4,
+      "ingredients": [{"name": "Uvas-passas escuras", "baseQty": 0.5, "unit": "xícara"}, {"name": "Rum legítimo", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Base de baunilha cremosa", "baseQty": 1, "unit": "receita"}],
+      "steps": ["Deixe as passas de molho no rum por pelo menos 1 hora.", "Prepare a base de sorvete de baunilha clássica.", "Incorpore as passas com o rum diretamente no creme antes de congelar."],
+      "finishing": ["Sirva em taças altas de vidro."]
+    }]
+  },
+  {
+    "id": "76",
+    "name": "Gelato de Limão Siciliano",
+    "description": "[Categoria: Sorvetes] Estilo sorbet super refrescante sem base láctea pesada.",
+    "variations": [{
+      "name": "Sorbet de Verão", "basePortions": 4,
+      "ingredients": [{"name": "Suco de limão siciliano", "baseQty": 0.5, "unit": "xícara"}, {"name": "Água", "baseQty": 1, "unit": "xícara"}, {"name": "Açúcar", "baseQty": 0.75, "unit": "xícara"}],
+      "steps": ["Ferva a água com o açúcar para criar uma calda rala. Espere esfriar.", "Misture o suco de limão e raspas da casca na calda.", "Leve ao freezer mexendo com um garfo a cada 1 hora para quebrar cristais."],
+      "finishing": ["Sirva acompanhado de folhas de hortelã."]
+    }]
+  },
+  {
+    "id": "77",
+    "name": "Sorvete de Coco Queimado",
+    "description": "[Categoria: Sorvetes] Sabor rústico e marcante com textura dos pedacinhos tostados.",
+    "variations": [{
+      "name": "Estilo Artesanal", "basePortions": 6,
+      "ingredients": [{"name": "Coco ralado", "baseQty": 100, "unit": "g"}, {"name": "Leite de coco", "baseQty": 1, "unit": "vidro"}, {"name": "Leite condensado", "baseQty": 1, "unit": "lata"}],
+      "steps": ["Leve o coco seco numa frigideira mexendo até dourar bem. Reserve.", "Bata o leite de coco, creme de leite e leite condensado.", "Misture o coco queimado frio no líquido e leve para congelar."],
+      "finishing": ["Polvilhe um pouco do coco queimado guardado por cima."]
+    }]
+  },
+  {
+    "id": "78",
+    "name": "Sorvete de Doce de Leite",
+    "description": "[Categoria: Sorvetes] Ultra denso e aveludado, ideal para formigas de plantão.",
+    "variations": [{
+      "name": "Com Apenas 2 Ingredientes", "basePortions": 4,
+      "ingredients": [{"name": "Doce de leite cremoso de qualidade", "baseQty": 400, "unit": "g"}, {"name": "Creme de leite de caixinha", "baseQty": 2, "unit": "caixinhas"}],
+      "steps": ["Bata os dois ingredientes no liquidificador até ficar uniforme.", "Despeje em pote plástico e congele por 3 horas.", "Retire, bata na batedeira por 5 minutos e volte ao congelador."],
+      "finishing": ["Sirva com calda de caramelo salgado."]
+    }]
+  },
+  {
+    "id": "79",
+    "name": "Sorvete de Manga Natural",
+    "description": "[Categoria: Sorvetes] Textura cremosa perfeita usando apenas a fruta congelada.",
+    "variations": [{
+      "name": "Cremoso de Manga Palmer", "basePortions": 2,
+      "ingredients": [{"name": "Manga palmer em cubos congelada", "baseQty": 2, "unit": "xícaras"}, {"name": "Água ou água de coco", "baseQty": 2, "unit": "colheres de sopa"}],
+      "steps": ["Deixe os cubos de manga fora do freezer por 5 minutos para amolecer de leve.", "Processe no liquidificador potente ou processador usando o pulsar.", "Vá empurrando as bordas até virar um creme idêntico a sorvete."],
+      "finishing": ["Consuma na hora para manter a textura macia."]
+    }]
+  },
+  {
+    "id": "80",
+    "name": "Açaí na Tigela",
+    "description": "[Categoria: Sorvetes] Energia pura batida com consistência firme de colher.",
+    "variations": [{
+      "name": "Com Xarope de Guaraná", "basePortions": 2,
+      "ingredients": [{"name": "Polpa de açaí congelada pura", "baseQty": 400, "unit": "g"}, {"name": "Xarope de guaraná", "baseQty": 4, "unit": "colheres de sopa"}, {"name": "Banana madura", "baseQty": 1, "unit": "unidade"}],
+      "steps": ["Quebre a polpa de açaí em pedaços menores.", "Bata no liquidificador junto com a banana e o xarope usando o pulsar.", "Bata até sumirem os pedaços e virar um creme roxo escuro grosso."],
+      "finishing": ["Sirva na tigela com camadas de granola e leite em pó."]
+    }]
+  },
+  {
+    "id": "81",
+    "name": "Farofa de Manteiga Alhada",
+    "description": "[Categoria: Churrasco] Acompanhamento seco crocante obrigatório de qualquer grelha.",
+    "variations": [{
+      "name": "Crocante de Churrascaria", "basePortions": 6,
+      "ingredients": [{"name": "Farinha de mandioca biju", "baseQty": 2, "unit": "xícaras"}, {"name": "Manteiga com sal", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Alho laminado", "baseQty": 4, "unit": "dentes"}],
+      "steps": ["Derreta a manteiga na panela larga e doure o alho em lâminas.", "Adicione a farinha biju de uma vez só.", "Mexa constantemente em fogo médio até a farinha ficar bem dourada."],
+      "finishing": ["Retire do fogo e misture cebolinha verde picada."]
+    }]
+  },
+  {
+    "id": "82",
+    "name": "Vinagrete de Churrascaria",
+    "description": "[Categoria: Churrasco] Molho ácido fresco para cortar a gordura das carnes.",
+    "variations": [{
+      "name": "Tradicional Picadinho", "basePortions": 6,
+      "ingredients": [{"name": "Tomates sem sementes em cubos", "baseQty": 2, "unit": "unidades"}, {"name": "Cebola em cubos pequenos", "baseQty": 1, "unit": "unidade"}, {"name": "Vinagre de vinho branco", "baseQty": 4, "unit": "colheres de sopa"}, {"name": "Azeite", "baseQty": 0.25, "unit": "xícara"}],
+      "steps": ["Misture o tomate e a cebola picados em uma tigela profunda.", "Adicione o vinagre, azeite, sal e pimenta-do-reino branca.", "Deixe descansar na geladeira por 30 minutos antes de servir para apurar."],
+      "finishing": ["Incorpore salsa fresca picada na hora de ir para a mesa."]
+    }]
+  },
+  {
+    "id": "83",
+    "name": "Pão de Alho Caseiro",
+    "description": "[Categoria: Churrasco] Creme de alho super cremoso que infla na churrasqueira.",
+    "variations": [{
+      "name": "Com Três Queijos", "basePortions": 4,
+      "ingredients": [{"name": "Pão francês ou de baguete", "baseQty": 4, "unit": "unidades"}, {"name": "Maionese", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Alho triturado fino", "baseQty": 3, "unit": "dentes"}, {"name": "Muçarela ralada", "baseQty": 100, "unit": "g"}],
+      "steps": ["Misture a maionese, o alho, a muçarela e um toque de orégano.", "Faça cortes transversais no pão sem separar as fatias até o fim.", "Preencha os cortes com o creme abundante e passe um pouco por fora."],
+      "finishing": ["Leve à grelha com o braseiro médio até dourar e inflar."]
+    }]
+  },
+  {
+    "id": "84",
+    "name": "Maionese de Batata com Ovos",
+    "description": "[Categoria: Churrasco] A famosa salada de batata cremosa indispensável no domingo.",
+    "variations": [{
+      "name": "Tradicional de Domingo", "basePortions": 4,
+      "ingredients": [{"name": "Batatas em cubos cozidas", "baseQty": 3, "unit": "unidades"}, {"name": "Ovos cozidos picados", "baseQty": 2, "unit": "unidades"}, {"name": "Maionese tradicional", "baseQty": 4, "unit": "colheres de sopa"}],
+      "steps": ["Cozinhe as batatas até ficarem macias, mas firmes. Deixe esfriar.", "Em uma travessa, misture as batatas frias, os ovos e a maionese.", "Ajuste o sal e coloque um fio de azeite."],
+      "finishing": ["Gele por 1 hora antes de servir ao lado das carnes."]
+    }]
+  },
+  {
+    "id": "85",
+    "name": "Arroz Biro-Biro",
+    "description": "[Categoria: Churrasco] Arroz rico com ovos, bacon e batata palha.",
+    "variations": [{
+      "name": "Estilo Churrascaria Paulista", "basePortions": 4,
+      "ingredients": [{"name": "Arroz branco cozido quente", "baseQty": 3, "unit": "xícaras"}, {"name": "Bacon em cubos", "baseQty": 100, "unit": "g"}, {"name": "Batata palha", "baseQty": 1, "unit": "xícara"}],
+      "steps": ["Frite o bacon na frigideira grande até ficar bem crocante.", "Adicione ovos batidos rapidamente na mesma gordura e mexa.", "Incorpore o arroz quente e misture tudo muito bem."],
+      "finishing": ["Adicione a batata palha apenas no segundo de servir para não murchar."]
+    }]
+  },
+  {
+    "id": "86",
+    "name": "Molho Chimichurri",
+    "description": "[Categoria: Churrasco] Molho de ervas tradicional argentino ideal para carnes vermelhas.",
+    "variations": [{
+      "name": "De Ervas Hidratadas", "basePortions": 4,
+      "ingredients": [{"name": "Tempero chimichurri seco", "baseQty": 3, "unit": "colheres de sopa"}, {"name": "Azeite de oliva", "baseQty": 0.5, "unit": "xícara"}, {"name": "Vinagre de vinho tinto", "baseQty": 2, "unit": "colheres de sopa"}],
+      "steps": ["Coloque o tempero seco em um frasco de vidro.", "Adicione o vinagre e deixe hidratar por 5 minutos.", "Preencha com o azeite de oliva e balance o pote."],
+      "finishing": ["Pincele sobre a fraldinha ou picanha assim que saírem do fogo."]
+    }]
+  },
+  {
+    "id": "87",
+    "name": "Cebola Caramelizada na Grelha",
+    "description": "[Categoria: Churrasco] Cebolas doces assadas inteiras no papel alumínio.",
+    "variations": [{
+      "name": "No Bafo do Braseiro", "basePortions": 4,
+      "ingredients": [{"name": "Cebolas grandes inteiras com casca", "baseQty": 4, "unit": "unidades"}, {"name": "Manteiga", "baseQty": 2, "unit": "colheres de sopa"}, {"name": "Azeite e sal", "baseQty": 1, "unit": "kit"}],
+      "steps": ["Corte o topo da cebola e faça um furo no meio sem vazar no fundo.", "Coloque meia colher de manteiga e sal dentro do furo.", "Embrulhe cada cebola com duas voltas de papel alumínio."],
+      "finishing": ["Coloque direto na brasa por 30 minutos até ficarem moles e doces."]
+    }]
+  },
+  {
+    "id": "88",
+    "name": "Molho Barbecue",
+    "description": "[Categoria: Churrasco] Molho defumado escuro ideal para costelinha de porco.",
+    "variations": [{
+      "name": "Caseiro Rápido", "basePortions": 4,
+      "ingredients": [{"name": "Ketchup", "baseQty": 1, "unit": "xícara"}, {"name": "Açúcar mascavo", "baseQty": 2, "unit": "colheres de sopa"}, {"name": "Molho inglês", "baseQty": 2, "unit": "colheres de sopa"}, {"name": "Fumaça líquida", "baseQty": 1, "unit": "colher de chá"}],
+      "steps": ["Leve todos os ingredientes ao fogo baixo em uma panelinha.", "Deixe cozinhar mexendo até o açúcar dissolver e o molho reduzir.", "Cozinhe por 5 minutos até ficar bem brilhante e escuro."],
+      "finishing": ["Pincele na carne suína nos minutos finais da grelha."]
+    }]
+  },
+  {
+    "id": "89",
+    "name": "Farofa de Ovos com Bacon",
+    "description": "[Categoria: Churrasco] Versão mais úmida e fofinha da farofa tradicional.",
+    "variations": [{
+      "name": "Úmida de Frigideira", "basePortions": 4,
+      "ingredients": [{"name": "Ovos inteiros", "baseQty": 3, "unit": "unidades"}, {"name": "Farinha de mandioca torrada", "baseQty": 1.5, "unit": "xícaras"}, {"name": "Bacon em cubinhos", "baseQty": 80, "unit": "g"}],
+      "steps": ["Frite o bacon até dourar. Adicione os ovos direto na panela.", "Mexa os ovos deixando pedaços grandes aparentes.", "Junte a farinha de mandioca e desligue o fogo rapidamente para não secar."],
+      "finishing": ["Incorpore bastante salsinha fresca picada."]
+    }]
+  },
+  {
+    "id": "90",
+    "name": "Salada de Batata com Maionese e Cenoura",
+    "description": "[Categoria: Churrasco] Legumes cozidos frios envolvidos em molho cremoso.",
+    "variations": [{
+      "name": "Colorida Prática", "basePortions": 4,
+      "ingredients": [{"name": "Batatas em cubos", "baseQty": 2, "unit": "unidades"}, {"name": "Cenoura em cubos", "baseQty": 1, "unit": "unidade"}, {"name": "Maionese", "baseQty": 3, "unit": "colheres de sopa"}],
+      "steps": ["Cozinhe os cubos de batata e cenoura juntos na mesma água salgada.", "Escorra bem e espere esfriar totalmente.", "Misture a maionese e adicione cheiro-verde picadinho."],
+      "finishing": ["Mantenha na geladeira até o segundo do consumo."]
+    }]
+  },
+  {
+    "id": "91",
+    "name": "Canjica com Amendoim",
+    "description": "[Época: Festa Junina] Grãos macios envoltos em calda muito cremosa.",
+    "variations": [{
+      "name": "Tradicional de São João", "basePortions": 6,
+      "ingredients": [{"name": "Milho para canjica branca", "baseQty": 250, "unit": "g"}, {"name": "Leite integral", "baseQty": 500, "unit": "ml"}, {"name": "Leite condensado", "baseQty": 1, "unit": "lata"}, {"name": "Amendoim torrado moído", "baseQty": 1, "unit": "xícara"}],
+      "steps": ["Cozinhe a canjica demolhada na pressão por 30 minutos.", "Abra a panela, adicione o leite, leite condensado e canela em pau.", "Deixe ferver aberto em fogo baixo até o caldo encorpar bem."],
+      "finishing": ["Desligue o fogo e misture o amendoim torrado moído."]
+    }]
+  },
+  {
+    "id": "92",
+    "name": "Pamonha de Forno",
+    "description": "[Época: Festa Junina] Praticidade pura sem precisar embalar na palha do milho.",
+    "variations": [{
+      "name": "Cremosa de Assadeira", "basePortions": 6,
+      "ingredients": [{"name": "Milho verde de lata ou fresco", "baseQty": 3, "unit": "xícaras"}, {"name": "Leite de coco", "baseQty": 1, "unit": "vidro"}, {"name": "Açúcar", "baseQty": 1, "unit": "xícara"}, {"name": "Manteiga derretida", "baseQty": 2, "unit": "colheres de sopa"}],
+      "steps": ["Bata todos os ingredientes no liquidificador até ficar uniforme.", "Despeje a mistura em uma assadeira média bem untada com manteiga.", "Asse em forno médio (180°C) por cerca de 45 minutos até dourar."],
+      "finishing": ["Espere amornar para cortar os quadrados firmes."]
+    }]
+  },
+  {
+    "id": "93",
+    "name": "Pé de Moleque Crocante",
+    "description": "[Época: Festa Junina] Doce rígido tradicional de amendoim com caramelo.",
+    "variations": [{
+      "name": "De Rapadura ou Açúcar", "basePortions": 6,
+      "ingredients": [{"name": "Amendoim torrado sem casca", "baseQty": 2, "unit": "xícaras"}, {"name": "Açúcar", "baseQty": 2, "unit": "xícaras"}, {"name": "Manteiga", "baseQty": 1, "unit": "colher de sopa"}],
+      "steps": ["Derreta o açúcar na panela até virar um caramelo dourado médio.", "Junte a manteiga e o amendoim mexendo rapidamente.", "Despeje imediatamente sobre uma bancada de pedra untada."],
+      "finishing": ["Marque os cortes com faca enquanto ainda estiver morno."]
+    }]
+  },
+  {
+    "id": "94",
+    "name": "Bolo de Fubá com Goiabada",
+    "description": "[Época: Festa Junina] Cubos derretidos de goiabada no meio da massa amarela.",
+    "variations": [{
+      "name": "Tradicional de São João", "basePortions": 6,
+      "ingredients": [{"name": "Fubá mimoso", "baseQty": 1, "unit": "xícara"}, {"name": "Farinha", "baseQty": 1, "unit": "xícara"}, {"name": "Goiabada em cubos", "baseQty": 100, "unit": "g"}],
+      "steps": ["Faça a massa do bolo batendo os líquidos e incorporando os secos.", "Passe os cubos de goiabada na farinha de trigo (para não afundar tudo).", "Distribua os cubos na massa já dentro da forma e asse."],
+      "finishing": ["Sirva com café coado quente."]
+    }]
+  },
+  {
+    "id": "95",
+    "name": "Quentão de Especiarias",
+    "description": "[Época: Festa Junina] Bebida quente e aromática ideal para noites frias.",
+    "variations": [{
+      "name": "Tradicional com Cachaça", "basePortions": 4,
+      "ingredients": [{"name": "Cachaça branca", "baseQty": 2, "unit": "xícaras"}, {"name": "Água", "baseQty": 2, "unit": "xícaras"}, {"name": "Açúcar", "baseQty": 1, "unit": "xícara"}, {"name": "Gengibre fatiado", "baseQty": 50, "unit": "g"}],
+      "steps": ["Derreta o açúcar com o gengibre, cravo e canela até caramelizar ralo.", "Adicione a água com cuidado para dissolver o açúcar.", "Junte a cachaça e deixe ferver em fogo baixo por 15 minutos."],
+      "finishing": ["Sirva super quente em canequinhas de barro ou plástico."]
+    }]
+  },
+  {
+    "id": "96",
+    "name": "Arroz Doce Cremoso",
+    "description": "[Época: Festa Junina] Sobremesa clássica de arroz cozido no leite espesso.",
+    "variations": [{
+      "name": "Com Leite Condensado", "basePortions": 4,
+      "ingredients": [{"name": "Arroz agulhinha cru", "baseQty": 0.5, "unit": "xícara"}, {"name": "Leite integral", "baseQty": 2, "unit": "xícaras"}, {"name": "Leite condensado", "baseQty": 0.5, "unit": "lata"}],
+      "steps": ["Cozinhe o arroz em uma xícara de água até secar e amaciar.", "Adicione o leite integral e o leite condensado na mesma panela.", "Cozinhe mexendo sempre até reduzir e o caldo virar um creme."],
+      "finishing": ["Polvilhe canela em pó formando desenhos no prato."]
+    }]
+  },
+  {
+    "id": "97",
+    "name": "Pinhão Cozido",
+    "description": "[Época: Festa Junina] Petisco rústico tradicional do sul e sudeste em junho.",
+    "variations": [{
+      "name": "De Panela de Pressão", "basePortions": 4,
+      "ingredients": [{"name": "Pinhão fresco com casca", "baseQty": 500, "unit": "g"}, {"name": "Sal grosso ou refinado", "baseQty": 1.5, "unit": "colheres de sopa"}],
+      "steps": ["Lave bem os pinhões e corte a pontinha fina com faca ou tesoura.", "Coloque na panela de pressão coberto com bastante água e sal.", "Cozinhe por 40 minutos após pegar pressão. Escorra."],
+      "finishing": ["Descasque e consuma quente ao redor da fogueira."]
+    }]
+  },
+  {
+    "id": "98",
+    "name": "Couscous Paulista",
+    "description": "[Época: Festa Junina] Prato salgado moldado com farinha de milho e sardinha.",
+    "variations": [{
+      "name": "De Forma de Pudim", "basePortions": 4,
+      "ingredients": [{"name": "Farinha de milho amarela flakes", "baseQty": 2, "unit": "xícaras"}, {"name": "Sardinha ou atum em lata", "baseQty": 1, "unit": "lata"}, {"name": "Molho de tomate", "baseQty": 0.5, "unit": "sachê"}],
+      "steps": ["Decore o fundo de uma forma de furo com rodelas de ovo e tomate.", "Refogue cebola, milho, ervilha, molho e a sardinha com água.", "Adicione a farinha de milho mexendo até virar uma massa úmida. Molde na forma."],
+      "finishing": ["Desenforme frio ou morno em um prato plano."]
+    }]
+  },
+  {
+    "id": "99",
+    "name": "Salpicão de Frango Defumado",
+    "description": "[Época: Natal] Prato festivo refrescante com textura super crocante.",
+    "variations": [{
+      "name": "Clássico Ceia Natalina", "basePortions": 6,
+      "ingredients": [{"name": "Frango desfiado", "baseQty": 400, "unit": "g"}, {"name": "Cenoura ralada fina", "baseQty": 1, "unit": "unidade"}, {"name": "Maionese", "baseQty": 1, "unit": "xícara"}, {"name": "Uvas-passas", "baseQty": 0.5, "unit": "xícara"}, {"name": "Batata palha", "baseQty": 100, "unit": "g"}],
+      "steps": ["Misture o frango, cenoura, milho e passas em uma travessa grande.", "Incorpore a maionese até ligar todos os ingredientes de forma úmida.", "Gele por 2 horas antes da ceia."],
+      "finishing": ["Cubra completamente com a batata palha fina antes de servir."]
+    }]
+  },
+  {
+    "id": "100",
+    "name": "Arroz à Grega Festivo",
+    "description": "[Época: Natal] O clássico arroz colorido de fim de ano.",
+    "variations": [{
+      "name": "Colorido Com Passas", "basePortions": 4,
+      "ingredients": [{"name": "Arroz cru", "baseQty": 1.5, "unit": "xícaras"}, {"name": "Cenoura em cubos minúsculos", "baseQty": 0.5, "unit": "xícara"}, {"name": "Pimentão vermelho e verde", "baseQty": 0.5, "unit": "xícara"}, {"name": "Uvas-passas brancas", "baseQty": 0.25, "unit": "xícara"}],
+      "steps": ["Refogue o alho e junte os vegetais e as passas.", "Adicione o arroz cru e frite tudo junto.", "Cozinhe com água fervente normalmente em fogo brando."],
+      "finishing": ["Solte os grãos com garfo e sirva em travessa bonita."]
+    }]
+  },
+  {
+    "id": "101",
+    "name": "Farofa de Natal com Frutas",
+    "description": "[Época: Natal] Agridoce crocante rica em castanhas e frutas secas.",
+    "variations": [{
+      "name": "Manteiga e Castanhas", "basePortions": 4,
+      "ingredients": [{"name": "Farinha de mandioca torrada", "baseQty": 1.5, "unit": "xícaras"}, {"name": "Castanha de caju picada", "baseQty": 0.5, "unit": "xícara"}, {"name": "Damascos picados", "baseQty": 0.25, "unit": "xícara"}, {"name": "Manteiga", "baseQty": 2, "unit": "colheres"}],
+      "steps": ["Derreta a manteiga e refogue cebola picadinha.", "Junte as castanhas, damascos e passas salteando.", "Incorpore a farinha mexendo até dourar levemente."],
+      "finishing": ["Sirva fria adornando o prato principal da ceia."]
+    }]
+  },
+  {
+    "id": "102",
+    "name": "Tender Regado ao Mel",
+    "description": "[Época: Natal] Presunto natalino bolinha clássico com cravos espetados.",
+    "variations": [{
+      "name": "Agridoce Tradicional", "basePortions": 6,
+      "ingredients": [{"name": "Tender bolinha pronto", "baseQty": 1, "unit": "unidade"}, {"name": "Mel de abelha", "baseQty": 4, "unit": "colheres de sopa"}, {"name": "Cravos da índia", "baseQty": 20, "unit": "unidades"}],
+      "steps": ["Faça cortes em losango na superfície do tender.", "Espete um cravo em cada cruzamento dos cortes.", "Besunte com o mel misturado com um fio de azeite e asse por 30 minutos a 180°C."],
+      "finishing": ["Decore com fatias de abacaxi em calda ao redor."]
+    }]
+  },
+  {
+    "id": "103",
+    "name": "Rabanada de Forno",
+    "description": "[Época: Natal] Versão mais leve sem fritura por imersão, super úmida.",
+    "variations": [{
+      "name": "Assada Crocante", "basePortions": 4,
+      "ingredients": [{"name": "Pão de rabanada ou francês amanhecido", "baseQty": 1, "unit": "bengala"}, {"name": "Leite condensado", "baseQty": 0.5, "unit": "lata"}, {"name": "Leite", "baseQty": 1, "unit": "xícara"}, {"name": "Ovos batidos", "baseQty": 2, "unit": "unidades"}],
+      "steps": ["Corte o pão em fatias grossas de dois dedos.", "Misture os leites. Passe as fatias nos leites e depois nos ovos.", "Arrume em assadeira bem untada e asse a 200°C por 15 min de cada lado."],
+      "finishing": ["Passe as rabanadas quentes no açúcar com canela."]
+    }]
+  },
+  {
+    "id": "104",
+    "name": "Bacalhoada ao Forno",
+    "description": "[Época: Páscoa] Lombo de peixe montado em camadas generosas de azeite.",
+    "variations": [{
+      "name": "Portuguesa Tradicional", "basePortions": 4,
+      "ingredients": [{"name": "Lombo de bacalhau dessalgado", "baseQty": 500, "unit": "g"}, {"name": "Batatas médias em rodelas cozidas", "baseQty": 3, "unit": "unidades"}, {"name": "Cebolas em rodelas", "baseQty": 2, "unit": "unidades"}, {"name": "Azeite extra virgem", "baseQty": 0.75, "unit": "xícara"}],
+      "steps": ["Faça uma cama de batatas em um refratário grande.", "Intercale lascas grossas de bacalhau, pimentões e cebolas.", "Regue abundantemente com o azeite de oliva e cubra com alumínio."],
+      "finishing": ["Asse por 25 min, retire o papel e decore com ovos cozidos e azeitonas pretas."]
+    }]
+  },
+  {
+    "id": "105",
+    "name": "Ovo de Páscoa de Colher",
+    "description": "[Época: Páscoa] Casca de chocolate recheada com brigadeiro gourmet cremoso.",
+    "variations": [{
+      "name": "Recheio de Brigadeiro", "basePortions": 2,
+      "ingredients": [{"name": "Casca de ovo de chocolate pronta", "baseQty": 1, "unit": "unidade"}, {"name": "Brigadeiro mole de colher", "baseQty": 250, "unit": "g"}, {"name": "Granulado belga ou raspas", "baseQty": 50, "unit": "g"}],
+      "steps": ["Garanta que a casca do ovo esteja firme e fria.", "Preencha a cavidade com o brigadeiro mole usando uma colher.", "Nivele a superfície deixando um pequeno espaço para o acabamento."],
+      "finishing": ["Cubra com muito granulado gourmet e coma com colher pequena."]
+    }]
+  }
+]
