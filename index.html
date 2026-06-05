@@ -6,48 +6,34 @@
     <title>Sem Receitas</title>
     <style>
         * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #f5f7fb; margin: 0; padding: 0; color: #333; }
+        body { background-color: #f7f9fc; margin: 0; padding: 0; color: #333; }
         
-        /* CADEÇALHO PREMIUM ORIGINAL (FOTO 3) */
+        /* CABEÇALHO DA FOTO 11 */
         .header {
             background: linear-gradient(135deg, #ff5e00, #e62222);
             padding: 25px 20px 30px 20px;
             position: relative;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
         }
-        .logo-container { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .logo-container { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
         .logo-circle { 
             background: white; 
-            width: 42px; 
-            height: 42px; 
+            width: 45px; 
+            height: 45px; 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            font-size: 20px; 
+            font-size: 22px; 
         }
         .header h1 { color: white; margin: 0; font-size: 26px; font-weight: bold; }
         
-        /* BADGE DO CÓDIGO PÚBLICO */
-        .public-badge {
-            background: rgba(0, 0, 0, 0.2);
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 15px;
-        }
-
-        /* ☰ BOTÃO DO MENU DIRECIONADO PELO DEDINHO */
+        /* ☰ BOTÃO DO MENU ADICIONADO NO TOPO DIREITO */
         .btn-menu {
             position: absolute;
-            top: 25px;
-            right: 20px;
+            top: 28px;
+            right: 22px;
             color: white;
             text-decoration: none;
             font-size: 32px;
@@ -55,66 +41,80 @@
             z-index: 10;
         }
 
-        /* CAIXA DE BUSCA COM O SEU TEXTO E EMOTE (FOTO 1 e 3) */
+        /* CAIXA DE BUSCA DA FOTO 11 */
         .search-container { position: relative; width: 100%; }
         .search-container input {
             width: 100%;
             padding: 14px 15px 14px 45px;
-            border-radius: 30px;
+            border-radius: 12px;
             border: none;
             font-size: 15px;
             outline: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
         .search-container::before {
             content: "🔍";
             position: absolute;
             left: 18px;
-            top: 13px;
+            top: 14px;
             font-size: 16px;
             color: #999;
         }
 
-        /* CONTAINER DOS CARDS */
-        .container { padding: 15px; }
+        /* CONTAINER DOS CARDS REPLICANDO A FOTO 11 */
+        .container { padding: 20px 15px; }
 
-        /* CARD DA RECEITA ESTILO APLICATIVO (FOTO 3) */
+        /* CARD BRANCO CLÁSSICO DA FOTO 11 */
         .recipe-card {
             background: white;
-            border-radius: 16px;
+            border-radius: 18px;
+            border: 1px solid #eef2f6;
+            margin-bottom: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
         }
-
-        /* TOPO DO CARD EM AZUL ESCURO ORIGINAL */
-        .recipe-top {
-            background: #0e1e38;
-            padding: 20px;
-            color: white;
-            position: relative;
+        
+        /* TOPO DO CARD COM CLIQUE PARA EXPANDIR */
+        .recipe-header { 
+            padding: 20px; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
         }
-        .recipe-title-row { display: flex; justify-content: space-between; align-items: flex-start; padding-right: 25px; }
-        .recipe-title { font-size: 24px; font-weight: bold; margin: 0; color: white; }
-        .recipe-badge {
-            background: #ff6b00;
-            color: white;
+        .recipe-title { font-size: 18px; font-weight: bold; color: #1e293b; margin: 0 0 6px 0; }
+        
+        /* BADGE DA CATEGORIA ABAIXO DO TÍTULO (FOTO 11) */
+        .category-badge {
+            background: #fff3eb;
+            color: #e67e22;
             font-size: 11px;
             font-weight: bold;
             padding: 4px 10px;
-            border-radius: 20px;
+            border-radius: 6px;
+            display: inline-block;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .recipe-desc { color: #a1b0cb; font-size: 14px; margin: 12px 0 0 0; line-height: 1.4; font-style: italic; }
-
-        /* SEÇÃO BEGE DE VARIAÇÃO E RENDIMENTO (FOTO 3) */
-        .recipe-controls {
-            background: #fffdf9;
-            padding: 20px;
-            border-bottom: 1px solid #f2f5fa;
-        }
-        .control-label { font-size: 12px; font-weight: bold; color: #b25900; letter-spacing: 0.5px; margin-bottom: 6px; display: block; }
         
+        /* SETINHA DA DIREITA (FOTO 11) */
+        .arrow-icon { 
+            font-size: 16px; 
+            color: #cbd5e1; 
+            transition: transform 0.3s; 
+        }
+        
+        /* LÓGICA DE EXPANDE / RECOLHE */
+        .recipe-card.collapsed .recipe-content { display: none; }
+        .recipe-card.collapsed .arrow-icon { transform: rotate(0deg); }
+        .recipe-card:not(.collapsed) .arrow-icon { transform: rotate(180deg); }
+
+        /* CONTEÚDO INTERNO DAS RECEITAS */
+        .recipe-content { padding: 0 20px 20px 20px; border-top: 1px solid #f8fafc; }
+        .recipe-desc { font-style: italic; color: #64748b; margin: 15px 0; font-size: 14px; line-height: 1.4; }
+
+        /* CONTROLES INTERNOS (VARIAÇÃO E RENDIMENTO) */
+        .control-label { font-size: 11px; font-weight: bold; color: #b25900; letter-spacing: 0.5px; margin-bottom: 6px; display: block; text-transform: uppercase; }
         .select-variation {
             width: 100%;
             padding: 12px;
@@ -126,18 +126,31 @@
             margin-bottom: 15px;
             outline: none;
         }
+        .yield-box {
+            background: #fffdf9;
+            border: 1px solid #fbeee6;
+            padding: 12px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .slider-wrapper { display: flex; align-items: center; gap: 12px; }
+        .yield-slider { accent-color: #e67e22; width: 100px; cursor: pointer; }
+        .yield-badge {
+            background: #fff5eb;
+            color: #e67e22;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+            border: 1px solid #fbe6d4;
+        }
 
-        .yield-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-        .yield-title { font-size: 12px; font-weight: bold; color: #b25900; }
-        .yield-value { font-size: 13px; font-weight: bold; color: #ff6b00; text-transform: uppercase; }
-        .yield-slider { width: 100%; accent-color: #ff6b00; cursor: pointer; margin-top: 5px; }
-
-        /* CORPO DA RECEITA (LISTAS) */
-        .recipe-body { padding: 20px; }
-        .section-header { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: bold; color: #1e293b; margin: 20px 0 12px 0; }
-        .section-helper { font-size: 11px; color: #94a3b8; font-weight: normal; margin-left: 4px; }
-
-        /* ITENS DA LISTA EM ARQUITETURA DE CARDS (FOTO 3 e 4) */
+        /* SEÇÕES DE LISTAS (INGREDIENTES / PASSOS) */
+        .section-title { font-size: 14px; font-weight: bold; color: #64748b; margin: 20px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+        
         .list-item {
             background: #f8fafc;
             border: 1px solid #f1f5f9;
@@ -148,21 +161,16 @@
             align-items: center;
             gap: 12px;
             cursor: pointer;
-            transition: background 0.2s;
         }
-        .list-item input[type="checkbox"] { transform: scale(1.2); accent-color: #ff6b00; }
+        .list-item input[type="checkbox"] { transform: scale(1.2); accent-color: #e67e22; }
         .list-item span { font-size: 15px; line-height: 1.4; color: #334155; }
-        .list-item.checked { background: #f1f5f9; }
         .list-item.checked span { text-decoration: line-through; color: #94a3b8; }
-        .num-destaque { color: #ff6b00; font-weight: bold; }
+        .num-destaque { color: #e67e22; font-weight: bold; }
 
-        /* ETAPAS COM IDENTIFICADOR CINZA (FOTO 4) */
-        .step-tag { font-size: 11px; font-weight: bold; color: #94a3b8; display: block; margin-bottom: 2px; text-transform: uppercase; }
-
-        /* FINALIZAÇÃO LIMPA E SEM CHECKS (FOTO 2) */
+        /* FINALIZAÇÃO SEM CHECKS */
         .fin-item {
             background: #f8fafc;
-            border-left: 4px solid #ff6b00;
+            border-left: 4px solid #e67e22;
             padding: 14px;
             border-radius: 8px;
             margin-bottom: 8px;
@@ -170,161 +178,120 @@
             align-items: flex-start;
             gap: 12px;
         }
-        .fin-item input[type="radio"] { transform: scale(1.3); margin-top: 3px; accent-color: #ff6b00; }
-        .fin-text { font-size: 15px; color: #334155; line-height: 1.4; width: 100%; cursor: pointer; }
-        .fin-opt-title { font-weight: bold; color: #ff6b00; display: block; margin-bottom: 2px; font-size: 11px; text-transform: uppercase; }
-
-        /* RODAPÉ ESCURO ORIGINAL */
-        .footer {
-            background: #0e1e38;
-            color: #a1b0cb;
-            padding: 25px 20px;
-            text-align: center;
-            font-size: 12px;
-            line-height: 1.5;
-        }
+        .fin-item input[type="radio"] { transform: scale(1.3); margin-top: 3px; accent-color: #e67e22; }
+        .fin-text { font-size: 15px; color: #334155; line-height: 1.4; cursor: pointer; }
+        .fin-opt-title { font-weight: bold; color: #e67e22; display: block; margin-bottom: 2px; font-size: 11px; }
     </style>
 </head>
 <body>
 
+    <!-- CABEÇALHO DA FOTO 11 COM BOTÃO DE MENU -->
     <div class="header">
         <div class="logo-container">
             <div class="logo-circle">🍴</div>
             <h1>Sem Receitas</h1>
         </div>
         
-        <div class="public-badge">🌐 CÓDIGO 100% PÚBLICO</div>
-        
+        <!-- Botão Hambúrguer apontando para o arquivo correto -->
         <a href="sugestoes.html" class="btn-menu">☰</a>
 
+        <!-- Caixa de Busca com o texto ajustado -->
         <div class="search-container">
             <input type="text" id="inputBusca" placeholder="Busque sua receita, ou nos deixe uma sugestão👉🏾" oninput="filtrarReceitas()">
         </div>
     </div>
 
-    <div class="container" id="listaReceitas"></div>
-
-    <div class="footer">
-        <strong>Sem Receitas</strong> é um indexador livre. Código-fonte hospedado de forma transparente e pública.
+    <!-- LISTA CONTAINER PRINCIPAL -->
+    <div class="container" id="listaReceitas">
+        <!-- Carregando via receitas.json... -->
     </div>
 
 <script>
-    // Seus dados estruturados perfeitamente
-    const dadosReceitas = [
-        {
-            id: 1,
-            titulo: "Pudim de Leite",
-            categoria: "RECEITAS GLOBO",
-            descricao: "A sobremesa mais tradicional das reuniões de família.",
-            variacoes: [
-                {
-                    nome: "Lisinho (Sem Furinhos)",
-                    porcoesBase: 2,
-                    ingredientes: [
-                        { qtd: 0.25, unidade: "lata", nome: "de Leite condensado" },
-                        { qtd: 0.25, unidade: "medida da lata", nome: "de Leite integral" },
-                        { qtd: 0.75, unidade: "unidades", nome: "de Ovos inteiros" }
-                    ],
-                    passos: [
-                        "Bata no liquidificador ou misture delicadamente o leite condensado, o leite e os ovos.",
-                        "Passe a mistura por uma peneira fina para tirar as bolhas de ar.",
-                        "Asse em banho-maria no forno médio (180°C) cobrindo com papel alumínio."
-                    ],
-                    finalizacoes: [
-                        "Desenforme apenas depois de completamente gelado para não quebrar."
-                    ]
-                },
-                {
-                    nome: "Tradicional (Com Furinhos)",
-                    porcoesBase: 2,
-                    ingredientes: [
-                        { qtd: 0.25, unidade: "lata", nome: "de Leite condensado" },
-                        { qtd: 0.25, unidade: "medida da lata", nome: "de Leite" },
-                        { qtd: 1, unidade: "unidade", nome: "de Ovo inteiro" }
-                    ],
-                    passos: [
-                        "Bata todos os ingredientes no liquidificador na velocidade máxima por 3 minutos.",
-                        "Despeje direto na forma caramelizada sem peneirar.",
-                        "Asse em banho-maria sem cobrir para criar o topo firme."
-                    ],
-                    finalizacoes: [
-                        "Opção Calda Extra: Jogue um pouco de calda morna por cima logo antes de servir.",
-                        "Opção Textura: Sirva em temperatura ambiente se gostar dele mais cremoso."
-                    ]
-                }
-            ]
-        }
-    ];
-
+    let bancoDeDados = [];
     let porcoesSelecionadas = {};
 
-    function inicializar() {
-        dadosReceitas.forEach(r => { porcoesSelecionadas[r.id] = 2; });
-        renderizarReceitas(dadosReceitas);
+    // BUSCA PERMANENTE DO SEU ARQUIVO RECEITAS.JSON
+    function carregarDadosDoJson() {
+        fetch('receitas.json')
+            .then(resposta => {
+                if (!resposta.ok) throw new Error("Erro ao carregar receitas.json");
+                return resposta.json();
+            })
+            .then(dados => {
+                bancoDeDados = dados;
+                // Inicia todas as receitas fechadas e com padrão de 2 porções
+                bancoDeDados.forEach(r => { porcoesSelecionadas[r.id] = 2; });
+                renderizarReceitas(bancoDeDados);
+            })
+            .catch(erro => {
+                console.error(erro);
+                document.getElementById('listaReceitas').innerHTML = 
+                    `<p style="text-align:center; color:red; margin-top:40px;">Não foi possível carregar as receitas do arquivo .json</p>`;
+            });
     }
 
     function renderizarReceitas(lista) {
         const container = document.getElementById('listaReceitas');
         container.innerHTML = '';
 
-        if(lista.length === 0) {
+        if (lista.length === 0) {
             container.innerHTML = '<p style="text-align:center; color:#94a3b8; margin-top:40px;">Nenhuma receita encontrada...</p>';
             return;
         }
 
         lista.forEach(receita => {
             const card = document.createElement('div');
-            card.className = "recipe-card";
+            // Começa fechado (collapsed) igual ao layout original limpo
+            card.className = "recipe-card collapsed";
+            card.id = `card_${receita.id}`;
 
             const varIndex = 0;
             const variacaoAtiva = receita.variacoes[varIndex];
             const pAtuais = porcoesSelecionadas[receita.id];
 
             card.innerHTML = `
-                <div class="recipe-top">
-                    <div class="recipe-title-row">
-                        <h2 class="recipe-title">${receita.titulo}</h2>
-                        <span class="recipe-badge">${receita.categoria}</span>
+                <!-- Topo estruturado igualzinho à foto 11 -->
+                <div class="recipe-header" onclick="toggleCard(${receita.id})">
+                    <div>
+                        <div class="recipe-title">${receita.titulo}</div>
+                        <span class="category-badge">CATEGORIA: ${receita.categoria}</span>
                     </div>
-                    <p class="recipe-desc">${receita.descricao}</p>
+                    <div class="arrow-icon">🡫</div>
                 </div>
                 
-                <div class="recipe-controls">
-                    <span class="control-label">FORMA DE PREPARO / VARIAÇÃO:</span>
+                <!-- Miolo expansível -->
+                <div class="recipe-content">
+                    <div class="recipe-desc">${receita.descricao || ''}</div>
+                    
+                    <span class="control-label">Variação / Estilo:</span>
                     <select class="select-variation" onchange="mudarVariacao(${receita.id}, this.value)">
                         ${receita.variacoes.map((v, idx) => `<option value="${idx}">${v.nome}</option>`).join('')}
                     </select>
 
-                    <div class="yield-row">
-                        <span class="yield-title">RENDIMENTO:</span>
-                        <span class="yield-value"><span>${pAtuais}</span> Porções</span>
+                    <div class="yield-box">
+                        <span class="control-label" style="margin:0;">Rendimento:</span>
+                        <div class="slider-wrapper">
+                            <input type="range" class="yield-slider" min="1" max="10" value="${pAtuais}" oninput="atualizarPorcoes(${receita.id}, this.value, ${varIndex})">
+                            <span class="yield-badge">👥 <span>${pAtuais}</span> Pessoas</span>
+                        </div>
                     </div>
-                    <input type="range" class="yield-slider" min="1" max="10" value="${pAtuais}" oninput="atualizarPorcoes(${receita.id}, this.value, ${varIndex})">
-                </div>
 
-                <div class="recipe-body">
-                    <div class="section-header">
-                        🍊 Ingredientes <span class="section-helper">(Marque os que já separou/usou)</span>
-                    </div>
+                    <div class="section-title">Basket Ingredientes</div>
                     <div id="ingredientes_${receita.id}">
                         ${renderIngredientes(variacaoAtiva, pAtuais)}
                     </div>
 
-                    <div class="section-header">
-                        🧑‍🍳 Modo de Preparo <span class="section-helper">(Checklist de progresso)</span>
-                    </div>
+                    <div class="section-title">Modo de Preparo</div>
                     <div id="passos_${receita.id}">
                         ${variacaoAtiva.passos.map((passo, idx) => `
-                            <div class="list-item" onclick="toggleCheck(this)">
+                            <div class="list-item" onclick="toggleCheck(this, event)">
                                 <input type="checkbox">
-                                <span><span class="step-tag">PASSO ${idx+1}</span>${passo}</span>
+                                <span><strong>${idx+1}.</strong> ${passo}</span>
                             </div>
                         `).join('')}
                     </div>
 
-                    <div class="section-header">
-                        🎂 Finalização e Toque do Chef
-                    </div>
+                    <div class="section-title">Finalização</div>
                     <div id="finalizacoes_${receita.id}">
                         ${renderFinalizacao(variacaoAtiva.finalizacoes, receita.id)}
                     </div>
@@ -338,7 +305,7 @@
         return variacao.ingredientes.map(ing => {
             const qtdCalculada = ((ing.qtd / variacao.porcoesBase) * porcoesDesejadas).toFixed(2).replace('.00', '').replace('.', ',');
             return `
-                <div class="list-item" onclick="toggleCheck(this)">
+                <div class="list-item" onclick="toggleCheck(this, event)">
                     <input type="checkbox">
                     <span><span class="num-destaque">${qtdCalculada}</span> ${ing.unidade} ${ing.nome}</span>
                 </div>
@@ -347,6 +314,7 @@
     }
 
     function renderFinalizacao(finalizacoes, receitaId) {
+        if (!finalizacoes || finalizacoes.length === 0) return '';
         const eMultipla = finalizacoes.length > 1;
         return finalizacoes.map((item, idx) => {
             const textoLimpo = item.replace(/^Opção\s+[a-zA-Zà-úÀ-Ú]+\s*:\s*/i, '');
@@ -362,48 +330,59 @@
         }).join('');
     }
 
-    function toggleCheck(elemento) {
-        elemento.classList.toggle('checked');
-        const box = elemento.querySelector('input');
-        if(box && event.target !== box) box.checked = !box.checked;
+    function toggleCard(id) {
+        document.getElementById(`card_${id}`).classList.toggle('collapsed');
     }
 
-    function atualizarPorcoes(id, valor, varIdx) {
+    function toggleCheck(elemento, evento) {
+        const box = elemento.querySelector('input');
+        if (evento.target === box) {
+            elemento.classList.toggle('checked', box.checked);
+            return;
+        }
+        box.checked = !box.checked;
+        elemento.classList.toggle('checked', box.checked);
+    }
+
+    function actualizarPorcoes(id, valor, varIdx) {
         porcoesSelecionadas[id] = parseInt(valor);
-        const card = document.getElementById(`ingredientes_${id}`).closest('.recipe-card');
-        card.querySelector('.yield-row span span').innerText = valor;
+        const card = document.getElementById(`card_${id}`);
+        card.querySelector('.yield-badge span').innerText = valor;
         
-        const variacao = dadosReceitas.find(r => r.id === id).variacoes[varIdx];
+        const variacao = bancoDeDados.find(r => r.id === id).variacoes[varIdx];
         document.getElementById(`ingredientes_${id}`).innerHTML = renderIngredientes(variacao, valor);
     }
 
     function mudarVariacao(id, varIdx) {
-        const receita = dadosReceitas.find(r => r.id === id);
+        const receita = bancoDeDados.find(r => r.id === id);
         const variacaoAtiva = receita.variacoes[varIdx];
         const pAtuais = porcoesSelecionadas[id];
 
         document.getElementById(`ingredientes_${id}`).innerHTML = renderIngredientes(variacaoAtiva, pAtuais);
         
         document.getElementById(`passos_${id}`).innerHTML = variacaoAtiva.passos.map((passo, idx) => `
-            <div class="list-item" onclick="toggleCheck(this)">
+            <div class="list-item" onclick="toggleCheck(this, event)">
                 <input type="checkbox">
-                <span><span class="step-tag">PASSO ${idx+1}</span>${passo}</span>
+                <span><strong>${idx+1}.</strong> ${passo}</span>
             </div>
         `).join('');
 
         document.getElementById(`finalizacoes_${id}`).innerHTML = renderFinalizacao(variacaoAtiva.finalizacoes, id);
         
-        const card = document.getElementById(`ingredientes_${id}`).closest('.recipe-card');
-        card.querySelector('.yield-slider').setAttribute('oninput', `atualizarPorcoes(${id}, this.value, ${varIdx})`);
+        const card = document.getElementById(`card_${id}`);
+        card.querySelector('.yield-slider').setAttribute('oninput', `actualizarPorcoes(${id}, this.value, ${varIdx})`);
     }
 
     function filtrarReceitas() {
         const termo = document.getElementById('inputBusca').value.toLowerCase();
-        const filtradas = dadosReceitas.filter(r => r.titulo.toLowerCase().includes(termo));
+        const filtradas = bancoDeDados.filter(r => 
+            r.titulo.toLowerCase().includes(termo) || 
+            r.categoria.toLowerCase().includes(termo)
+        );
         renderizarReceitas(filtradas);
     }
 
-    document.addEventListener('DOMContentLoaded', inicializar);
+    document.addEventListener('DOMContentLoaded', carregarDadosDoJson);
 </script>
 </body>
 </html>
