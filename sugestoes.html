@@ -3,149 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sugestões de Receitas</title>
+    <title>Caixa de Sugestões</title>
     <style>
-        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f6f9; color: #333; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .card { background: white; width: 100%; max-width: 500px; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h2 { color: #e67e22; margin-top: 0; text-align: center; }
-        p { text-align: center; color: #666; font-size: 14px; }
-        .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        input { flex: 1; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; outline: none; }
-        input:focus { border-color: #e67e22; }
-        button { background: #e67e22; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; }
-        button:hover { background: #d35400; }
-        ul { list-style: none; padding: 0; margin: 0; }
-        li { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid #e67e22; font-size: 16px; animation: fadeIn 0.3s ease; }
-        .btn-lixeira { background: none; border: none; font-size: 18px; cursor: pointer; padding: 5px; }
-        .btn-lixeira:hover { transform: scale(1.2); }
-        .loading { text-align: center; color: #999; font-style: italic; padding: 10px; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+        body { background-color: #f7f9fc; margin: 0; padding: 0; color: #333; }
+        
+        .header {
+            background: linear-gradient(135deg, #ff5e00, #e62222);
+            padding: 25px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        .btn-voltar { color: white; text-decoration: none; font-size: 24px; font-weight: bold; }
+        .header h1 { color: white; margin: 0; font-size: 22px; font-weight: bold; }
+
+        .container { padding: 20px 15px; }
+
+        .box-sugestao {
+            background: white;
+            border-radius: 24px;
+            padding: 25px 20px;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 25px;
+        }
+        .box-title { font-size: 22px; font-weight: bold; color: #ff5e00; margin: 0 0 10px 0; }
+        .box-desc { color: #64748b; font-size: 14px; line-height: 1.5; margin-bottom: 20px; }
+
+        .form-group { display: flex; gap: 10px; }
+        .form-group input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+        }
+        .form-group input:focus { border-color: #ff5e00; }
+        
+        .btn-sugerir {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-sugerir:hover { background: #d35400; }
+
+        .list-title { font-size: 13px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        
+        .sugestao-item {
+            background: white;
+            border: 1px solid #f1f5f9;
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+        }
+        .sugestao-texto { font-size: 15px; color: #334155; font-weight: bold; }
+        .btn-deletar { background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 16px; }
+        .btn-deletar:hover { color: #ef4444; }
+        .sem-sugestoes { text-align: center; color: #94a3b8; font-size: 14px; margin-top: 30px; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>💡 Caixa de Sugestões</h2>
-    <p>Diga qual prato você quer ver no site! Todo mundo pode sugerir, mas só o dono pode apagar.</p>
-    
-    <div class="input-group">
-        <input type="text" id="inputPrato" placeholder="Ex: Estrogonofe de Camarão...">
-        <button onclick="enviarSugestao()">Sugerir</button>
+    <div class="header">
+        <a href="index.html" class="btn-voltar">←</a>
+        <h1>Central de Interação</h1>
     </div>
 
-    <ul id="listaSugestoes">
-        <div class="loading" id="status">Carregando sugestões da nuvem...</div>
-    </ul>
-</div>
+    <div class="container">
+        <div class="box-sugestao">
+            <div class="box-title">💡 Caixa de Sugestões</div>
+            <div class="box-desc">Diga qual prato você quer ver no site! Todo mundo pode sugerir, mas só o dono pode apagar.</div>
+            <div class="form-group">
+                <input type="text" id="inputSugestao" placeholder="Ex: Estrogonofe de Camarão, Lasanha...">
+                <button class="btn-sugerir" onclick="adicionarSugestao()">Sugerir</button>
+            </div>
+        </div>
+
+        <div class="list-title">Sugestões da Comunidade</div>
+        <div id="listaSugestoes"></div>
+    </div>
 
 <script>
-    // Link único gerado na nuvem pública para o seu site guardar a lista
-    const URL_BANCO = 'https://kvdb.io/rec_sug_box_2026_id/lista_de_pratos';
-    const SENHA_MESTRA = 'olhaareceita';
+    let listaLocal = JSON.parse(localStorage.getItem('sugestoes_banco')) || [];
 
-    // Função para buscar as sugestões salvas na nuvem
-    async function carregarSugestoes() {
-        const listaEl = document.getElementById('listaSugestoes');
-        const statusEl = document.getElementById('status');
-        
-        try {
-            const resposta = await fetch(URL_BANCO);
-            if (resposta.status === 404) {
-                listaEl.innerHTML = '<p style="color:#999;">Nenhuma sugestão ainda. Seja o primeiro!</p>';
-                return [];
-            }
-            const dados = await resposta.json();
-            
-            listaEl.innerHTML = '';
-            if (!dados || dados.length === 0) {
-                listaEl.innerHTML = '<p style="color:#999;">Nenhuma sugestão ainda. Seja o primeiro!</p>';
-                return [];
-            }
+    function renderizarSugestoes() {
+        const container = document.getElementById('listaSugestoes');
+        container.innerHTML = '';
 
-            dados.forEach((prato, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span>${prato}</span>
-                    <button class="btn-lixeira" onclick="apagarSugestao(${index})">🗑️</button>
-                `;
-                listaEl.appendChild(li);
-            });
-            return dados;
-        } catch (erro) {
-            listaEl.innerHTML = '<p style="color:red;">Erro ao conectar com a nuvem.</p>';
-            return [];
-        }
-    }
-
-    // Função para adicionar uma nova sugestão na nuvem
-    async function enviarSugestao() {
-        const input = document.getElementById('inputPrato');
-        const prato = input.value.trim();
-
-        if (!prato) {
-            alert('Digite o nome de um prato primeiro, doido!');
+        if (listaLocal.length === 0) {
+            container.innerHTML = '<div class="sem-sugestoes">Nenhuma sugestão ainda. Seja o primeiro!</div>';
             return;
         }
 
-        document.getElementById('listaSugestoes').innerHTML = '<div class="loading">Enviando para a nuvem...</div>';
-        
-        // Busca a lista atual, coloca o novo prato e joga de volta na nuvem
-        const listaAtual = await buscarListaPura();
-        listaAtual.push(prato);
-
-        await fetch(URL_BANCO, {
-            method: 'POST',
-            body: JSON.stringify(listaAtual),
-            headers: { 'Content-Type': 'application/json' }
+        listaLocal.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'sugestao-item';
+            div.innerHTML = `
+                <span class="sugestao-texto">${item}</span>
+                <button class="btn-deletar" onclick="removerSugestao(${idx})">🗑️</button>
+            `;
+            container.appendChild(div);
         });
-
-        input.value = '';
-        carregarSugestoes();
     }
 
-    // Função com o esquema da lixeira e senha
-    async function apagarSugestao(index) {
-        const senhaDigitada = prompt('Digite a senha para deletar essa sugestão:');
-        
-        if (senhaDigitada === null) return; // Se o usuário cancelar
+    function adicionarSugestao() {
+        const campo = document.getElementById('inputSugestao');
+        const valor = campo.value.trim();
 
-        if (senhaDigitada !== SENHA_MESTRA) {
-            alert('Senha incorreta! Você não tem permissão para apagar.');
+        if (valor === '') {
+            alert('Por favor, digite uma sugestão!');
             return;
         }
 
-        if (confirm('Tem certeza que quer sumir com esse prato da lista?')) {
-            document.getElementById('listaSugestoes').innerHTML = '<div class="loading">Deletando...</div>';
-            
-            const listaAtual = await buscarListaPura();
-            listaAtual.splice(index, 1); // Remove o prato pelo número da posição
+        listaLocal.push(valor);
+        localStorage.setItem('sugestoes_banco', JSON.stringify(listaLocal));
+        campo.value = '';
+        renderizarSugestoes();
+    }
 
-            await fetch(URL_BANCO, {
-                method: 'POST',
-                body: JSON.stringify(listaAtual),
-                headers: { 'Content-Type': 'application/json' }
-            });
-
-            carregarSugestoes();
+    function removerSugestao(index) {
+        const senha = prompt("Apenas o administrador pode apagar. Digite a senha:");
+        if (senha === "123") {
+            listaLocal.splice(index, 1);
+            localStorage.setItem('sugestoes_banco', JSON.stringify(listaLocal));
+            renderizarSugestoes();
+        } else if (senha !== null) {
+            alert("Senha incorreta!");
         }
     }
 
-    // Função auxiliar para pegar os dados sem mexer na tela
-    async function buscarListaPura() {
-        try {
-            const resposta = await fetch(URL_BANCO);
-            if (resposta.status === 404) return [];
-            const dados = await resposta.json();
-            return Array.isArray(dados) ? dados : [];
-        } catch {
-            return [];
-        }
-    }
-
-    // Inicializa a página carregando a lista automática
-    document.addEventListener('DOMContentLoaded', carregarSugestoes);
+    document.addEventListener('DOMContentLoaded', renderizarSugestoes);
 </script>
-
 </body>
 </html>
