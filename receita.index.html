@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sem Receitas - Mapeador Interativo</title>
+    <title>Sem Receitas - Mapeador Interativo Público</title>
+    <!-- Tailwind CSS para um design moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-50 font-sans text-gray-800 antialiased">
+<body class="bg-gray-50 font-sans text-gray-800 antialiased min-h-screen flex flex-col">
 
+    <!-- Header -->
     <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
                 <i class="fa-solid font-black fa-utensils text-2xl bg-white text-orange-600 p-2 rounded-full shadow"></i>
-                <h1 class="text-2xl font-bold tracking-tight">Sem <span class="font-light text-orange-100">Receitas</span></h1>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <!-- Logo "Sem Receitas" -->
+                    <h1 class="text-2xl font-bold tracking-tight">Sem <span class="font-light text-orange-100">Receitas</span></h1>
+                    <!-- Reforço de Repositório Público no Topo -->
+                    <span class="bg-orange-700 bg-opacity-50 text-[10px] font-mono font-bold tracking-widest text-orange-100 uppercase px-2.5 py-0.5 rounded-md border border-orange-400 border-opacity-30 self-start sm:self-auto">
+                        <i class="fa-solid fa-earth-americas mr-1"></i> Código 100% Público
+                    </span>
+                </div>
             </div>
+            <!-- Aba de Busca -->
             <div class="w-full sm:w-96 relative">
                 <input type="text" id="search-input" placeholder="Buscar receita (Ex: Bolo de Cenoura, Estrogonofe...)" 
                     class="w-full pl-10 pr-4 py-2 rounded-full border-none text-gray-900 focus:ring-2 focus:ring-orange-300 shadow-inner outline-none">
@@ -23,35 +33,51 @@
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
+            <!-- Lista de Resultados -->
             <div class="lg:col-span-1">
                 <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-gray-700">
                     <i class="fa-solid fa-list-ul text-orange-500"></i> Receitas Disponíveis
                 </h2>
                 <div id="recipes-list" class="space-y-3">
-                    </div>
+                    <!-- Inserido dinamicamente via JS -->
+                </div>
             </div>
 
+            <!-- Painel de Detalhes e Interação -->
             <div class="lg:col-span-2">
-                <div id="welcome-panel" class="bg-white rounded-2xl p-8 text-center border-2 border-dashed border-gray-200 flex flex-col items-center justify-center h-64 shadow-sm">
-                    <i class="fa-solid fa-hand-pointer text-4xl text-gray-300 mb-3 animate-bounce"></i>
-                    <p class="text-gray-500 font-medium">Selecione uma receita ao lado para abrir o painel de preparação interativo.</p>
+                <!-- Painel Inicial reforçando que o repositório é aberto -->
+                <div id="welcome-panel" class="bg-white rounded-2xl p-8 text-center border-2 border-dashed border-gray-200 flex flex-col items-center justify-center h-80 shadow-sm">
+                    <div class="bg-orange-50 text-orange-600 p-4 rounded-full mb-4 animate-pulse">
+                        <i class="fa-solid fa-code-branch text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-1">Mapeador de Domínio Público</h3>
+                    <p class="text-gray-500 text-sm max-w-md mx-auto mb-4">
+                        Este sistema possui código aberto e auditação livre. Todo o banco de dados é extraído de portais de culinária públicos da internet.
+                    </p>
+                    <p class="text-orange-600 font-semibold text-xs bg-orange-50 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                        <i class="fa-solid fa-hand-pointer"></i> Selecione uma receita ao lado para começar
+                    </p>
                 </div>
 
                 <div id="recipe-panel" class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hidden">
+                    <!-- Cabeçalho do Card -->
                     <div class="p-6 bg-gray-900 text-white relative">
                         <span id="recipe-source" class="absolute top-4 right-4 bg-orange-500 text-xs font-bold uppercase px-2.5 py-1 rounded-full"></span>
                         <h2 id="recipe-title" class="text-2xl font-bold mb-2"></h2>
                         <p id="recipe-desc" class="text-gray-400 text-sm"></p>
                     </div>
 
+                    <!-- Controles de Variação e Porção -->
                     <div class="p-6 bg-orange-50 border-b border-orange-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-orange-700 uppercase mb-1">Forma de Preparo / Variação:</label>
                             <select id="variation-select" class="w-full bg-white border border-orange-200 text-gray-700 py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 font-medium cursor-pointer">
-                                </select>
+                                <!-- Variações via JS -->
+                            </select>
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-orange-700 uppercase mb-1 flex justify-between">
@@ -63,24 +89,28 @@
                         </div>
                     </div>
 
+                    <!-- Ingredientes Interativos -->
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-gray-800">
                             <i class="fa-solid fa-basket-shopping text-orange-500"></i> 
                             Ingredientes <span class="text-xs font-normal text-gray-400">(Marque os que já separou/usou)</span>
                         </h3>
                         <div id="ingredients-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                            </div>
+                            <!-- JS Checklist -->
+                        </div>
                     </div>
 
                     <hr class="border-gray-100 mx-6">
 
+                    <!-- Modo de Preparo Interativo -->
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-gray-800">
                             <i class="fa-solid fa-kitchen-set text-orange-500"></i> 
                             Modo de Preparo <span class="text-xs font-normal text-gray-400">(Checklist de progresso)</span>
                         </h3>
                         <div id="steps-container" class="space-y-3">
-                            </div>
+                            <!-- JS Checklist -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,6 +118,20 @@
         </div>
     </main>
 
+    <!-- Rodapé Exclusivo Reforçando Projeto Público -->
+    <footer class="bg-gray-900 text-gray-400 py-6 border-t border-gray-800 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm">
+            <div class="flex items-center gap-2 text-center sm:text-left">
+                <i class="fa-brands fa-git-alt text-xl text-orange-500"></i>
+                <p><strong>Sem Receitas</strong> é um indexador livre. Código-fonte hospedado de forma transparente e pública.</p>
+            </div>
+            <div class="flex items-center gap-2 bg-gray-800 px-3 py-1.5 rounded-md text-gray-300 font-mono text-[11px]">
+                <i class="fa-solid fa-unlock-keyhole text-emerald-400"></i> REPOSITÓRIO LIVRE & LIVRE DE TRACKERS
+            </div>
+        </div>
+    </footer>
+
+    <!-- Banco de Dados e Lógica do Sistema -->
     <script>
         const recipeDatabase = [
             {
@@ -176,7 +220,7 @@
                             { name: "Creme de leite de aveia/castanha", baseQty: 1, unit: "caixinha" },
                             { name: "Molho de tomate", baseQty: 3, unit: "colheres de sopa" },
                             { name: "Mostarda escura", baseQty: 1, unit: "colher de sopa" },
-                            { name: "Alho picado", baseQty: 2, dentes: "unidades" }
+                            { name: "Alho picado", baseQty: 2, unit: "unidades" }
                         ],
                         steps: ["Refogue o alho e adicione os cogumelos até dourarem levemente.", "Insira o molho de tomate, a mostarda e cozinhe por 3 minutos.", "Finalize adicionando o creme vegetal e misturando bem."]
                     }
