@@ -3,242 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sem Receitas - Catálogo Prático</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Sem Receitas</title>
+    <style>
+        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: #f7f9fa; margin: 0; padding: 0; color: #333; }
+        
+        /* HEADER IGUAL ÀS FOTOS */
+        .header {
+            background: linear-gradient(135deg, #ff5e00, #e62222);
+            padding: 25px 20px 35px 20px;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .logo-container { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .logo-circle { 
+            background: white; 
+            width: 45px; 
+            height: 45px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 22px; 
+        }
+        .header h1 { color: white; margin: 0; font-size: 26px; font-weight: bold; }
+        
+        /* ☰ BOTÃO DE MENU SUPERIOR DIREITO */
+        .btn-menu {
+            position: absolute;
+            top: 32px;
+            right: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 32px;
+            line-height: 1;
+            z-index: 10;
+            transition: transform 0.2s;
+        }
+        .btn-menu:active { transform: scale(0.9); }
+
+        /* BARRA DE BUSCA PEDIDA (FOTO 1 e 3) */
+        .search-container { position: relative; width: 100%; }
+        .search-container input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border-radius: 25px;
+            border: none;
+            font-size: 15px;
+            outline: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .search-container::before {
+            content: "🔍";
+            position: absolute;
+            left: 18px;
+            top: 14px;
+            font-size: 16px;
+            color: #999;
+        }
+
+        /* CARD DA RECEITA COM BORDA LARANJA (FOTO 1) */
+        .container { padding: 20px; }
+        .recipe-card {
+            background: white;
+            border-radius: 20px;
+            border: 2px solid #e67e22;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .recipe-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; }
+        .recipe-title { font-size: 20px; font-weight: bold; color: #111; margin-bottom: 6px; }
+        
+        /* BADGE DE CATEGORIA */
+        .category-badge {
+            background: #fff0e6;
+            color: #e67e22;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .arrow-icon { font-size: 18px; color: #e67e22; transition: transform 0.3s; }
+        .recipe-card.collapsed .recipe-content { display: none; }
+        .recipe-card.collapsed .arrow-icon { transform: rotate(180deg); }
+
+        .recipe-content { padding: 0 20px 20px 20px; border-top: 1px solid #f0f0f0; }
+        .recipe-desc { font-style: italic; color: #666; margin: 15px 0; font-size: 14px; line-height: 1.4; }
+
+        /* SELEÇÃO DE VARIAÇÃO */
+        .section-label { font-size: 12px; font-weight: bold; color: #a04000; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
+        .select-variation {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1.5px solid #f39c12;
+            font-size: 15px;
+            background: #fff;
+            color: #333;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        /* RENDIMENTO COM SLIDER INICIANDO EM 2 (FOTO 1) */
+        .yield-box {
+            background: #fffdf9;
+            border: 1px solid #fbeee6;
+            padding: 12px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .slider-wrapper { display: flex; align-items: center; gap: 12px; }
+        .yield-slider { accent-color: #e67e22; width: 100px; cursor: pointer; }
+        .yield-badge {
+            background: #fff5eb;
+            color: #e67e22;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+            border: 1px solid #fbe6d4;
+        }
+
+        /* SEÇÕES INTERNAS (INGREDIENTES / PASSOS) */
+        .section-title { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: bold; color: #7f8c8d; margin: 20px 0 12px 0; letter-spacing: 0.5px; }
+        
+        .list-item {
+            background: #f8f9fa;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .list-item input[type="checkbox"] {
+            transform: scale(1.2);
+            accent-color: #e67e22;
+        }
+        .list-item span { font-size: 15px; line-height: 1.4; }
+        .list-item.checked span { text-decoration: line-through; color: #bbb; }
+
+        /* FINALIZAÇÃO SEM CHECKS E COM ESCOLA MÚLTIPLA (FOTO 2) */
+        .fin-item {
+            background: #fdfefe;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            border-left: 4px solid #e67e22;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .fin-item input[type="radio"] { transform: scale(1.3); margin-top: 3px; accent-color: #e67e22; }
+        .fin-text { font-size: 15px; color: #333; line-height: 1.4; }
+        .fin-opt-title { font-weight: bold; color: #e67e22; display: block; margin-bottom: 2px; font-size: 12px; }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans text-gray-800 antialiased min-h-screen flex flex-col">
+<body>
 
-    <!-- Header Focado em Busca -->
-    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-3xl mx-auto px-4 py-4 flex flex-col gap-3">
-            <div class="flex items-center gap-3">
-                <i class="fa-solid font-black fa-utensils text-xl bg-white text-orange-600 p-2 rounded-full shadow"></i>
-                <h1 class="text-2xl font-bold tracking-tight">Sem Receitas</h1>
-            </div>
-            <div class="w-full relative">
-                <input type="text" id="search-input" placeholder="Buscar 100+ pratos, categorias ou épocas (Ex: Natal, Sorvete, Torta...)" 
-                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border-none text-gray-900 focus:ring-2 focus:ring-orange-300 shadow-inner outline-none text-sm">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400"></i>
-            </div>
+    <!-- TOPO COMPLETO -->
+    <div class="header">
+        <div class="logo-container">
+            <div class="logo-circle">🍴</div>
+            <h1>Sem Receitas</h1>
         </div>
-    </header>
+        
+        <!-- Botão Hambúrguer apontado pelo emoji -->
+        <a href="sugestoes.html" class="btn-menu">☰</a>
 
-    <!-- Container do Accordion -->
-    <main class="max-w-3xl mx-auto px-4 py-6 flex-grow w-full">
-        <div id="recipes-accordion-container" class="space-y-4">
-            <div class="text-center py-12 text-gray-400 text-sm">
-                <i class="fa-solid fa-spinner fa-spin text-3xl mb-2 text-orange-500"></i>
-                <p>Carregando catálogo de receitas...</p>
-            </div>
+        <!-- Caixa de Busca Atualizada -->
+        <div class="search-container">
+            <input type="text" id="inputBusca" placeholder="Busque sua receita, ou nos deixe uma opinião👉🏾" oninput="filtrarReceitas()">
         </div>
-    </main>
+    </div>
 
-    <footer class="bg-white text-gray-400 py-4 text-center border-t border-gray-100 text-xs mt-auto">
-        <p>&copy; 2026 Sem Receitas. Todos os direitos reservados.</p>
-    </footer>
+    <!-- ÁREA DAS RECEITAS -->
+    <div class="container" id="listaReceitas">
+        <!-- Inserido dinamicamente via JS -->
+    </div>
 
-    <script>
-        const TARGET_PORTIONS = 2;
-        let recipeDatabase = [];
-        let activeRecipeId = null;
-        let activeVariationsState = {}; 
+<script>
+    // Seus dados base das receitas (adicione mais aqui dentro do padrão se quiser)
+    const dadosReceitas = [
+        {
+            id: 1,
+            titulo: "Cocada Cremosa",
+            categoria: "Doces",
+            descricao: "Doce de colher puxa-puxa muito rico.",
+            variacoes: [
+                {
+                    nome: "De Coco Fresco",
+                    porcoesBase: 2,
+                    ingredientes: [
+                        { qtd: 1, unidade: "xícaras", nome: "de Coco fresco ralado grosso" },
+                        { qtd: 0.75, unidade: "xícaras", nome: "de Açúcar" },
+                        { qtd: 0.25, unidade: "xícara", nome: "de Água" }
+                    ],
+                    passos: [
+                        "Faça uma calda em ponto de fio com a água e o açúcar.",
+                        "Junte o coco ralado fresco e mexa em fogo brando.",
+                        "Cozinhe até soltar do fundo, mas sem secar completamente."
+                    ],
+                    finalizacoes: [
+                        "Sirva morna em potinhos ou faça montinhos para secar."
+                    ]
+                },
+                {
+                    nome: "Com Leite Condensado",
+                    porcoesBase: 2,
+                    ingredientes: [
+                        { qtd: 1, unidade: "lata", nome: "de Leite Condensado" },
+                        { qtd: 100, unidade: "g", nome: "de Coco ralado seco" },
+                        { qtd: 1, unidade: "colher", nome: "de Manteiga" }
+                    ],
+                    passos: [
+                        "Misture tudo em uma panela antes de ligar o fogo.",
+                        "Mexa sem parar em fogo médio até desgrudar do fundo."
+                    ],
+                    finalizacoes: [
+                        "Opção Tradicional: Deixe esfriar e coma de colher.",
+                        "Opção Festiva: Enrole e passe no coco ralado fino."
+                    ]
+                }
+            ]
+        }
+    ];
 
-        const searchInput = document.getElementById('search-input');
-        const accordionContainer = document.getElementById('recipes-accordion-container');
+    // Guarda o estado de porções de cada receita na tela (Padrão: 2 porções)
+    let porcoesSelecionadas = {};
 
-        // Carrega o banco de dados via AJAX (Funciona perfeitamente no GitHub Pages)
-        async function init() {
-            try {
-                const response = await fetch('./recipes.json');
-                if (!response.ok) throw new Error();
-                recipeDatabase = await response.json();
-                
-                recipeDatabase.forEach(r => {
-                    activeVariationsState[r.id] = 0;
-                });
-                
-                renderAccordion(recipeDatabase);
+    function inicializar() {
+        dadosReceitas.forEach(r => { porcoesSelecionadas[r.id] = 2; });
+        renderizarReceitas(dadosReceitas);
+    }
 
-                searchInput.addEventListener('input', (e) => {
-                    const term = e.target.value.toLowerCase().trim();
-                    const filtered = recipeDatabase.filter(r => 
-                        r.name.toLowerCase().includes(term) || 
-                        r.description.toLowerCase().includes(term)
-                    );
-                    renderAccordion(filtered);
-                });
-            } catch (err) {
-                accordionContainer.innerHTML = `
-                    <div class="text-center py-12 bg-white rounded-2xl border border-red-200 text-red-500 text-sm p-6 shadow-sm">
-                        <i class="fa-solid fa-file-circle-exclamation text-4xl mb-3"></i>
-                        <p class="font-bold text-base">Arquivo "recipes.json" não encontrado!</p>
-                        <p class="text-gray-500 mt-2 text-xs">Crie o arquivo recipes.json no seu repositório usando o gerador do passo 2.</p>
-                    </div>`;
-            }
+    function renderizarReceitas(lista) {
+        const container = document.getElementById('listaReceitas');
+        container.innerHTML = '';
+
+        if(lista.length === 0) {
+            container.innerHTML = '<p style="text-align:center; color:#999; margin-top:40px;">Nenhuma receita encontrada...</p>';
+            return;
         }
 
-        function renderAccordion(list) {
-            accordionContainer.innerHTML = '';
+        lista.forEach(receita => {
+            const card = document.createElement('div');
+            card.className = "recipe-card";
+            card.id = `card_${receita.id}`;
 
-            if (list.length === 0) {
-                accordionContainer.innerHTML = `
-                    <div class="text-center py-12 bg-white rounded-2xl border border-gray-100 text-gray-400 text-sm shadow-sm">
-                        <i class="fa-solid fa-cookie-bite text-3xl mb-2 text-gray-200"></i>
-                        <p>Nenhuma receita encontrada para este termo...</p>
-                    </div>`;
-                return;
-            }
+            // Seleciona a primeira variação por padrão se não houver escolha ainda
+            const varIndex = 0;
+            const variacaoAtiva = receita.variacoes[varIndex];
+            const pAtuais = porcoesSelecionadas[receita.id];
 
-            list.forEach(recipe => {
-                const isOpen = (recipe.id === activeRecipeId);
-                const currentVarIdx = activeVariationsState[recipe.id];
-                const variation = recipe.variations[currentVarIdx];
-                const factor = TARGET_PORTIONS / variation.basePortions;
-
-                const recipeCard = document.createElement('div');
-                recipeCard.className = `bg-white rounded-2xl border transition-all duration-200 overflow-hidden shadow-sm ${isOpen ? 'border-orange-500 ring-1 ring-orange-100' : 'border-gray-200'}`;
-
-                // Cabeçalho Limpo
-                const headerBtn = document.createElement('button');
-                headerBtn.className = `w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50 focus:outline-none select-none`;
-                headerBtn.onclick = () => toggleRecipe(recipe.id);
-                
-                const categoryTag = recipe.description.match(/\[(.*?)\]/)?.[1] || "Receita";
-                const cleanDesc = recipe.description.replace(/\[.*?\]\s*/, '');
-
-                headerBtn.innerHTML = `
+            card.innerHTML = `
+                <div class="recipe-header" onclick="toggleCard(${receita.id})">
                     <div>
-                        <h3 class="font-bold text-gray-800 text-base leading-tight">${recipe.name}</h3>
-                        <span class="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md">${categoryTag}</span>
+                        <div class="recipe-title">${receita.titulo}</div>
+                        <span class="category-badge">CATEGORIA: ${receita.categoria}</span>
                     </div>
-                    <i class="fa-solid ${isOpen ? 'fa-chevron-up text-orange-500' : 'fa-chevron-down text-gray-300'} transition-transform duration-200 text-sm ml-2"></i>
-                `;
-                recipeCard.appendChild(headerBtn);
-
-                if (isOpen) {
-                    const bodyContent = document.createElement('div');
-                    bodyContent.className = `border-t border-gray-100 bg-white`;
-
-                    let selectOptions = recipe.variations.map((v, idx) => 
-                        `<option value="${idx}" ${idx === currentVarIdx ? 'selected' : ''}>${v.name}</option>`
-                    ).join('');
-
-                    bodyContent.innerHTML = `
-                        <div class="p-4 bg-gray-50 text-xs text-gray-600 italic border-b border-gray-100">
-                            ${cleanDesc}
-                        </div>
-                        
-                        <div class="p-4 bg-orange-50/60 border-b border-orange-100/50 grid grid-cols-1 gap-3.5">
-                            <div>
-                                <label class="block text-[10px] font-extrabold text-orange-800 uppercase tracking-wider mb-1">Variação / Estilo:</label>
-                                <select onchange="changeRecipeVariation('${recipe.id}', this.value)" 
-                                    class="w-full bg-white border border-orange-200 text-gray-700 py-2 px-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold cursor-pointer shadow-sm">
-                                    ${selectOptions}
-                                </select>
-                            </div>
-                            <div class="flex justify-between items-center bg-white px-3 py-2 rounded-xl border border-orange-100/60 shadow-sm">
-                                <span class="text-[10px] font-extrabold text-orange-800 uppercase tracking-wider">Rendimento:</span>
-                                <span class="text-xs font-extrabold text-orange-600 bg-orange-100/80 px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-users mr-1"></i> 2 Pessoas</span>
-                            </div>
-                        </div>
-
-                        <!-- Ingredientes -->
-                        <div class="p-4">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2.5 flex items-center gap-1.5">
-                                <i class="fa-solid fa-basket-shopping text-orange-500 text-sm"></i> Ingredientes
-                            </h4>
-                            <div class="grid grid-cols-1 gap-2">
-                                ${variation.ingredients.map((ing, i) => {
-                                    const calculatedQty = (ing.baseQty * factor).toLocaleString('pt-BR', { maximumFractionDigits: 2 });
-                                    return `
-                                        <label class="flex items-start gap-3 p-2.5 rounded-xl bg-gray-50 border border-gray-100/70 cursor-pointer select-none text-xs" onclick="event.stopPropagation();">
-                                            <input type="checkbox" class="mt-0.5 accent-emerald-500 rounded text-white w-4 h-4 flex-shrink-0 cursor-pointer" onchange="toggleChecklistItem(this)">
-                                            <span class="text-gray-700 font-medium">
-                                                <strong class="text-orange-600 font-bold">${calculatedQty}</strong> ${ing.unit} de ${ing.name}
-                                            </span>
-                                        </label>
-                                    `;
-                                }).join('')}
-                            </div>
-                        </div>
-
-                        <!-- Modo de Preparo -->
-                        <div class="p-4 border-t border-gray-100">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2.5 flex items-center gap-1.5">
-                                <i class="fa-solid fa-kitchen-set text-orange-500 text-sm"></i> Passo a Passo
-                            </h4>
-                            <div class="space-y-2">
-                                ${variation.steps.map((step, i) => `
-                                    <label class="flex items-start gap-3.5 p-3 rounded-xl bg-gray-50 border border-gray-100/70 cursor-pointer select-none text-xs" onclick="event.stopPropagation();">
-                                        <input type="checkbox" class="mt-0.5 accent-emerald-500 rounded text-white w-4 h-4 flex-shrink-0 cursor-pointer" onchange="toggleChecklistItem(this)">
-                                        <div class="text-gray-700 leading-relaxed">
-                                            <span class="font-bold text-[10px] uppercase tracking-wider text-gray-400 block mb-0.5">Etapa ${i + 1}</span>
-                                            <p class="desc-text">${step}</p>
-                                        </div>
-                                    </label>
-                                `).join('')}
-                            </div>
-                        </div>
-
-                        <!-- Finalização -->
-                        <div class="p-4 border-t border-gray-100 bg-gradient-to-b from-transparent to-gray-50/40">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2.5 flex items-center gap-1.5">
-                                <i class="fa-solid fa-plate-wheat text-orange-500 text-sm"></i> Finalização e Toque do Chef
-                            </h4>
-                            <div class="space-y-2">
-                                ${variation.finishing.map((fStep, i) => `
-                                    <label class="flex items-start gap-3.5 p-3 rounded-xl bg-gray-50 border border-gray-100/70 cursor-pointer select-none text-xs" onclick="event.stopPropagation();">
-                                        <input type="checkbox" class="mt-0.5 accent-emerald-500 rounded text-white w-4 h-4 flex-shrink-0 cursor-pointer" onchange="toggleChecklistItem(this)">
-                                        <div class="text-gray-700 leading-relaxed">
-                                            <span class="font-bold text-[10px] uppercase tracking-wider text-gray-400 block mb-0.5">Finalização ${i + 1}</span>
-                                            <p class="desc-text">${fStep}</p>
-                                        </div>
-                                    </label>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `;
-                    recipeCard.appendChild(bodyContent);
-                }
-
-                accordionContainer.appendChild(recipeCard);
-            });
-        }
-
-            function toggleRecipe(id) {
-                activeRecipeId = (activeRecipeId === id) ? null : id;
-                refreshView();
-            }
-
-            function changeRecipeVariation(recipeId, valueIndex) {
-                activeVariationsState[recipeId] = parseInt(valueIndex);
-                refreshView();
-            }
-
-            function refreshView() {
-                const term = searchInput.value.toLowerCase().trim();
-                const filtered = recipeDatabase.filter(r => 
-                    r.name.toLowerCase().includes(term) || 
-                    r.description.toLowerCase().includes(term)
-                );
-                renderAccordion(filtered);
-            }
-
-            function toggleChecklistItem(checkbox) {
-                const parentLabel = checkbox.parentElement;
-                const textContent = parentLabel.querySelector('.desc-text') || checkbox.nextElementSibling;
+                    <div class="arrow-icon">🔼</div>
+                </div>
                 
-                if (checkbox.checked) {
-                    textContent.classList.add('line-through', 'text-gray-400');
-                    parentLabel.classList.add('bg-emerald-50/80', 'border-emerald-100');
-                } else {
-                    textContent.classList.remove('line-through', 'text-gray-400');
-                    parentLabel.classList.remove('bg-emerald-50/80', 'border-emerald-100');
-                }
-            }
+                <div class="recipe-content">
+                    <div class="recipe-desc">${receita.descricao}</div>
+                    
+                    <div class="section-label">VARIAÇÃO / ESTILO:</div>
+                    <select class="select-variation" onchange="mudarVariacao(${receita.id}, this.value)">
+                        ${receita.variacoes.map((v, idx) => `<option value="${idx}">${v.nome}</option>`).join('')}
+                    </select>
 
-            window.onload = init;
-    </script>
+                    <div class="yield-box">
+                        <span class="section-label" style="margin:0;">RENDIMENTO:</span>
+                        <div class="slider-wrapper">
+                            <input type="range" class="yield-slider" min="1" max="10" value="${pAtuais}" oninput="atualizarPorcoes(${receita.id}, this.value, ${varIndex})">
+                            <span class="yield-badge">👥 <span>${pAtuais}</span> Pessoas</span>
+                        </div>
+                    </div>
+
+                    <div class="section-title">🧺 INGREDIENTES</div>
+                    <div id="ingredientes_${receita.id}">
+                        ${renderIngredientes(variacaoAtiva, pAtuais)}
+                    </div>
+
+                    <div class="section-title">🧑‍🍳 PASSO A PASSO</div>
+                    <div>
+                        ${variacaoAtiva.passos.map((passo, idx) => `
+                            <div class="list-item" onclick="toggleCheck(this)">
+                                <input type="checkbox">
+                                <span><strong>ETAPA ${idx+1}</strong><br>${passo}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="section-title">🎂 FINALIZAÇÃO E TOQUE DO CHEF</div>
+                    <div>
+                        ${renderFinalizacao(variacaoAtiva.finalizacoes)}
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Calcula quantidades dinamicamente baseado nas porções
+    function renderIngredientes(variacao, porcoesDesejadas) {
+        return variacao.ingredientes.map(ing => {
+            const qtdCalculada = ((ing.qtd / variacao.porcoesBase) * porcoesDesejadas).toFixed(2).replace('.00', '').replace('.', ',');
+            return `
+                <div class="list-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span><strong style="color:#e67e22;">${qtdCalculada}</strong> ${ing.unidade} ${ing.nome}</span>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Renderiza finalizações sem caixa de seleção e com Radio se for múltipla escolha
+    function renderFinalizacao(finalizacoes) {
+        const eMultipla = finalizacoes.length > 1;
+        return finalizacoes.map((item, idx) => {
+            // Se começar com "Opção X:", removemos para tratar no visual
+            const textoLimpo = item.replace(/^Opção\s+[a-zA-Zà-úÀ-Ú]+\s*:\s*/i, '');
+            
+            return `
+                <div class="fin-item">
+                    ${eMultipla ? `<input type="radio" name="finaliza_grupo" id="fin_${idx}">` : ''}
+                    <label class="fin-text" for="fin_${idx}">
+                        ${eMultipla ? `<span class="fin-opt-title">OPÇÃO ${idx+1}</span>` : ''}
+                        ${textoLimpo}
+                    </label>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Controladores de Interface
+    function toggleCard(id) {
+        document.getElementById(`card_${id}`).classList.toggle('collapsed');
+    }
+
+    function toggleCheck(elemento) {
+        elemento.classList.toggle('checked');
+        const box = elemento.querySelector('input');
+        if(box && event.target !== box) box.checked = !box.checked;
+    }
+
+    function atualizarPorcoes(id, valor, varIdx) {
+        porcoesSelecionadas[id] = parseInt(valor);
+        const card = document.getElementById(`card_${id}`);
+        card.querySelector('.yield-badge span').innerText = valor;
+        
+        const variacao = dadosReceitas.find(r => r.id === id).variacoes[varIdx];
+        document.getElementById(`ingredientes_${id}`).innerHTML = renderIngredientes(variacao, valor);
+    }
+
+    function mudarVariacao(id, varIdx) {
+        // Redesenha o card mantendo a porção selecionada
+        const receita = dadosReceitas.find(r => r.id === id);
+        const variacaoAtiva = receita.variacoes[varIdx];
+        const pAtuais = porcoesSelecionadas[id];
+
+        const card = document.getElementById(`card_${id}`);
+        document.getElementById(`ingredientes_${id}`).innerHTML = renderIngredientes(variacaoAtiva, pAtuais);
+        
+        // Atualiza a área de passos e finalização da variação nova
+        const passosContainer = card.querySelectorAll('.section-title')[1].nextElementSibling;
+        passosContainer.innerHTML = variacaoAtiva.passos.map((passo, idx) => `
+            <div class="list-item" onclick="toggleCheck(this)">
+                <input type="checkbox">
+                <span><strong>ETAPA ${idx+1}</strong><br>${passo}</span>
+            </div>
+        `).join('');
+
+        const finContainer = card.querySelectorAll('.section-title')[2].nextElementSibling;
+        finContainer.innerHTML = renderFinalizacao(variacaoAtiva.finalizacoes);
+        
+        // Corrige a ação do slider para referenciar a variação correta
+        card.querySelector('.yield-slider').setAttribute('oninput', `atualizarPorcoes(${id}, this.value, ${varIdx})`);
+    }
+
+    function filtrarReceitas() {
+        const termo = document.getElementById('inputBusca').value.toLowerCase();
+        const filtradas = dadosReceitas.filter(r => 
+            r.titulo.toLowerCase().includes(termo) || 
+            r.categoria.toLowerCase().includes(termo) ||
+            r.descricao.toLowerCase().includes(termo)
+        );
+        renderizarReceitas(filtradas);
+    }
+
+    // Inicializa ao carregar a página
+    document.addEventListener('DOMContentLoaded', inicializar);
+</script>
 </body>
 </html>
