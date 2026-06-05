@@ -3,413 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sem Receitas - Mapeador Interativo Público</title>
-    <!-- Tailwind CSS para um design moderno -->
+    <title>Sem Receitas - Catálogo Prático</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Header -->
+    <!-- Header Focado em Busca -->
     <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="max-w-3xl mx-auto px-4 py-4 flex flex-col gap-3">
             <div class="flex items-center gap-3">
-                <i class="fa-solid font-black fa-utensils text-2xl bg-white text-orange-600 p-2 rounded-full shadow"></i>
-                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                    <h1 class="text-2xl font-bold tracking-tight">Sem <span class="font-light text-orange-100">Receitas</span></h1>
-                    <span class="bg-orange-700 bg-opacity-50 text-[10px] font-mono font-bold tracking-widest text-orange-100 uppercase px-2.5 py-0.5 rounded-md border border-orange-400 border-opacity-30 self-start sm:self-auto">
-                        <i class="fa-solid fa-earth-americas mr-1"></i> Código 100% Público
-                    </span>
-                </div>
+                <i class="fa-solid font-black fa-utensils text-xl bg-white text-orange-600 p-2 rounded-full shadow"></i>
+                <h1 class="text-2xl font-bold tracking-tight">Sem Receitas</h1>
             </div>
-            <!-- Aba de Busca -->
-            <div class="w-full sm:w-96 relative">
-                <input type="text" id="search-input" placeholder="Buscar receita (Ex: Bolo de Cenoura, Estrogonofe...)" 
-                    class="w-full pl-10 pr-4 py-2 rounded-full border-none text-gray-900 focus:ring-2 focus:ring-orange-300 shadow-inner outline-none">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
+            <div class="w-full relative">
+                <input type="text" id="search-input" placeholder="Buscar 100+ pratos, categorias ou épocas (Ex: Natal, Sorvete, Torta...)" 
+                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border-none text-gray-900 focus:ring-2 focus:ring-orange-300 shadow-inner outline-none text-sm">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400"></i>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            <!-- Lista de Resultados -->
-            <div class="lg:col-span-1">
-                <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-gray-700">
-                    <i class="fa-solid fa-list-ul text-orange-500"></i> Receitas Disponíveis
-                </h2>
-                <div id="recipes-list" class="space-y-3">
-                    <!-- Inserido dinamicamente via JS -->
-                </div>
+    <!-- Container do Accordion -->
+    <main class="max-w-3xl mx-auto px-4 py-6 flex-grow w-full">
+        <div id="recipes-accordion-container" class="space-y-4">
+            <div class="text-center py-12 text-gray-400 text-sm">
+                <i class="fa-solid fa-spinner fa-spin text-3xl mb-2 text-orange-500"></i>
+                <p>Carregando catálogo de receitas...</p>
             </div>
-
-            <!-- Painel de Detalhes e Interação -->
-            <div class="lg:col-span-2">
-                <div id="welcome-panel" class="bg-white rounded-2xl p-8 text-center border-2 border-dashed border-gray-200 flex flex-col items-center justify-center h-80 shadow-sm">
-                    <div class="bg-orange-50 text-orange-600 p-4 rounded-full mb-4 animate-pulse">
-                        <i class="fa-solid fa-code-branch text-3xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Mapeador de Domínio Público</h3>
-                    <p class="text-gray-500 text-sm max-w-md mx-auto mb-4">
-                        Este sistema possui código aberto e auditação livre. Todo o banco de dados é extraído de portais de culinária públicos da internet.
-                    </p>
-                    <p class="text-orange-600 font-semibold text-xs bg-orange-50 px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                        <i class="fa-solid fa-hand-pointer"></i> Selecione uma receita ao lado para começar
-                    </p>
-                </div>
-
-                <div id="recipe-panel" class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hidden">
-                    <!-- Cabeçalho do Card -->
-                    <div class="p-6 bg-gray-900 text-white relative">
-                        <span id="recipe-source" class="absolute top-4 right-4 bg-orange-500 text-xs font-bold uppercase px-2.5 py-1 rounded-full"></span>
-                        <h2 id="recipe-title" class="text-2xl font-bold mb-2"></h2>
-                        <p id="recipe-desc" class="text-gray-400 text-sm"></p>
-                    </div>
-
-                    <!-- Controles de Variação e Porção -->
-                    <div class="p-6 bg-orange-50 border-b border-orange-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-orange-700 uppercase mb-1">Forma de Preparo / Variação:</label>
-                            <select id="variation-select" class="w-full bg-white border border-orange-200 text-gray-700 py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 font-medium cursor-pointer">
-                                <!-- Variações via JS -->
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-orange-700 uppercase mb-1 flex justify-between">
-                                <span>Rendimento:</span>
-                                <span id="portion-display" class="font-extrabold text-orange-600 text-sm">6 porções</span>
-                            </label>
-                            <input type="range" id="portion-slider" min="1" max="20" value="6" 
-                                class="w-full accent-orange-500 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-3">
-                        </div>
-                    </div>
-
-                    <!-- Ingredientes Interativos -->
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-gray-800">
-                            <i class="fa-solid fa-basket-shopping text-orange-500"></i> 
-                            Ingredientes <span class="text-xs font-normal text-gray-400">(Marque os que já separou/usou)</span>
-                        </h3>
-                        <div id="ingredients-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                            <!-- JS Checklist -->
-                        </div>
-                    </div>
-
-                    <hr class="border-gray-100 mx-6">
-
-                    <!-- Modo de Preparo Interativo -->
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-gray-800">
-                            <i class="fa-solid fa-kitchen-set text-orange-500"></i> 
-                            Modo de Preparo <span class="text-xs font-normal text-gray-400">(Checklist de progresso)</span>
-                        </h3>
-                        <div id="steps-container" class="space-y-3">
-                            <!-- JS Checklist -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </main>
 
-    <!-- Rodapé -->
-    <footer class="bg-gray-900 text-gray-400 py-6 border-t border-gray-800 mt-auto">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm">
-            <div class="flex items-center gap-2 text-center sm:text-left">
-                <i class="fa-brands fa-git-alt text-xl text-orange-500"></i>
-                <p><strong>Sem Receitas</strong> é um indexador livre. Código-fonte hospedado de forma transparente e pública.</p>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-800 px-3 py-1.5 rounded-md text-gray-300 font-mono text-[11px]">
-                <i class="fa-solid fa-unlock-keyhole text-emerald-400"></i> REPOSITÓRIO LIVRE & LIVRE DE TRACKERS
-            </div>
-        </div>
+    <footer class="bg-white text-gray-400 py-4 text-center border-t border-gray-100 text-xs mt-auto">
+        <p>&copy; 2026 Sem Receitas. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Banco de Dados e Lógica do Sistema -->
     <script>
-        const recipeDatabase = [
-            {
-                id: "1",
-                name: "Bolo de Cenoura",
-                defaultSource: "TudoGostoso",
-                description: "O clássico café da tarde brasileiro com aquela calda de chocolate perfeita.",
-                variations: [
-                    {
-                        name: "Tradicional de Liquidificador",
-                        basePortions: 8,
-                        ingredients: [
-                            { name: "Cenouras médias", baseQty: 3, unit: "unidades" },
-                            { name: "Óleo", baseQty: 0.5, unit: "xícara" },
-                            { name: "Ovos", baseQty: 3, unit: "unidades" },
-                            { name: "Açúcar", baseQty: 2, unit: "xícaras" },
-                            { name: "Farinha de trigo", baseQty: 2, unit: "xícaras" },
-                            { name: "Fermento em pó", baseQty: 1, unit: "colher de sopa" }
-                        ],
-                        steps: ["Bata no liquidificador as cenouras, o óleo e os ovos.", "Misture o açúcar e a farinha em uma tigela separada.", "Junte o líquido aos secos, adicione o fermento e misture levemente.", "Asse em forno médio (180°C) por 40 minutos."]
-                    },
-                    {
-                        name: "Fit / Integral",
-                        basePortions: 6,
-                        ingredients: [
-                            { name: "Cenouras grandes", baseQty: 2, unit: "unidades" },
-                            { name: "Óleo de coco", baseQty: 0.25, unit: "xícara" },
-                            { name: "Ovos", baseQty: 3, unit: "unidades" },
-                            { name: "Adoçante Xilitol", baseQty: 1, unit: "xícara" },
-                            { name: "Farinha de aveia", baseQty: 2, unit: "xícaras" },
-                            { name: "Fermento em pó", baseQty: 1, unit: "colher de sopa" }
-                        ],
-                        steps: ["Bata os úmidos com a cenoura no liquidificador.", "Incorpore a farinha de aveia e o xilitol manualmente.", "Finalize com o fermento e asse em forma de silicone."]
-                    },
-                    {
-                        name: "Versão de Caneca (Rápido)",
-                        basePortions: 1,
-                        ingredients: [
-                            { name: "Cenoura ralada fina", baseQty: 2, unit: "colheres de sopa" },
-                            { name: "Óleo", baseQty: 1, unit: "colher de sopa" },
-                            { name: "Ovo batido", baseQty: 0.5, unit: "unidade" },
-                            { name: "Açúcar", baseQty: 2, unit: "colheres de sopa" },
-                            { name: "Farinha de trigo", baseQty: 4, unit: "colheres de sopa" },
-                            { name: "Fermento", baseQty: 0.25, unit: "colher de chá" }
-                        ],
-                        steps: ["Misture bem todos os ingredientes diretamente na caneca.", "Leve ao microondas em potência alta por 1 minuto e 30 segundos.", "Espere esfriar um pouco antes de colocar a calda."]
-                    }
-                ]
-            },
-            {
-                id: "2",
-                name: "Estrogonofe de Frango",
-                defaultSource: "Panelinha (Rita Lobo)",
-                description: "Prato coringa, rápido de fazer e campeão de audiência nas mesas.",
-                variations: [
-                    {
-                        name: "Clássico com Creme de Leite",
-                        basePortions: 4,
-                        ingredients: [
-                            { name: "Peito de frango em cubos", baseQty: 500, unit: "g" },
-                            { name: "Cebola picada", baseQty: 1, unit: "unidade" },
-                            { name: "Ketchup", baseQty: 3, unit: "colheres de sopa" },
-                            { name: "Mostarda", baseQty: 1, unit: "colher de sopa" },
-                            { name: "Champignon fatiado", baseQty: 100, unit: "g" },
-                            { name: "Creme de leite", baseQty: 1, unit: "caixinha" }
-                        ],
-                        steps: ["Refogue a cebola e doure os cubos de frango.", "Adicione o ketchup, a mostarda e os cogumelos.", "Desligue o fogo e misture o creme de leite para não coalhar."]
-                    },
-                    {
-                        name: "Gourmet com Requeijão e Conhaque",
-                        basePortions: 4,
-                        ingredients: [
-                            { name: "Peito de frango", baseQty: 500, unit: "g" },
-                            { name: "Conhaque para flambar", baseQty: 50, unit: "ml" },
-                            { name: "Requeijão cremoso", baseQty: 1, unit: "copo" },
-                            { name: "Molho de tomate artesanal", baseQty: 0.5, unit: "xícara" },
-                            { name: "Champignon fresco", baseQty: 150, unit: "g" }
-                        ],
-                        steps: ["Doure o frango em fogo alto e jogue o conhaque inclinando a frigideira para flambar.", "Adicione o molho de tomate e os cogumelos frescos refogados.", "Adicione o requeijão e mexa até ficar homogêneo e aveludado."]
-                    },
-                    {
-                        name: "Vegano (Cogumelos)",
-                        basePortions: 3,
-                        ingredients: [
-                            { name: "Cogumelo Shimeji/Paris", baseQty: 400, unit: "g" },
-                            { name: "Creme de leite de aveia/castanha", baseQty: 1, unit: "caixinha" },
-                            { name: "Molho de tomate", baseQty: 3, unit: "colheres de sopa" },
-                            { name: "Mostarda escura", baseQty: 1, text: "colher de sopa" },
-                            { name: "Alho picado", baseQty: 2, unit: "unidades" }
-                        ],
-                        steps: ["Refogue o alho e adicione os cogumelos até dourarem levemente.", "Insira o molho de tomate, a mostarda e cozinhe por 3 minutos.", "Finalize adicionando o creme vegetal e misturando bem."]
-                    }
-                ]
-            },
-            {
-                id: "3",
-                name: "Pudim de Leite",
-                defaultSource: "Receitas Globo",
-                description: "A sobremesa mais tradicional das reuniões de família.",
-                variations: [
-                    {
-                        name: "Lisinho (Sem Furinhos)",
-                        basePortions: 8,
-                        ingredients: [
-                            { name: "Leite condensado", baseQty: 1, unit: "lata" },
-                            { name: "Leite integral", baseQty: 1, unit: "medida da lata" },
-                            { name: "Ovos inteiros", baseQty: 3, unit: "unidades" },
-                            { name: "Açúcar (para o caramelo)", baseQty: 1, unit: "xícara" }
-                        ],
-                        steps: ["Bata tudo no liquidificador na velocidade mínima ou misture com batedor de arame para não criar bolhas.", "Passe a mistura por uma peneira fina antes de colocar na forma caramelizada.", "Asse em banho-maria, coberto com papel alumínio, em forno bem baixo (160°C) por 1h30."]
-                    },
-                    {
-                        name: "Com Furinhos (Tradicional de Vó)",
-                        basePortions: 8,
-                        ingredients: [
-                            { name: "Leite condensado", baseQty: 1, unit: "lata" },
-                            { name: "Leite integral", baseQty: 1, unit: "medida da lata" },
-                            { name: "Ovos", baseQty: 4, unit: "unidades" },
-                            { name: "Açúcar", baseQty: 1, unit: "xícara" }
-                        ],
-                        steps: ["Bata todos os ingredientes no liquidificador na velocidade máxima por 5 minutos para incorporar bastante ar.", "Despeje direto na forma com o caramelo.", "Asse em banho-maria com o forno mais alto (200°C) sem tampa de papel alumínio."]
-                    },
-                    {
-                        name: "Prático de Geladeira (Sem Forno / Sem Ovo)",
-                        basePortions: 6,
-                        ingredients: [
-                            { name: "Leite condensado", baseQty: 1, unit: "lata" },
-                            { name: "Creme de leite", baseQty: 1, unit: "caixinha" },
-                            { name: "Leite integral", baseQty: 1, unit: "xícara" },
-                            { name: "Gelatina em pó incolor", baseQty: 1, unit: "sachê" },
-                            { name: "Açúcar (para calda)", baseQty: 1, unit: "xícara" }
-                        ],
-                        steps: ["Hidrate e derreta a gelatina conforme as instruções da embalagem.", "Bata o leite condensado, creme de leite, leite e a gelatina derretida no liquidificador.", "Coloque na forma já caramelizada fria e leve à geladeira por pelo menos 4 horas."]
-                    }
-                ]
-            }
-        ];
-
-        let currentRecipe = null;
-        let currentVariationIndex = 0;
+        const TARGET_PORTIONS = 2;
+        let recipeDatabase = [];
+        let activeRecipeId = null;
+        let activeVariationsState = {}; 
 
         const searchInput = document.getElementById('search-input');
-        const recipesList = document.getElementById('recipes-list');
-        const welcomePanel = document.getElementById('welcome-panel');
-        const recipePanel = document.getElementById('recipe-panel');
-        
-        const recipeTitle = document.getElementById('recipe-title');
-        const recipeSource = document.getElementById('recipe-source');
-        const recipeDesc = document.getElementById('recipe-desc');
-        const variationSelect = document.getElementById('variation-select');
-        const portionSlider = document.getElementById('portion-slider');
-        const portionDisplay = document.getElementById('portion-display');
-        const ingredientsContainer = document.getElementById('ingredients-container');
-        const stepsContainer = document.getElementById('steps-container');
+        const accordionContainer = document.getElementById('recipes-accordion-container');
 
-        function init() {
-            renderRecipesList(recipeDatabase);
-            
-            searchInput.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                const filtered = recipeDatabase.filter(r => r.name.toLowerCase().includes(term));
-                renderRecipesList(filtered);
-            });
+        // Carrega o banco de dados via AJAX (Funciona perfeitamente no GitHub Pages)
+        async function init() {
+            try {
+                const response = await fetch('./recipes.json');
+                if (!response.ok) throw new Error();
+                recipeDatabase = await response.json();
+                
+                recipeDatabase.forEach(r => {
+                    activeVariationsState[r.id] = 0;
+                });
+                
+                renderAccordion(recipeDatabase);
 
-            variationSelect.addEventListener('change', (e) => {
-                currentVariationIndex = parseInt(e.target.value);
-                const variation = currentRecipe.variations[currentVariationIndex];
-                portionSlider.value = variation.basePortions;
-                updateDynamicElements();
-            });
-
-            portionSlider.addEventListener('input', () => {
-                updateDynamicElements();
-            });
+                searchInput.addEventListener('input', (e) => {
+                    const term = e.target.value.toLowerCase().trim();
+                    const filtered = recipeDatabase.filter(r => 
+                        r.name.toLowerCase().includes(term) || 
+                        r.description.toLowerCase().includes(term)
+                    );
+                    renderAccordion(filtered);
+                });
+            } catch (err) {
+                accordionContainer.innerHTML = `
+                    <div class="text-center py-12 bg-white rounded-2xl border border-red-200 text-red-500 text-sm p-6 shadow-sm">
+                        <i class="fa-solid fa-file-circle-exclamation text-4xl mb-3"></i>
+                        <p class="font-bold text-base">Arquivo "recipes.json" não encontrado!</p>
+                        <p class="text-gray-500 mt-2 text-xs">Crie o arquivo recipes.json no seu repositório usando o gerador do passo 2.</p>
+                    </div>`;
+            }
         }
 
-        function renderRecipesList(list) {
-            recipesList.innerHTML = '';
-            if(list.length === 0) {
-                recipesList.innerHTML = `<p class="text-gray-400 italic text-sm p-2">Nenhuma receita encontrada...</p>`;
+        function renderAccordion(list) {
+            accordionContainer.innerHTML = '';
+
+            if (list.length === 0) {
+                accordionContainer.innerHTML = `
+                    <div class="text-center py-12 bg-white rounded-2xl border border-gray-100 text-gray-400 text-sm shadow-sm">
+                        <i class="fa-solid fa-cookie-bite text-3xl mb-2 text-gray-200"></i>
+                        <p>Nenhuma receita encontrada para este termo...</p>
+                    </div>`;
                 return;
             }
+
             list.forEach(recipe => {
-                const button = document.createElement('button');
-                button.className = `w-full text-left p-3 rounded-xl border border-gray-200 bg-white hover:bg-orange-50 hover:border-orange-300 transition-all flex justify-between items-center group shadow-sm`;
-                button.onclick = () => selectRecipe(recipe);
-                button.innerHTML = `
+                const isOpen = (recipe.id === activeRecipeId);
+                const currentVarIdx = activeVariationsState[recipe.id];
+                const variation = recipe.variations[currentVarIdx];
+                const factor = TARGET_PORTIONS / variation.basePortions;
+
+                const recipeCard = document.createElement('div');
+                recipeCard.className = `bg-white rounded-2xl border transition-all duration-200 overflow-hidden shadow-sm ${isOpen ? 'border-orange-500 ring-1 ring-orange-100' : 'border-gray-200'}`;
+
+                // Cabeçalho Limpo
+                const headerBtn = document.createElement('button');
+                headerBtn.className = `w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50 focus:outline-none select-none`;
+                headerBtn.onclick = () => toggleRecipe(recipe.id);
+                
+                const categoryTag = recipe.description.match(/\[(.*?)\]/)?.[1] || "Receita";
+                const cleanDesc = recipe.description.replace(/\[.*?\]\s*/, '');
+
+                headerBtn.innerHTML = `
                     <div>
-                        <p class="font-bold text-gray-800 group-hover:text-orange-600 transition-colors">${recipe.name}</p>
-                        <p class="text-xs text-gray-400">${recipe.variations.length} variações disponíveis</p>
+                        <h3 class="font-bold text-gray-800 text-base leading-tight">${recipe.name}</h3>
+                        <span class="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md">${categoryTag}</span>
                     </div>
-                    <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-orange-400 transition-transform group-hover:translate-x-1"></i>
+                    <i class="fa-solid ${isOpen ? 'fa-chevron-up text-orange-500' : 'fa-chevron-down text-gray-300'} transition-transform duration-200 text-sm ml-2"></i>
                 `;
-                recipesList.appendChild(button);
+                recipeCard.appendChild(headerBtn);
+
+                if (isOpen) {
+                    const bodyContent = document.createElement('div');
+                    bodyContent.className = `border-t border-gray-100 bg-white`;
+
+                    let selectOptions = recipe.variations.map((v, idx) => 
+                        `<option value="${idx}" ${idx === currentVarIdx ? 'selected' : ''}>${v.name}</option>`
+                    ).join('');
+
+                    bodyContent.innerHTML = `
+                        <div class="p-4 bg-gray-50 text-xs text-gray-600 italic border-b border-gray-100">
+                            ${cleanDesc}
+                        </div>
+                        
+                        <div class="p-4 bg-orange-50/60 border-b border-orange-100/50 grid grid-cols-1 gap-3.5">
+                            <div>
+                                <label class="block text-[10px] font-extrabold text-orange-800 uppercase tracking-wider mb-1">Variação / Estilo:</label>
+                                <select onchange="changeRecipeVariation('${recipe.id}', this.value)" 
+                                    class="w-full bg-white border border-orange-200 text-gray-700 py-2 px-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-xs font-semibold cursor-pointer shadow-sm">
+                                    ${selectOptions}
+                                </select>
+                            </div>
+                            <div class="flex justify-between items-center bg-white px-3 py-2 rounded-xl border border-orange-100/60 shadow-sm">
+                                <span class="text-[10px] font-extrabold text-orange-800 uppercase tracking-wider">Rendimento:</span>
+                                <span class="text-xs font-extrabold text-orange-600 bg-orange-100/80 px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-users mr-1"></i> 2 Pessoas</span>
+                            </div>
+                        </div>
+
+                        <!-- Ingredientes -->
+                        <div class="p-4">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-basket-shopping text-orange-500 text-sm"></i> Ingredientes
+                            </h4>
+                            <div class="grid grid-cols-1 gap-2">
+                                ${variation.ingredients.map((ing, i) => {
+                                    const calculatedQty = (ing.baseQty * factor).toLocaleString('pt-BR', { maximumFractionDigits: 2 });
+                                    return `
+                                        <label class="flex items-start gap-3 p-2.5 rounded-xl bg-gray-50 border border-gray-100/70 cursor-pointer select-none text-xs" onclick="event.stopPropagation();">
+                                            <input type="checkbox" class="mt-0.5 accent-emerald-500 rounded text-white w-4 h-4 flex-shrink-0 cursor-pointer" onchange="toggleChecklistItem(this)">
+                                            <span class="text-gray-700 font-medium">
+                                                <strong class="text-orange-600 font-bold">${calculatedQty}</strong> ${ing.unit} de ${ing.name}
+                                            </span>
+                                        </label>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Modo de Preparo -->
+                        <div class="p-4 border-t border-gray-100">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-kitchen-set text-orange-500 text-sm"></i> Passo a Passo
+                            </h4>
+                            <div class="space-y-2">
+                                ${variation.steps.map((step, i) => `
+                                    <label class="flex items-start gap-3.5 p-3 rounded-xl bg-gray-50 border border-gray-100/70 cursor-pointer select-none text-xs" onclick="event.stopPropagation();">
+                                        <input type="checkbox" class="mt-0.5 accent-emerald-500 rounded text-white w-4 h-4 flex-shrink-0 cursor-pointer" onchange="toggleChecklistItem(this)">
+                                        <div class="text-gray-700 leading-relaxed">
+                                            <span class="font-bold text-[10px] uppercase tracking-wider text-gray-400 block mb-0.5">Etapa ${i + 1}</span>
+                                            <p class="desc-text">${step}</p>
+                                        </div>
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Finalização -->
+                        <div class="p-4 border-t border-gray-100 bg-gradient-to-b from-transparent to-gray-50/40">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-plate-wheat text-orange-500 text-sm"></i> Finalização e Toque do Chef
+                            </h4>
+                            <div class="space-y-2">
+                                ${variation.finishing.map((fStep, i) => `
+                                    <label class="flex items-start gap-3.5 p-3 rounded-xl bg-gray-50 border border-gray-100/70 cursor-pointer select-none text-xs" onclick="event.stopPropagation();">
+                                        <input type="checkbox" class="mt-0.5 accent-emerald-500 rounded text-white w-4 h-4 flex-shrink-0 cursor-pointer" onchange="toggleChecklistItem(this)">
+                                        <div class="text-gray-700 leading-relaxed">
+                                            <span class="font-bold text-[10px] uppercase tracking-wider text-gray-400 block mb-0.5">Finalização ${i + 1}</span>
+                                            <p class="desc-text">${fStep}</p>
+                                        </div>
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                    recipeCard.appendChild(bodyContent);
+                }
+
+                accordionContainer.appendChild(recipeCard);
             });
         }
 
-        function selectRecipe(recipe) {
-            currentRecipe = recipe;
-            currentVariationIndex = 0;
-            
-            welcomePanel.classList.add('hidden');
-            recipePanel.classList.remove('hidden');
-
-            recipeTitle.innerText = recipe.name;
-            recipeSource.innerText = recipe.defaultSource;
-            recipeDesc.innerText = recipe.description;
-
-            variationSelect.innerHTML = '';
-            recipe.variations.forEach((v, index) => {
-                const opt = document.createElement('option');
-                opt.value = index;
-                opt.innerText = v.name;
-                variationSelect.appendChild(opt);
-            });
-
-            portionSlider.value = recipe.variations[0].basePortions;
-            updateDynamicElements();
-        }
-
-        function updateDynamicElements() {
-            if (!currentRecipe) return;
-
-            const variation = currentRecipe.variations[currentVariationIndex];
-            const currentPortions = parseInt(portionSlider.value);
-            
-            portionDisplay.innerText = `${currentPortions} ${currentPortions === 1 ? 'porção' : 'porções'}`;
-            const factor = currentPortions / variation.basePortions;
-
-            ingredientsContainer.innerHTML = '';
-            variation.ingredients.forEach((ing, i) => {
-                const calculatedQty = (ing.baseQty * factor).toLocaleString('pt-BR', { maximumFractionDigits: 2 });
-                const itemDiv = document.createElement('label');
-                itemDiv.className = `flex items-start gap-3 p-2.5 rounded-lg bg-gray-50 border border-gray-100 cursor-pointer select-none hover:bg-gray-100 transition-colors`;
-                itemDiv.innerHTML = `
-                    <input type="checkbox" class="mt-1 accent-emerald-500 rounded text-white cursor-pointer w-4 h-4" onchange="toggleItem(this)">
-                    <span class="text-sm font-medium text-gray-700">
-                        <strong class="text-orange-600 font-bold">${calculatedQty}</strong> ${ing.unit} de ${ing.name}
-                    </span>
-                `;
-                ingredientsContainer.appendChild(itemDiv);
-            });
-
-            stepsContainer.innerHTML = '';
-            variation.steps.forEach((step, i) => {
-                const stepDiv = document.createElement('label');
-                stepDiv.className = `flex items-start gap-4 p-3 rounded-xl bg-gray-50 border border-gray-100 cursor-pointer select-none hover:bg-gray-100 transition-colors`;
-                stepDiv.innerHTML = `
-                    <input type="checkbox" class="mt-1 accent-emerald-500 rounded text-white cursor-pointer w-5 h-5 flex-shrink-0" onchange="toggleStep(this)">
-                    <div class="text-sm text-gray-700">
-                        <span class="font-bold text-xs uppercase tracking-wider text-gray-400 block mb-0.5">Passo ${i + 1}</span>
-                        <p class="desc-text">${step}</p>
-                    </div>
-                `;
-                stepsContainer.appendChild(stepDiv);
-            });
-        }
-
-        function toggleItem(checkbox) {
-            const textSpan = checkbox.nextElementSibling;
-            if (checkbox.checked) {
-                textSpan.classList.add('line-through', 'text-gray-400');
-                textSpan.parentElement.classList.add('bg-emerald-50', 'border-emerald-100');
-            } else {
-                textSpan.classList.remove('line-through', 'text-gray-400');
-                textSpan.parentElement.classList.remove('bg-emerald-50', 'border-emerald-100');
+            function toggleRecipe(id) {
+                activeRecipeId = (activeRecipeId === id) ? null : id;
+                refreshView();
             }
-        }
 
-        function toggleStep(checkbox) {
-            const pText = checkbox.nextElementSibling.querySelector('.desc-text');
-            if (checkbox.checked) {
-                pText.classList.add('line-through', 'text-gray-400');
-                checkbox.parentElement.classList.add('bg-emerald-50', 'border-emerald-100');
-            } else {
-                pText.classList.remove('line-through', 'text-gray-400');
-                checkbox.parentElement.classList.remove('bg-emerald-50', 'border-emerald-100');
+            function changeRecipeVariation(recipeId, valueIndex) {
+                activeVariationsState[recipeId] = parseInt(valueIndex);
+                refreshView();
             }
-        }
 
-        window.onload = init;
+            function refreshView() {
+                const term = searchInput.value.toLowerCase().trim();
+                const filtered = recipeDatabase.filter(r => 
+                    r.name.toLowerCase().includes(term) || 
+                    r.description.toLowerCase().includes(term)
+                );
+                renderAccordion(filtered);
+            }
+
+            function toggleChecklistItem(checkbox) {
+                const parentLabel = checkbox.parentElement;
+                const textContent = parentLabel.querySelector('.desc-text') || checkbox.nextElementSibling;
+                
+                if (checkbox.checked) {
+                    textContent.classList.add('line-through', 'text-gray-400');
+                    parentLabel.classList.add('bg-emerald-50/80', 'border-emerald-100');
+                } else {
+                    textContent.classList.remove('line-through', 'text-gray-400');
+                    parentLabel.classList.remove('bg-emerald-50/80', 'border-emerald-100');
+                }
+            }
+
+            window.onload = init;
     </script>
 </body>
 </html>
