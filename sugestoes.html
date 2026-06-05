@@ -82,7 +82,7 @@
             <div class="box-title">💡 Enviar Sugestão</div>
             <div class="box-desc">Diga qual prato você quer ver no site! Todo mundo pode sugerir, mas só o dono pode apagar.</div>
             <div class="form-group">
-                <input type="text" id="inputSugestao" placeholder="Ex: Estrogonofe, Lasanha...">
+                <input type="text" id="inputSugestao" placeholder="Ex: Estrogonofe, Lasanha..." onkeydown="checarEnter(event)">
                 <button class="btn-sugerir" onclick="adicionarSugestao()">Sugerir</button>
             </div>
         </div>
@@ -123,6 +123,13 @@
         localStorage.setItem('sugestoes_banco', JSON.stringify(listaLocal));
         campo.value = '';
         renderizarSugestoes();
+    }
+
+    // Função que monitora o teclado e envia com o Enter
+    function checarEnter(event) {
+        if (event.key === 'Enter') {
+            adicionarSugestao();
+        }
     }
 
     function removerSugestao(index) {
