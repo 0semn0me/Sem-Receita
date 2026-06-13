@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caixa de Sugestões</title>
+    <title>Caixa de Sugestões — Sem Receitas</title>
     <style>
         * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
         body { background-color: #f7f9fc; margin: 0; padding: 0; color: #333; }
-        
+
         .header {
             background: linear-gradient(135deg, #ff5e00, #e62222);
             padding: 25px 20px;
@@ -18,7 +18,7 @@
         .btn-voltar { color: white; text-decoration: none; font-size: 24px; font-weight: bold; }
         .header h1 { color: white; margin: 0; font-size: 22px; font-weight: bold; }
 
-        .container { padding: 20px 15px; }
+        .container { padding: 20px 15px 40px 15px; }
 
         .box-sugestao {
             background: white;
@@ -41,20 +41,21 @@
             outline: none;
         }
         .form-group input:focus { border-color: #ff5e00; }
-        
+
         .btn-sugerir {
-            background: #e67e22;
+            background: linear-gradient(135deg, #ff5e00, #e62222);
             color: white;
             border: none;
-            padding: 0 25px;
+            padding: 0 22px;
             border-radius: 12px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .list-title { font-size: 12px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
-        
+
         .sugestao-item {
             background: white;
             border: 1px solid #f1f5f9;
@@ -66,40 +67,88 @@
             align-items: center;
         }
         .sugestao-texto { font-size: 15px; color: #334155; font-weight: bold; }
-        .btn-deletar { background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 16px; }
+        .btn-deletar { background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 18px; padding: 4px; }
         .btn-deletar:hover { color: #ef4444; }
+
+        .empty-msg { text-align:center; color:#94a3b8; font-size:14px; margin-top:30px; padding: 20px; }
+        .empty-msg div { font-size: 36px; margin-bottom: 8px; }
+
+        /* Toast de feedback */
+        .toast {
+            position: fixed;
+            bottom: 24px; left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 99;
+        }
+        .toast.visivel { opacity: 1; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <a href="index.html" class="btn-voltar">←</a>
-        <h1>Caixa de Sugestões</h1>
+        <h1>💡 Caixa de Sugestões</h1>
     </div>
 
     <div class="container">
         <div class="box-sugestao">
-            <div class="box-title">💡 Enviar Sugestão</div>
-            <div class="box-desc">Diga qual prato você quer ver no site! Todo mundo pode sugerir, mas só o dono pode apagar.</div>
+            <div class="box-title">Sugira um prato!</div>
+            <div class="box-desc">Diga qual receita você quer ver no site. Todo mundo pode sugerir — só o admin pode apagar.</div>
             <div class="form-group">
-                <input type="text" id="inputSugestao" placeholder="Ex: Estrogonofe, Lasanha..." onkeydown="checarEnter(event)">
+                <input type="text" id="inputSugestao" placeholder="Ex: Estrogonofe, Lasanha, Açaí..." onkeydown="checarEnter(event)" maxlength="80">
                 <button class="btn-sugerir" onclick="adicionarSugestao()">Sugerir</button>
             </div>
         </div>
 
-        <div class="list-title">Sugestões Recebidas</div>
+        <div class="list-title">Sugestões recebidas (<span id="contagem">0</span>)</div>
         <div id="listaSugestoes"></div>
     </div>
 
+    <div class="toast" id="toast"></div>
+
 <script>
-    let listaLocal = JSON.parse(localStorage.getItem('sugestoes_banco')) || [];
+    // Wrapper seguro pro localStorage (evita crash no Safari privado)
+    const storage = {
+        get(key, fallback) {
+            try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+            catch { return fallback; }
+        },
+        set(key, val) {
+            try { localStorage.setItem(key, JSON.stringify(val)); }
+            catch {}
+        }
+    };
+
+    let listaLocal = storage.get('sugestoes_banco', []);
+
+    function mostrarToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('visivel');
+        setTimeout(() => t.classList.remove('visivel'), 2200);
+    }
 
     function renderizarSugestoes() {
         const container = document.getElementById('listaSugestoes');
+        document.getElementById('contagem').textContent = listaLocal.length;
         container.innerHTML = '';
 
         if (listaLocal.length === 0) {
-            container.innerHTML = '<div style="text-align:center; color:#94a3b8; font-size:14px; margin-top:20px;">Nenhuma sugestão ainda. Seja o primeiro!</div>';
+            container.innerHTML = `
+                <div class="empty-msg">
+                    <div>🍽️</div>
+                    <p>Nenhuma sugestão ainda.<br>Seja o primeiro a sugerir!</p>
+                </div>`;
             return;
         }
 
@@ -107,39 +156,42 @@
             const div = document.createElement('div');
             div.className = 'sugestao-item';
             div.innerHTML = `
-                <span class="sugestao-texto">${item}</span>
-                <button class="btn-deletar" onclick="removerSugestao(${idx})">🗑️</button>
+                <span class="sugestao-texto">${escapeHtml(item)}</span>
+                <button class="btn-deletar" onclick="removerSugestao(${idx})" title="Remover (admin)">🗑️</button>
             `;
             container.appendChild(div);
         });
     }
 
+    function escapeHtml(texto) {
+        return texto.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
     function adicionarSugestao() {
         const campo = document.getElementById('inputSugestao');
         const valor = campo.value.trim();
-        if (valor === '') return;
-
+        if (valor === '') { mostrarToast('✏️ Digite o nome do prato primeiro!'); return; }
         listaLocal.push(valor);
-        localStorage.setItem('sugestoes_banco', JSON.stringify(listaLocal));
+        storage.set('sugestoes_banco', listaLocal);
         campo.value = '';
         renderizarSugestoes();
+        mostrarToast('✅ Sugestão enviada!');
     }
 
-    // Função que monitora o teclado e envia com o Enter
     function checarEnter(event) {
-        if (event.key === 'Enter') {
-            adicionarSugestao();
-        }
+        if (event.key === 'Enter') adicionarSugestao();
     }
 
     function removerSugestao(index) {
-        const senha = prompt("Digite a senha de administrador para excluir:");
+        const senha = prompt("Senha do administrador:");
+        if (senha === null) return;
         if (senha === "123") {
             listaLocal.splice(index, 1);
-            localStorage.setItem('sugestoes_banco', JSON.stringify(listaLocal));
+            storage.set('sugestoes_banco', listaLocal);
             renderizarSugestoes();
-        } else if (senha !== null) {
-            alert("Senha incorreta!");
+            mostrarToast('🗑️ Sugestão removida.');
+        } else {
+            mostrarToast('❌ Senha incorreta!');
         }
     }
 
