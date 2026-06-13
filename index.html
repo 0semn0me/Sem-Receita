@@ -7,36 +7,34 @@
     <style>
         * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
         body { background-color: #f7f9fc; margin: 0; padding: 0; color: #333; }
-        
+
+        /* ── HEADER ── */
         .header {
             background: linear-gradient(135deg, #ff5e00, #e62222);
-            padding: 25px 20px 30px 20px;
+            padding: 25px 20px 15px 20px;
             position: relative;
         }
         .logo-container { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-        .logo-circle { 
-            background: white; 
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 20px; 
+        .logo-circle {
+            background: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
         }
         .header h1 { color: white; margin: 0; font-size: 24px; font-weight: bold; }
-        
+
         .btn-menu {
             position: absolute;
-            top: 25px;
-            right: 20px;
+            top: 25px; right: 20px;
             color: white;
             text-decoration: none;
             font-size: 26px;
             line-height: 1;
         }
 
-        .search-container { position: relative; width: 100%; }
+        /* ── SEARCH ── */
+        .search-container { position: relative; width: 100%; margin-bottom: 14px; }
         .search-container input {
             width: 100%;
             padding: 14px 15px 14px 45px;
@@ -48,332 +46,666 @@
         .search-container::before {
             content: "🔍";
             position: absolute;
-            left: 18px;
-            top: 14px;
-            font-size: 16px;
-            color: #999;
+            left: 18px; top: 14px;
+            font-size: 16px; color: #999;
         }
 
-        .container { padding: 20px 15px; }
+        /* ── CHIPS DE CATEGORIA ── */
+        .chips-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            scrollbar-width: none;
+        }
+        .chips-container::-webkit-scrollbar { display: none; }
+        .chip {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.15s;
+            user-select: none;
+        }
+        .chip.ativo {
+            background: white;
+            color: #ff5e00;
+            border-color: white;
+        }
 
+        /* ── CONTADOR ── */
+        .contador-bar {
+            background: white;
+            border-bottom: 1px solid #eef2f6;
+            padding: 10px 15px;
+            font-size: 12px;
+            color: #64748b;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contador-bar span { color: #ff5e00; }
+
+        /* ── CONTAINER PRINCIPAL ── */
+        .container { padding: 15px 15px 80px 15px; }
+
+        /* ── CARDS ── */
         .recipe-card {
             background: white;
             border-radius: 24px;
             border: 1px solid #eef2f6;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             padding: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.02);
             transition: all 0.2s ease;
         }
-        .recipe-card:not(.collapsed) {
-            border: 1px solid #ff5e00; 
-        }
-        
-        .card-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-start; 
-            cursor: pointer; 
+        .recipe-card:not(.collapsed) { border: 1px solid #ff5e00; }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            cursor: pointer;
         }
         .recipe-title { font-size: 19px; font-weight: bold; color: #1e293b; margin: 0 0 6px 0; }
-        
+
         .category-badge {
             background: #fff3eb;
             color: #ff5e00;
-            font-size: 11px;
-            font-weight: bold;
+            font-size: 11px; font-weight: bold;
             padding: 4px 10px;
             border-radius: 6px;
             display: inline-block;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
-        .arrow-icon { 
-            font-size: 16px; 
-            color: #cbd5e1; 
+        .card-header-right { display: flex; align-items: center; gap: 8px; }
+
+        /* ── FAVORITO ── */
+        .btn-fav {
+            background: none; border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0 2px;
+            line-height: 1;
+            transition: transform 0.15s;
+        }
+        .btn-fav:active { transform: scale(1.3); }
+
+        .arrow-icon {
+            font-size: 16px; color: #cbd5e1;
             transition: transform 0.2s;
             margin-top: 4px;
         }
         .recipe-card:not(.collapsed) .arrow-icon { transform: rotate(180deg); }
 
+        /* ── CONTEÚDO EXPANDIDO ── */
         .recipe-content { margin-top: 15px; border-top: 1px solid #f1f5f9; padding-top: 15px; }
         .recipe-card.collapsed .recipe-content { display: none; }
-        
+
         .recipe-description { font-size: 14px; color: #64748b; font-style: italic; margin: 0 0 20px 0; }
 
         .control-label { font-size: 11px; font-weight: bold; color: #b25900; letter-spacing: 0.5px; margin-bottom: 8px; display: block; text-transform: uppercase; }
-        
+
         .select-variation {
             width: 100%;
             padding: 12px;
             border-radius: 12px;
             border: 1px solid #ffd8b3;
             font-size: 15px;
-            background: white;
-            color: #333;
+            background: white; color: #333;
             margin-bottom: 20px;
             outline: none;
         }
-        
-        .yield-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
+
+        .yield-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .yield-label { font-size: 11px; font-weight: bold; color: #b25900; text-transform: uppercase; }
-        .yield-badge { 
-            background: #fff3eb; 
-            color: #ff5e00; 
-            padding: 6px 14px; 
-            border-radius: 20px; 
-            font-weight: bold; 
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+        .yield-badge {
+            background: #fff3eb; color: #ff5e00;
+            padding: 6px 14px; border-radius: 20px;
+            font-weight: bold; font-size: 13px;
+            display: flex; align-items: center; gap: 4px;
         }
         .yield-slider { accent-color: #ff5e00; width: 100%; cursor: pointer; margin-bottom: 25px; }
 
-        .section-title { font-size: 13px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin: 25px 0 12px 0; display: flex; align-items: center; gap: 6px; }
-        
+        .section-title {
+            font-size: 13px; font-weight: bold; color: #64748b;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            margin: 25px 0 12px 0;
+            display: flex; align-items: center; gap: 6px;
+        }
+
         .list-item {
             background: #f8fafc;
             border: 1px solid #f1f5f9;
             padding: 14px 16px;
             border-radius: 14px;
             margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            display: flex; align-items: center; gap: 12px;
             cursor: pointer;
         }
-        .list-item input[type="checkbox"] { transform: scale(1.2); accent-color: #ff5e00; cursor: pointer; }
+        .list-item input[type="checkbox"] { transform: scale(1.2); accent-color: #ff5e00; cursor: pointer; flex-shrink: 0; }
         .list-item span { font-size: 15px; color: #334155; line-height: 1.4; }
         .list-item.checked { background: #f1f5f9; }
         .list-item.checked span { text-decoration: line-through; color: #94a3b8; }
         .num-destaque { color: #ff5e00; font-weight: bold; }
         .step-meta { color: #94a3b8; font-weight: bold; font-size: 10px; display: block; text-transform: uppercase; margin-bottom: 2px; }
+
+        /* ── BOTÃO LISTA DE COMPRAS ── */
+        .btn-lista-compras {
+            width: 100%;
+            background: #fff3eb;
+            color: #ff5e00;
+            border: 1.5px solid #ffd8b3;
+            padding: 12px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-lista-compras:active { background: #ffe4cc; }
+
+        /* ── MODAL LISTA DE COMPRAS ── */
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            align-items: flex-end;
+        }
+        .modal-overlay.aberto { display: flex; }
+        .modal-box {
+            background: white;
+            width: 100%;
+            border-radius: 24px 24px 0 0;
+            padding: 20px;
+            max-height: 75vh;
+            overflow-y: auto;
+        }
+        .modal-titulo { font-size: 18px; font-weight: bold; margin: 0 0 4px 0; }
+        .modal-sub { font-size: 13px; color: #64748b; margin: 0 0 16px 0; }
+        .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+        .btn-fechar { background: none; border: none; font-size: 22px; cursor: pointer; color: #64748b; }
+        .lista-item-modal {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 15px; color: #334155;
+        }
+        .lista-item-modal:last-child { border-bottom: none; }
+        .modal-receita-label {
+            font-size: 10px; font-weight: bold; color: #ff5e00;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            margin-top: 14px; margin-bottom: 6px;
+        }
+        .btn-copiar-lista {
+            width: 100%;
+            background: linear-gradient(135deg, #ff5e00, #e62222);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+
+        /* ── BOTÃO TOPO ── */
+        .btn-topo {
+            position: fixed;
+            bottom: 24px; right: 20px;
+            background: linear-gradient(135deg, #ff5e00, #e62222);
+            color: white;
+            border: none;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(255,94,0,0.4);
+            display: none;
+            align-items: center; justify-content: center;
+            z-index: 50;
+            transition: opacity 0.2s;
+        }
+        .btn-topo.visivel { display: flex; }
+
+        /* ── EMPTY STATE ── */
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: #94a3b8;
+        }
+        .empty-state div { font-size: 48px; margin-bottom: 12px; }
+        .empty-state p { font-size: 15px; margin: 0; }
+
+        /* ── SKELETON ── */
+        .skeleton-card { background: white; border-radius: 24px; padding: 20px; margin-bottom: 14px; }
+        .skeleton-line {
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.2s infinite;
+            border-radius: 8px; height: 18px; margin-bottom: 10px;
+        }
+        .skeleton-line.curta { width: 40%; }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="logo-container">
-            <div class="logo-circle">🍴</div>
-            <h1>Sem Receitas</h1>
-        </div>
-        <a href="sugestões.html" class="btn-menu">☰</a>
+<div class="header">
+    <div class="logo-container">
+        <div class="logo-circle">🍴</div>
+        <h1>Sem Receitas</h1>
+    </div>
+    <a href="sugestoes.html" class="btn-menu">☰</a>
 
-        <div class="search-container">
-            <input type="text" id="inputBusca" placeholder="Buscar 100+ pratos, ingredientes ou categorias..." oninput="filtrarReceitas()">
-        </div>
+    <div class="search-container">
+        <input type="text" id="inputBusca" placeholder="Buscar pratos, ingredientes ou categorias..." oninput="filtrarReceitas()">
     </div>
 
-    <div class="container" id="listaReceitas">
-        <p style="text-align:center; color:#64748b; margin-top:40px;">Carregando receitas...</p>
+    <div class="chips-container" id="chipsContainer">
+        <div class="chip ativo" onclick="filtrarPorChip(this, '')">Todos</div>
     </div>
+</div>
+
+<div class="contador-bar">
+    <div>Exibindo <span id="contadorExibindo">0</span> de <span id="contadorTotal">0</span> receitas</div>
+    <div id="favoritosBadge" style="display:none; color:#ff5e00; font-weight:bold; cursor:pointer;" onclick="filtrarFavoritos()">⭐ Ver favoritos</div>
+</div>
+
+<div class="container" id="listaReceitas">
+    <!-- skeletons iniciais -->
+    <div class="skeleton-card"><div class="skeleton-line"></div><div class="skeleton-line curta"></div></div>
+    <div class="skeleton-card"><div class="skeleton-line"></div><div class="skeleton-line curta"></div></div>
+    <div class="skeleton-card"><div class="skeleton-line"></div><div class="skeleton-line curta"></div></div>
+</div>
+
+<!-- MODAL LISTA DE COMPRAS -->
+<div class="modal-overlay" id="modalListaCompras" onclick="fecharModalSeOverlay(event)">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div>
+                <div class="modal-titulo">🛒 Lista de Compras</div>
+                <div class="modal-sub" id="modalSubtitulo">Ingredientes não marcados</div>
+            </div>
+            <button class="btn-fechar" onclick="fecharModal()">✕</button>
+        </div>
+        <div id="modalConteudo"></div>
+        <button class="btn-copiar-lista" onclick="copiarLista()">📋 Copiar lista</button>
+    </div>
+</div>
+
+<!-- BOTÃO TOPO -->
+<button class="btn-topo" id="btnTopo" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-    const bancoDeDados = [];
-    
-    // Lista base com receitas detalhadas para expandir o acervo para mais de 100 itens reais
-    const pratosBase = [
-        { titulo: "Pudim de Leite", categoria: "Doces", desc: "Clássico liso, cremoso e sem furinhos.", ing: [{qtd:1, un:"lata de", nome:"Leite condensado"}, {qtd:1, un:"medida de", nome:"Leite integral"}, {qtd:3, un:"unidades de", nome:"Ovos inteiros"}], passos: ["Bata tudo no liquidificador por 5 minutos.", "Passe a mistura numa peneira fina.", "Asse em banho-maria a 180°C por 1h30."], fin: ["Deixe gelar por 4 horas antes de desenformar."] },
-        { titulo: "Bolo de Cenoura", categoria: "Doces", desc: "Massa fofinha com calda de chocolate craquelada.", ing: [{qtd:3, un:"unidades de", nome:"Cenouras médias"}, {qtd:3, un:"unidades de", nome:"Ovos"}, {qtd:2, un:"xícaras de", nome:"Farinha de trigo"}, {qtd:1, un:"xícaras de", nome:"Açúcar"}], passos: ["Bata a cenoura, o óleo e os ovos no liquidificador.", "Incorpore o açúcar e a farinha peneirada aos poucos.", "Asse em forno preaquecido a 180°C por 40 minutos."], fin: ["Cubra com calda quente de chocolate e espere esfriar."] },
-        { titulo: "Lasanha Bolonhesa", categoria: "Massas", desc: "Camadas perfeitas de massa, molho de carne e queijo derretido.", ing: [{qtd:500, un:"g de", nome:"Massa para lasanha"}, {qtd:500, un:"g de", nome:"Carne moída (acém ou patinho)"}, {qtd:400, un:"g de", nome:"Queijo Muçarela fatiado"}, {qtd:1, un:"sachê de", nome:"Molho de tomate"}], passos: ["Prepare um molho bolonhesa bem encorpado e temperado.", "Monte em camadas: molho, massa, presunto e muçarela.", "Leve ao forno por 30 minutos até dourar o queijo."], fin: ["Salpique queijo parmesão ralado na hora e orégano."] },
-        { titulo: "Fricassê de Frango", categoria: "Aves", desc: "Creme de milho consistente com frango desfiado.", ing: [{qtd:1, un:"peito de", nome:"Frango cozido e desfiado"}, {qtd:1, un:"lata de", nome:"Creme de leite"}, {qtd:1, un:"lata de", nome:"Milho verde escorrido"}, {qtd:100, un:"g de", nome:"Batata palha"}], passos: ["Bata o milho, o creme de leite e o requeijão no liquidificador.", "Misture o creme com o frango desfiado em uma panela.", "Transfira para um refratário e cubra com muçarela."], fin: ["Leve ao forno para gratinar e finalize com bastante batata palha."] },
-        { titulo: "Strogonoff de Carne", categoria: "Carnes", desc: "Tiras de carne macia num molho cremoso tradicional.", ing: [{qtd:500, un:"g de", nome:"Alcatra ou Filé Mignon em tiras"}, {qtd:1, un:"caixinha de", nome:"Creme de leite"}, {qtd:3, un:"colheres de", nome:"Ketchup"}, {qtd:1, un:"colher de", nome:"Mostarda"}], passos: ["Doure a carne em fogo alto para não soltar água.", "Adicione a cebola, o ketchup, a mostarda e o champignon.", "Desligue o fogo e misture o creme de leite lentamente."], fin: ["Sirva acompanhado de arroz branco e batata palha."] },
-        { titulo: "Escondidinho de Carne Seca", categoria: "Carnes", desc: "Purê de mandioca cremoso com recheio bem temperado.", ing: [{qtd:500, un:"g de", nome:"Carne seca dessalgada e desfiada"}, {qtd:1, un:"kg de", nome:"Mandioca cozida"}, {qtd:1, un:"copo de", nome:"Requeijão cremoso"}], passos: ["Refogue a carne seca com cebola, alho e tomate.", "Amasse a mandioca quente com leite e manteiga até virar purê.", "Monte em um refratário a carne e cubra com o purê."], fin: ["Espalhe queijo coalho ralado por cima e leve para gratinar."] },
-        { titulo: "Feijoada Completa", categoria: "Carnes", desc: "O prato mais tradicional da culinária brasileira.", ing: [{qtd:500, un:"g de", nome:"Feijão preto"}, {qtd:200, un:"g de", nome:"Linguiça paio fatiada"}, {qtd:200, un:"g de", nome:"Carne seca em cubos"}, {qtd:150, un:"g de", nome:"Bacon em cubos"}], passos: ["Deixe o feijão e a carne seca de molho na véspera.", "Cozinhe o feijão com as carnes mais duras primeiro.", "Adicione as linguiças e o bacon frito para apurar o caldo."], fin: ["Sirva com couve refogada na manteiga, farofa e fatias de laranja."] },
-        { titulo: "Moqueca de Peixe", categoria: "Peixes", desc: "Postas macias cozidas com leite de coco e azeite de dendê.", ing: [{qtd:800, un:"g de", nome:"Postas de peixe (Cação ou Pintado)"}, {qtd:1, un:"vidro de", nome:"Leite de coco"}, {qtd:2, un:"colheres de", nome:"Azeite de dendê"}, {2:1, un:"unidade de", nome:"Pimentão verde fatiado"}], passos: ["Tempere o peixe com limão, alho, sal e pimenta.", "Em uma panela, monte camadas de cebola, pimentão e peixe.", "Regue com o leite de coco e o azeite de dendê e cozinhe por 20 min."], fin: ["Finalize com coentro fresco picado e sirva com arroz."] },
-        { titulo: "Nhoque de Batata", categoria: "Massas", desc: "Massa leve que derrete na boca com molho de tomate caseiro.", ing: [{qtd:1, un:"kg de", nome:"Batatas cozidas e espremidas"}, {qtd:1, un:"xícara de", nome:"Farinha de trigo"}, {qtd:1, un:"unidade de", nome:"Gema de ovo"}], passos: ["Misture a batata com a gema e vá adicionando farinha até dar ponto.", "Faça rolinhos com a massa e corte em cubinhos.", "Cozinhe em água fervente até os nhoques subirem à superfície."], fin: ["Retire, cubra com o seu molho de tomate favorito e queijo."] },
-        { titulo: "Caldo Verde", categoria: "Sopas", desc: "Sopa reconfortante de batata com couve fininha e paio.", ing: [{qtd:500, un:"g de", nome:"Batatas descascadas"}, {qtd:1, un:"maço de", nome:"Couve cortada bem fina"}, {qtd:1, un:"g de", nome:"Linguiça paio fatiada"}], passos: ["Cozinhe as batatas com água e sal até ficarem bem macias.", "Bata as batatas com a própria água no liquidificador até virar um creme.", "Volte ao fogo, adicione o paio frito e cozinhe por 10 minutos."], fin: ["Adicione a couve na hora de desligar para ela ficar verde e crocante."] },
-        { titulo: "Panqueca de Carne", categoria: "Massas", desc: "Massa leve e fina com recheio suculento de carne moída.", ing: [{qtd:1, un:"xícara de", nome:"Leite integral"}, {qtd:1, un:"xícara de", nome:"Farinha de trigo"}, {qtd:1, un:"unidade de", nome:"Ovo inteiro"}, {qtd:300, un:"g de", nome:"Carne moída fatiada"}], passos: ["Bata o leite, farinha, ovo e sal no liquidificador.", "Frite porções finas da massa em uma frigideira antiaderente.", "Recheie as massas com a carne moída refogada e enrole."], fin: ["Coloque num refratário, cubra com molho de tomate e leve ao forno."] }
-    ];
+// ─────────────────────────────────────────
+//  BANCO DE DADOS
+// ─────────────────────────────────────────
+const bancoDeDados = [];
 
-    // LAÇO DE REPETIÇÃO INTELIGENTE: Multiplica e diversifica até atingir 105 receitas reais no sistema
-    let contadorId = 1;
-    for (let i = 1; i <= 105; i++) {
-        const base = pratosBase[(i - 1) % pratosBase.length];
-        
-        bancoDeDados.push({
-            id: contadorId,
-            titulo: `${base.titulo} Prato N° ${i}`,
-            categoria: base.categoria,
-            descricao: `${base.desc} Versão especial ajustada para o cardápio (Opção número ${i} do catálogo).`,
-            variacoes: [
-                {
-                    nome: "Receita Tradicional da Vovó",
-                    porcoesBase: 2,
-                    ingredientes: base.ing.map(ing => ({ ...ing })),
-                    passos: base.passos.map(p => p),
-                    finalizacoes: base.finalizacoes.map(f => f)
-                },
-                {
-                    nome: "Modo de Preparo Gourmet / Rápido",
-                    porcoesBase: 2,
-                    ingredientes: base.ing.map(ing => ({ ...ing, qtd: ing.qtd * 1.5 })),
-                    passos: ["Dica Express: Use fogo alto para acelerar os processos iniciais.", ...base.passos],
-                    finalizacoes: ["Finalize com raspas de limão ou queijo parmesão."]
-                }
-            ]
-        });
-        contadorId++;
+const pratosBase = [
+    { titulo: "Pudim de Leite",      categoria: "Doces",    desc: "Clássico liso, cremoso e sem furinhos.",                 ing: [{qtd:1,un:"lata de",nome:"Leite condensado"},{qtd:1,un:"medida de",nome:"Leite integral"},{qtd:3,un:"unidades de",nome:"Ovos inteiros"}],                          passos:["Bata tudo no liquidificador por 5 minutos.","Passe a mistura numa peneira fina.","Asse em banho-maria a 180°C por 1h30."],             fin:["Deixe gelar por 4 horas antes de desenformar."] },
+    { titulo: "Bolo de Cenoura",     categoria: "Doces",    desc: "Massa fofinha com calda de chocolate craquelada.",       ing: [{qtd:3,un:"unidades de",nome:"Cenouras médias"},{qtd:3,un:"unidades de",nome:"Ovos"},{qtd:2,un:"xícaras de",nome:"Farinha de trigo"},{qtd:1,un:"xícara de",nome:"Açúcar"}], passos:["Bata a cenoura, o óleo e os ovos no liquidificador.","Incorpore o açúcar e a farinha peneirada.","Asse a 180°C por 40 min."],         fin:["Cubra com calda quente de chocolate."] },
+    { titulo: "Lasanha Bolonhesa",   categoria: "Massas",   desc: "Camadas de massa, molho de carne e queijo derretido.",   ing: [{qtd:500,un:"g de",nome:"Massa para lasanha"},{qtd:500,un:"g de",nome:"Carne moída"},{qtd:400,un:"g de",nome:"Queijo muçarela"},{qtd:1,un:"sachê de",nome:"Molho de tomate"}],       passos:["Prepare um molho bolonhesa encorpado.","Monte em camadas: molho, massa, queijo.","Forno por 30 min até dourar."],                     fin:["Salpique parmesão e orégano."] },
+    { titulo: "Frango Grelhado",     categoria: "Carnes",   desc: "Peito suculento com tempero especial.",                  ing: [{qtd:2,un:"unidades de",nome:"Peito de frango"},{qtd:2,un:"dentes de",nome:"Alho"},{qtd:1,un:"unidade de",nome:"Limão"},{qtd:1,un:"colher de",nome:"Azeite"}],               passos:["Marine o frango com alho, limão e azeite por 30 min.","Grelhe em fogo médio por 6 min de cada lado.","Deixe descansar 5 min."],      fin:["Sirva com legumes ou salada verde."] },
+    { titulo: "Arroz de Forno",      categoria: "Arroz",    desc: "Arroz cremoso com frango desfiado e legumes.",           ing: [{qtd:2,un:"xícaras de",nome:"Arroz cozido"},{qtd:1,un:"xícara de",nome:"Frango desfiado"},{qtd:1,un:"caixinha de",nome:"Creme de leite"},{qtd:100,un:"g de",nome:"Queijo ralado"}],  passos:["Misture o arroz, frango e creme de leite.","Despeje em refratário e cubra com queijo.","Forno a 200°C por 20 min."],               fin:["Gratine até o queijo dourar."] },
+    { titulo: "Feijão Tropeiro",     categoria: "Feijão",   desc: "Prato caipira rico e cheio de sabor.",                  ing: [{qtd:500,un:"g de",nome:"Feijão carioca cozido"},{qtd:200,un:"g de",nome:"Bacon em cubos"},{qtd:4,un:"colheres de",nome:"Farinha de mandioca"},{qtd:3,un:"unidades de",nome:"Ovos"}],    passos:["Frite o bacon até crocante.","Adicione o feijão escorrido e refogue.","Junte os ovos mexidos e a farinha."],                         fin:["Finalize com couve refogada e linguiça."] },
+    { titulo: "Bolo de Fubá",        categoria: "Doces",    desc: "Fofo, amarelinho e com gosto de fazenda.",              ing: [{qtd:2,un:"xícaras de",nome:"Fubá"},{qtd:1,un:"xícara de",nome:"Açúcar"},{qtd:3,un:"unidades de",nome:"Ovos"},{qtd:1,un:"xícara de",nome:"Leite"},{qtd:3,un:"colheres de",nome:"Óleo"}],  passos:["Bata os ovos com o açúcar e o óleo.","Adicione o fubá e o leite alternadamente.","Asse a 180°C por 35 min."],                      fin:["Polvilhe açúcar e canela por cima ainda quente."] },
+    { titulo: "Macarrão ao Sugo",    categoria: "Massas",   desc: "Simples, rápido e sempre delicioso.",                   ing: [{qtd:500,un:"g de",nome:"Macarrão espaguete"},{qtd:2,un:"latas de",nome:"Molho de tomate"},{qtd:4,un:"dentes de",nome:"Alho"},{qtd:1,un:"unidade de",nome:"Cebola"}],              passos:["Cozinhe o macarrão al dente.","Refogue alho e cebola, junte o molho.","Misture a massa ao molho e sirva."],                         fin:["Finalize com manjericão fresco e parmesão."] },
+    { titulo: "Coxinha de Frango",   categoria: "Salgados", desc: "Crocante por fora, recheada e suculenta por dentro.",   ing: [{qtd:500,un:"g de",nome:"Farinha de trigo"},{qtd:300,un:"g de",nome:"Frango desfiado temperado"},{qtd:250,un:"ml de",nome:"Caldo de frango"},{qtd:1,un:"xícara de",nome:"Farinha de rosca"}],passos:["Prepare a massa com farinha e caldo.","Modele e recheie cada coxinha.","Empane e frite em óleo quente."],                      fin:["Sirva quente com molho de pimenta."] },
+    { titulo: "Sopa de Legumes",     categoria: "Sopas",    desc: "Leve, nutritiva e reconfortante.",                      ing: [{qtd:2,un:"unidades de",nome:"Cenoura"},{qtd:2,un:"unidades de",nome:"Batata"},{qtd:1,un:"talo de",nome:"Salsão"},{qtd:1,un:"litro de",nome:"Caldo de legumes"}],                 passos:["Corte todos os legumes em cubos.","Cozinhe no caldo por 20 min.","Tempere com sal, pimenta e azeite."],                              fin:["Adicione folhas de coentro ou salsinha."] },
+    { titulo: "Pão de Queijo",       categoria: "Salgados", desc: "Crocante por fora, macio e queijoso por dentro.",       ing: [{qtd:500,un:"g de",nome:"Polvilho azedo"},{qtd:200,un:"g de",nome:"Queijo meia-cura ralado"},{qtd:2,un:"unidades de",nome:"Ovos"},{qtd:250,un:"ml de",nome:"Leite"},{qtd:100,un:"ml de",nome:"Óleo"}], passos:["Escalde o polvilho com leite e óleo ferventes.","Junte os ovos e o queijo, amasse até homogênear.","Asse a 200°C por 25 min."], fin:["Sirva quentinho, saindo do forno."] },
+    { titulo: "Quindim",             categoria: "Doces",    desc: "Docinho amarelinho de coco e gema, brilhante e denso.", ing: [{qtd:12,un:"unidades de",nome:"Gemas"},{qtd:2,un:"xícaras de",nome:"Açúcar"},{qtd:1,un:"xícara de",nome:"Coco ralado"},{qtd:1,un:"colher de",nome:"Manteiga"}],                 passos:["Misture as gemas com açúcar até dissolver.","Junte o coco e a manteiga derretida.","Asse em banho-maria a 170°C por 40 min."],       fin:["Desenforme frio para manter o brilho."] },
+    { titulo: "Estrogonofe",         categoria: "Carnes",   desc: "Cremoso, suave e irresistível com arroz e batata palha.",ing: [{qtd:500,un:"g de",nome:"Frango ou carne em tiras"},{qtd:1,un:"caixinha de",nome:"Creme de leite"},{qtd:200,un:"g de",nome:"Champignon"},{qtd:2,un:"colheres de",nome:"Catchup e mostarda"}], passos:["Refogue a carne com temperos.","Adicione champignon, catchup, mostarda e creme de leite.","Cozinhe por 10 min em fogo baixo."],     fin:["Sirva com arroz branco e batata palha."] },
+    { titulo: "Tapioca Recheada",    categoria: "Lanches",  desc: "Rápida, sem glúten e com recheio a sua escolha.",       ing: [{qtd:4,un:"colheres de",nome:"Goma de tapioca hidratada"},{qtd:2,un:"fatias de",nome:"Queijo muçarela"},{qtd:100,un:"g de",nome:"Frango desfiado ou banana"}],                  passos:["Aqueça a frigideira antiaderente sem óleo.","Distribua a goma e pressione até firmar.","Vire, recheie e dobre ao meio."],           fin:["Sirva com mel ou molho de sua preferência."] },
+    { titulo: "Brigadeiro",          categoria: "Doces",    desc: "O doce mais amado do Brasil, na versão de colher ou enrolado.",ing:[{qtd:1,un:"lata de",nome:"Leite condensado"},{qtd:3,un:"colheres de",nome:"Chocolate em pó"},{qtd:1,un:"colher de",nome:"Manteiga"}],                                   passos:["Misture tudo em fogo baixo, mexendo sem parar.","Cozinhe até despegar do fundo da panela.","Deixe esfriar antes de enrolar."],       fin:["Enrole no granulado e coloque em forminhas."] },
+];
+
+let contadorId = 1;
+for (let i = 1; i <= 105; i++) {
+    const base = pratosBase[(i - 1) % pratosBase.length];
+    const sufixo = i <= pratosBase.length ? '' : ` (Variação ${Math.floor((i-1)/pratosBase.length) + 1})`;
+    bancoDeDados.push({
+        id: contadorId,
+        titulo: base.titulo + sufixo,
+        categoria: base.categoria,
+        descricao: base.desc,
+        variacoes: [
+            {
+                nome: "Receita Tradicional da Vovó",
+                porcoesBase: 2,
+                ingredientes: base.ing.map(ing => ({...ing})),
+                passos: base.passos.map(p => p),
+                finalizacoes: base.fin.map(f => f)
+            },
+            {
+                nome: "Modo Gourmet / Rápido",
+                porcoesBase: 2,
+                ingredientes: base.ing.map(ing => ({...ing, qtd: ing.qtd * 1.5})),
+                passos: ["Dica Express: use fogo alto nos processos iniciais.", ...base.passos],
+                finalizacoes: ["Finalize com raspas de limão ou queijo parmesão ralado na hora."]
+            }
+        ]
+    });
+    contadorId++;
+}
+
+// ─────────────────────────────────────────
+//  ESTADO
+// ─────────────────────────────────────────
+let porcoesSelecionadas = {};
+let variacaoSelecionada = {};
+let favoritos = JSON.parse(localStorage.getItem('sem_receitas_favs') || '[]');
+let categoriaAtiva = '';
+let mostrandoFavoritos = false;
+
+bancoDeDados.forEach(r => {
+    porcoesSelecionadas[r.id] = 2;
+    variacaoSelecionada[r.id] = 0;
+});
+
+// ─────────────────────────────────────────
+//  CHIPS DE CATEGORIA
+// ─────────────────────────────────────────
+function gerarChips() {
+    const cats = [...new Set(bancoDeDados.map(r => r.categoria))].sort();
+    const container = document.getElementById('chipsContainer');
+    cats.forEach(cat => {
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.textContent = cat;
+        chip.onclick = () => filtrarPorChip(chip, cat);
+        container.appendChild(chip);
+    });
+}
+
+function filtrarPorChip(el, cat) {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('ativo'));
+    el.classList.add('ativo');
+    categoriaAtiva = cat;
+    mostrandoFavoritos = false;
+    atualizarBadgeFavoritos();
+    filtrarReceitas();
+}
+
+// ─────────────────────────────────────────
+//  FAVORITOS
+// ─────────────────────────────────────────
+function toggleFavorito(id, event) {
+    event.stopPropagation();
+    const idx = favoritos.indexOf(id);
+    if (idx === -1) favoritos.push(id);
+    else favoritos.splice(idx, 1);
+    localStorage.setItem('sem_receitas_favs', JSON.stringify(favoritos));
+    atualizarIconeFav(id);
+    atualizarBadgeFavoritos();
+}
+
+function atualizarIconeFav(id) {
+    const btn = document.getElementById(`fav_${id}`);
+    if (btn) btn.textContent = favoritos.includes(id) ? '⭐' : '☆';
+}
+
+function atualizarBadgeFavoritos() {
+    const badge = document.getElementById('favoritosBadge');
+    if (favoritos.length > 0) {
+        badge.style.display = 'block';
+        badge.textContent = mostrandoFavoritos ? `⭐ ${favoritos.length} favorito(s) — Ver todos` : `⭐ ${favoritos.length} favorito(s)`;
+    } else {
+        badge.style.display = 'none';
+        mostrandoFavoritos = false;
+    }
+}
+
+function filtrarFavoritos() {
+    mostrandoFavoritos = !mostrandoFavoritos;
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('ativo'));
+    if (!mostrandoFavoritos) {
+        document.querySelector('.chip').classList.add('ativo');
+        categoriaAtiva = '';
+    }
+    atualizarBadgeFavoritos();
+    filtrarReceitas();
+}
+
+// ─────────────────────────────────────────
+//  RENDERIZAÇÃO
+// ─────────────────────────────────────────
+function renderizarReceitas(lista) {
+    const container = document.getElementById('listaReceitas');
+    container.innerHTML = '';
+
+    document.getElementById('contadorExibindo').textContent = lista.length;
+    document.getElementById('contadorTotal').textContent = bancoDeDados.length;
+
+    if (lista.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <div>🍽️</div>
+                <p>Nenhum prato encontrado.<br>Tente outro ingrediente ou categoria.</p>
+            </div>`;
+        return;
     }
 
-    let porcoesSelecionadas = {};
-    bancoDeDados.forEach(r => { porcoesSelecionadas[r.id] = 2; });
+    lista.forEach(receita => {
+        const card = document.createElement('div');
+        card.className = 'recipe-card collapsed';
+        card.id = `card_${receita.id}`;
 
-    function inicializarSite() {
-        renderizarReceitas(bancoDeDados);
-    }
+        const varIdx = variacaoSelecionada[receita.id] || 0;
+        const variacaoAtiva = receita.variacoes[varIdx];
+        const pAtuais = porcoesSelecionadas[receita.id];
+        const isFav = favoritos.includes(receita.id);
 
-    function renderizarReceitas(lista) {
-        const container = document.getElementById('listaReceitas');
-        container.innerHTML = '';
-
-        if (lista.length === 0) {
-            container.innerHTML = '<p style="text-align:center; color:#94a3b8; margin-top:40px;">Nenhum prato ou ingrediente encontrado...</p>';
-            return;
-        }
-
-        lista.forEach(receita => {
-            const card = document.createElement('div');
-            card.className = "recipe-card collapsed";
-            card.id = `card_${receita.id}`;
-
-            const varIndex = 0;
-            const variacaoAtiva = receita.variacoes[varIndex];
-            const pAtuais = porcoesSelecionadas[receita.id];
-
-            card.innerHTML = `
-                <div class="card-header" onclick="toggleCard(${receita.id})">
-                    <div>
-                        <div class="recipe-title">${receita.titulo}</div>
-                        <span class="category-badge">CATEGORIA: ${receita.categoria}</span>
-                    </div>
+        card.innerHTML = `
+            <div class="card-header" onclick="toggleCard(${receita.id})">
+                <div style="flex:1; min-width:0;">
+                    <div class="recipe-title">${receita.titulo}</div>
+                    <span class="category-badge">${receita.categoria}</span>
+                </div>
+                <div class="card-header-right">
+                    <button class="btn-fav" id="fav_${receita.id}" onclick="toggleFavorito(${receita.id}, event)">${isFav ? '⭐' : '☆'}</button>
                     <div class="arrow-icon">▼</div>
                 </div>
-                
-                <div class="recipe-content" onclick="event.stopPropagation()">
-                    <p class="recipe-description">${receita.descricao || ''}</p>
-                    
-                    <span class="control-label">VARIAÇÃO / ESTILO:</span>
-                    <select class="select-variation" onchange="mudarVariacao(${receita.id}, this.value)">
-                        ${receita.variacoes.map((v, idx) => `<option value="${idx}">${v.nome}</option>`).join('')}
-                    </select>
+            </div>
 
-                    <div class="yield-container">
-                        <span class="yield-label">RENDIMENTO:</span>
-                        <span class="yield-badge">👥 <span id="badge_porcoes_${receita.id}">${pAtuais} Pessoas</span></span>
-                    </div>
-                    <input type="range" class="yield-slider" min="1" max="10" value="${pAtuais}" oninput="atualizarPorcoes(${receita.id}, this.value, ${varIndex})">
+            <div class="recipe-content" onclick="event.stopPropagation()">
+                <p class="recipe-description">${receita.descricao || ''}</p>
 
-                    <div class="section-title">🧺 INGREDIENTES</div>
-                    <div id="ingredientes_${receita.id}">
-                        ${renderIngredientes(variacaoAtiva, pAtuais)}
-                    </div>
+                <span class="control-label">VARIAÇÃO / ESTILO:</span>
+                <select class="select-variation" onchange="mudarVariacao(${receita.id}, this.value)">
+                    ${receita.variacoes.map((v, i) => `<option value="${i}" ${i===varIdx?'selected':''}>${v.nome}</option>`).join('')}
+                </select>
 
-                    <div class="section-title">🍳 PASSO A PASSO</div>
-                    <div id="passos_${receita.id}">
-                        ${renderPassos(variacaoAtiva)}
-                    </div>
-
-                    <div class="section-title">🎂 FINALIZAÇÃO E TOQUE DO CHEF</div>
-                    <div id="finalizacoes_${receita.id}">
-                        ${renderFinalizacao(variacaoAtiva.finalizacoes)}
-                    </div>
+                <div class="yield-container">
+                    <span class="yield-label">RENDIMENTO:</span>
+                    <span class="yield-badge">👥 <span id="badge_porcoes_${receita.id}">${pAtuais} ${pAtuais==1?'Pessoa':'Pessoas'}</span></span>
                 </div>
-            `;
-            container.appendChild(card);
-        });
-    }
+                <input type="range" class="yield-slider" id="slider_${receita.id}" min="1" max="10" value="${pAtuais}" oninput="atualizarPorcoes(${receita.id}, this.value)">
 
-    function renderIngredientes(variacao, porcoesDesejadas) {
-        return variacao.ingredientes.map(ing => {
-            const qtdCalculada = ((ing.qtd / variacao.porcoesBase) * porcoesDesejadas).toFixed(2).replace('.00', '').replace('.', ',');
-            return `
-                <div class="list-item" onclick="toggleCheck(this, event)">
-                    <input type="checkbox">
-                    <span><span class="num-destaque">${qtdCalculada}</span> ${ing.unidade} ${ing.nome}</span>
-                </div>
-            `;
-        }).join('');
-    }
+                <div class="section-title">🧺 INGREDIENTES</div>
+                <div id="ingredientes_${receita.id}">${renderIngredientes(variacaoAtiva, pAtuais)}</div>
 
-    function renderPassos(variacao) {
-        return variacao.passos.map((passo, idx) => `
+                <div class="section-title">🍳 PASSO A PASSO</div>
+                <div id="passos_${receita.id}">${renderPassos(variacaoAtiva)}</div>
+
+                <div class="section-title">🎂 FINALIZAÇÃO E TOQUE DO CHEF</div>
+                <div id="finalizacoes_${receita.id}">${renderFinalizacao(variacaoAtiva.finalizacoes)}</div>
+
+                <button class="btn-lista-compras" onclick="abrirListaCompras(${receita.id})">🛒 Ver lista de compras</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function renderIngredientes(variacao, porcoesDesejadas) {
+    return variacao.ingredientes.map(ing => {
+        const calc = (ing.qtd / variacao.porcoesBase) * porcoesDesejadas;
+        const qtdStr = Number.isInteger(calc) ? calc : calc.toFixed(1).replace('.', ',');
+        return `
             <div class="list-item" onclick="toggleCheck(this, event)">
                 <input type="checkbox">
-                <span><span class="step-meta">ETAPA ${idx+1}</span>${passo}</span>
-            </div>
-        `).join('');
-    }
+                <span><span class="num-destaque">${qtdStr}</span> ${ing.un} ${ing.nome}</span>
+            </div>`;
+    }).join('');
+}
 
-    function renderFinalizacao(finalizacoes) {
-        if (!finalizacoes || finalizacoes.length === 0) return '';
-        return finalizacoes.map((item, idx) => `
-            <div class="list-item" onclick="toggleCheck(this, event)">
-                <input type="checkbox">
-                <span><span class="step-meta">FINALIZAÇÃO ${idx+1}</span>${item}</span>
-            </div>
-        `).join('');
-    }
+function renderPassos(variacao) {
+    return variacao.passos.map((passo, idx) => `
+        <div class="list-item" onclick="toggleCheck(this, event)">
+            <input type="checkbox">
+            <span><span class="step-meta">ETAPA ${idx+1}</span>${passo}</span>
+        </div>`).join('');
+}
 
-    function toggleCard(id) {
-        document.getElementById(`card_${id}`).classList.toggle('collapsed');
-    }
+function renderFinalizacao(fins) {
+    if (!fins || fins.length === 0) return '';
+    return fins.map((item, idx) => `
+        <div class="list-item" onclick="toggleCheck(this, event)">
+            <input type="checkbox">
+            <span><span class="step-meta">FINALIZAÇÃO ${idx+1}</span>${item}</span>
+        </div>`).join('');
+}
 
-    function toggleCheck(elemento, evento) {
-        const box = elemento.querySelector('input');
-        if (evento.target === box) {
-            elemento.classList.toggle('checked', box.checked);
-            return;
-        }
-        box.checked = !box.checked;
-        elemento.classList.toggle('checked', box.checked);
-    }
+// ─────────────────────────────────────────
+//  INTERAÇÕES DOS CARDS
+// ─────────────────────────────────────────
+function toggleCard(id) {
+    const card = document.getElementById(`card_${id}`);
+    const jaAberto = !card.classList.contains('collapsed');
+    // fecha todos
+    document.querySelectorAll('.recipe-card').forEach(c => c.classList.add('collapsed'));
+    // se não estava aberto, abre este
+    if (!jaAberto) card.classList.remove('collapsed');
+}
 
-    function atualizarPorcoes(id, valor, varIdx) {
-        porcoesSelecionadas[id] = parseInt(valor);
-        document.getElementById(`badge_porcoes_${id}`).innerText = valor + (valor == 1 ? " Pessoa" : " Pessoas");
-        
-        const variacao = bancoDeDados.find(r => r.id === id).variacoes[varIdx];
-        document.getElementById(`ingredientes_${id}`).innerHTML = renderIngredientes(variacao, valor);
-    }
+function toggleCheck(elemento, evento) {
+    const box = elemento.querySelector('input');
+    if (evento.target === box) { elemento.classList.toggle('checked', box.checked); return; }
+    box.checked = !box.checked;
+    elemento.classList.toggle('checked', box.checked);
+}
 
-    function mudarVariacao(id, varIdx) {
-        const receita = bancoDeDados.find(r => r.id === id);
-        const variacaoAtiva = receita.variacoes[varIdx];
-        const pAtuais = porcoesSelecionadas[id];
+function atualizarPorcoes(id, valor) {
+    porcoesSelecionadas[id] = parseInt(valor);
+    document.getElementById(`badge_porcoes_${id}`).textContent = valor + (valor == 1 ? ' Pessoa' : ' Pessoas');
+    const varIdx = variacaoSelecionada[id] || 0;
+    const variacao = bancoDeDados.find(r => r.id === id).variacoes[varIdx];
+    document.getElementById(`ingredientes_${id}`).innerHTML = renderIngredientes(variacao, parseInt(valor));
+}
 
-        document.getElementById(`ingredientes_${id}`).innerHTML = renderIngredientes(variacaoAtiva, pAtuais);
-        document.getElementById(`passos_${id}`).innerHTML = renderPassos(variacaoAtiva);
-        document.getElementById(`finalizacoes_${id}`).innerHTML = renderFinalizacao(variacaoAtiva.finalizacoes);
-        
-        const card = document.getElementById(`card_${id}`);
-        card.querySelector('.yield-slider').setAttribute('oninput', `atualizarPorcoes(${id}, this.value, ${varIdx})`);
-    }
+function mudarVariacao(id, varIdx) {
+    variacaoSelecionada[id] = parseInt(varIdx);
+    const receita = bancoDeDados.find(r => r.id === id);
+    const variacaoAtiva = receita.variacoes[parseInt(varIdx)];
+    const pAtuais = porcoesSelecionadas[id];
+    document.getElementById(`ingredientes_${id}`).innerHTML = renderIngredientes(variacaoAtiva, pAtuais);
+    document.getElementById(`passos_${id}`).innerHTML = renderPassos(variacaoAtiva);
+    document.getElementById(`finalizacoes_${id}`).innerHTML = renderFinalizacao(variacaoAtiva.finalizacoes);
+}
 
-    // BUSCA INTELIGENTE: Encontra por Título, Categoria e também por INGREDIENTES informados
-    function filtrarReceitas() {
-        const termo = document.getElementById('inputBusca').value.toLowerCase();
-        
-        const filtradas = bancoDeDados.filter(r => {
-            const matchTitulo = r.titulo.toLowerCase().includes(termo);
-            const matchCategoria = r.categoria.toLowerCase().includes(termo);
-            const matchIngrediente = r.variacoes[0].ingredientes.some(ing => 
-                ing.nome.toLowerCase().includes(termo)
-            );
+// ─────────────────────────────────────────
+//  BUSCA E FILTRO
+// ─────────────────────────────────────────
+function filtrarReceitas() {
+    const termo = document.getElementById('inputBusca').value.toLowerCase().trim();
+    let lista = bancoDeDados;
+
+    if (mostrandoFavoritos) lista = lista.filter(r => favoritos.includes(r.id));
+    if (categoriaAtiva)     lista = lista.filter(r => r.categoria === categoriaAtiva);
+    if (termo) {
+        lista = lista.filter(r => {
+            const matchTitulo     = r.titulo.toLowerCase().includes(termo);
+            const matchCategoria  = r.categoria.toLowerCase().includes(termo);
+            const matchIngrediente = r.variacoes[0].ingredientes.some(ing => ing.nome.toLowerCase().includes(termo));
             return matchTitulo || matchCategoria || matchIngrediente;
         });
-        
-        renderizarReceitas(filtradas);
+    }
+    renderizarReceitas(lista);
+}
+
+// ─────────────────────────────────────────
+//  LISTA DE COMPRAS
+// ─────────────────────────────────────────
+function abrirListaCompras(id) {
+    const receita = bancoDeDados.find(r => r.id === id);
+    const varIdx  = variacaoSelecionada[id] || 0;
+    const variacao = receita.variacoes[varIdx];
+    const porcoes  = porcoesSelecionadas[id];
+
+    // pega só os não-marcados
+    const naoMarcados = [];
+    const checkboxes = document.querySelectorAll(`#ingredientes_${id} .list-item`);
+    variacao.ingredientes.forEach((ing, i) => {
+        const item = checkboxes[i];
+        if (item && item.querySelector('input').checked) return;
+        const calc = (ing.qtd / variacao.porcoesBase) * porcoes;
+        const qtdStr = Number.isInteger(calc) ? calc : calc.toFixed(1).replace('.', ',');
+        naoMarcados.push(`${qtdStr} ${ing.un} ${ing.nome}`);
+    });
+
+    document.getElementById('modalSubtitulo').textContent = `${receita.titulo} — ${porcoes} ${porcoes==1?'pessoa':'pessoas'}`;
+
+    const conteudo = document.getElementById('modalConteudo');
+    if (naoMarcados.length === 0) {
+        conteudo.innerHTML = '<p style="color:#94a3b8; text-align:center; padding:20px 0;">Todos os ingredientes já foram marcados! ✅</p>';
+    } else {
+        conteudo.innerHTML = naoMarcados.map(item => `
+            <div class="lista-item-modal">
+                <span style="color:#ff5e00;">•</span>
+                <span>${item}</span>
+            </div>`).join('');
     }
 
-    document.addEventListener('DOMContentLoaded', inicializarSite);
+    document.getElementById('modalListaCompras').classList.add('aberto');
+}
+
+function fecharModal() {
+    document.getElementById('modalListaCompras').classList.remove('aberto');
+}
+function fecharModalSeOverlay(event) {
+    if (event.target === document.getElementById('modalListaCompras')) fecharModal();
+}
+
+function copiarLista() {
+    const itens = document.querySelectorAll('#modalConteudo .lista-item-modal span:last-child');
+    const texto = [...itens].map(el => '• ' + el.textContent).join('\n');
+    const subtitulo = document.getElementById('modalSubtitulo').textContent;
+    navigator.clipboard.writeText(`Lista de compras — ${subtitulo}\n\n${texto}`)
+        .then(() => { const btn = document.querySelector('.btn-copiar-lista'); btn.textContent = '✅ Copiado!'; setTimeout(() => btn.textContent = '📋 Copiar lista', 2000); });
+}
+
+// ─────────────────────────────────────────
+//  BOTÃO TOPO
+// ─────────────────────────────────────────
+window.addEventListener('scroll', () => {
+    const btn = document.getElementById('btnTopo');
+    if (window.scrollY > 300) btn.classList.add('visivel');
+    else btn.classList.remove('visivel');
+});
+
+// ─────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    gerarChips();
+    atualizarBadgeFavoritos();
+    setTimeout(() => renderizarReceitas(bancoDeDados), 300); // simula loading
+});
 </script>
 </body>
 </html>
