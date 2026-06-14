@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gerador de Receitas</title>
+</head>
+<body>
+
+<button onclick="gerar()">Gerar receitas.json</button>
+
+<script>
+
+function gerar() {
+
+const categorias = [
+"Arroz",
+"Massas",
+"Carnes",
+"Frango",
+"Peixes",
+"Churrasco",
+"Lanches",
+"Doces",
+"Bolos",
+"Tortas",
+"Sobremesas",
+"Saladas",
+"Sopas",
+"Fitness",
+"Vegano",
+"Regional",
+"Café da Manhã",
+"Petiscos",
+"Bebidas",
+"Molhos"
+];
+
+const pratos = [
+"Arroz Cremoso",
+"Arroz Temperado",
+"Risoto Italiano",
+"Lasanha Bolonhesa",
+"Lasanha de Frango",
+"Nhoque",
+"Espaguete",
+"Talharim",
+"Picanha",
+"Fraldinha",
+"Costela",
+"Cupim",
+"Maminha",
+"Carne de Panela",
+"Picadinho",
+"Frango Assado",
+"Frango Grelhado",
+"Frango Xadrez",
+"Fricassê",
+"Galinhada",
+"Salmão",
+"Tilápia",
+"Bacalhau",
+"Merluza",
+"Hambúrguer Artesanal",
+"X-Bacon",
+"Cachorro Quente",
+"Tapioca",
+"Beirute",
+"Pudim",
+"Brigadeiro",
+"Beijinho",
+"Bolo de Cenoura",
+"Bolo de Chocolate",
+"Cheesecake",
+"Pavê",
+"Torta Holandesa",
+"Brownie",
+"Salada Caesar",
+"Salada Grega",
+"Caldo Verde",
+"Canja",
+"Sopa de Legumes",
+"Moqueca",
+"Feijoada",
+"Vatapá",
+"Acarajé",
+"Virado Paulista"
+];
+
+const variacoes = [
+"Tradicional",
+"Gourmet",
+"Econômica",
+"Rápida",
+"Família",
+"Especial",
+"Caseira",
+"Premium"
+];
+
+const receitas = [];
+
+let id = 1;
+
+for(let i = 0; i < 500; i++) {
+
+const prato = pratos[i % pratos.length];
+const categoria = categorias[i % categorias.length];
+
+const receita = {
+id: id++,
+nome: `${prato} ${Math.floor(i / pratos.length) + 1}`,
+categoria: categoria,
+descricao: `${prato} preparado de forma especial com ingredientes selecionados.`,
+variacoes: []
+};
+
+for(let v = 0; v < 5; v++) {
+
+receita.variacoes.push({
+
+nome: variacoes[v],
+
+ingredientes: [
+"500g ingrediente principal",
+"1 cebola média",
+"2 dentes de alho",
+"Sal a gosto",
+"Pimenta a gosto"
+],
+
+passos: [
+"Prepare todos os ingredientes.",
+"Refogue os temperos.",
+"Adicione os ingredientes principais.",
+"Cozinhe até atingir o ponto ideal.",
+"Finalize e sirva."
+],
+
+finalizacao: [
+"Decore com ervas frescas.",
+"Sirva imediatamente."
+]
+
+});
+
+}
+
+receitas.push(receita);
+
+}
+
+const blob = new Blob(
+[JSON.stringify(receitas, null, 2)],
+{type:'application/json'}
+);
+
+const a = document.createElement('a');
+a.href = URL.createObjectURL(blob);
+a.download = 'receitas.json';
+a.click();
+
+}
+
+</script>
+
+</body>
+</html>
