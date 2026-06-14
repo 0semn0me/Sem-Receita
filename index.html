@@ -3,33 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sem Receitas - Caderno de Família</title>
+    <title>Sem Receitas</title>
     <style>
-        /* — RESET E CONFIGURAÇÕES DE LEITURA — */
+        /* — RESET E FONTES PADRÃO — */
         * {
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
         
         body {
-            background-color: #f7f9fc;
-            color: #222;
-            -webkit-tap-highlight-color: transparent; /* Remove o flash feio ao tocar no celular */
+            background-color: #f4f6f9;
+            color: #1e293b;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* — HEADER FLUTUANTE (VIBRANTE) — */
+        /* — HEADER GRADIENTE ORIGINAL — */
         .header {
             background: linear-gradient(135deg, #ff5e00, #e62222);
-            padding: 16px 16px 12px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 20px 16px 16px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .header-top {
@@ -38,91 +34,94 @@
             justify-content: space-between;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .header h1 {
             color: white;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-        /* BOTÃO DE MENU CIRCULADO - AGORA MAIOR E MAIS ACESSÍVEL */
         .btn-menu {
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            width: 48px;  /* Tamanho perfeito para o dedão */
-            height: 48px; /* Tamanho perfeito para o dedão */
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px; /* Ícone ☰ bem maior */
+            font-size: 20px;
             cursor: pointer;
             text-decoration: none;
-            transition: background 0.2s, transform 0.1s;
-        }
-        .btn-menu:active {
-            transform: scale(0.95);
-            background: rgba(255, 255, 255, 0.3);
         }
 
-        /* BARRA DE BUSCA */
+        /* BARRA DE PESQUISA */
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
+
         .search-input {
             width: 100%;
-            padding: 12px 14px;
-            border-radius: 25px;
+            padding: 14px 16px 14px 44px;
+            border-radius: 30px;
             border: none;
             outline: none;
             font-size: 16px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        /* FILTROS EM CÁPSULAS (PILLS CORES DA SUA FOTO) */
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #777;
+        }
+
+        /* CÁPSULAS DE FILTRO (PILLS) */
         .pills-container {
             display: flex;
             gap: 8px;
             overflow-x: auto;
             padding: 4px 0;
-            scrollbar-width: none; /* Esconde barra no Firefox */
+            scrollbar-width: none;
         }
         .pills-container::-webkit-scrollbar {
-            display: none; /* Esconde barra no Chrome/Safari */
+            display: none;
         }
 
         .pill {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             color: white;
             padding: 8px 18px;
             border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 600;
             white-space: nowrap;
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.2s;
         }
         .pill.active {
             background: white;
             color: #e62222;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
-        /* CONTADOR DE PRODUTOS */
+        /* CONTADOR */
         .counter-text {
-            padding: 12px 16px 4px;
-            font-size: 13px;
-            color: #666;
-            font-weight: bold;
+            padding: 16px 16px 4px;
+            font-size: 14px;
+            color: #888;
+            font-weight: 600;
         }
 
-        /* CONTAINER DE CARDS */
+        /* CONTAINER DOS CARDS */
         .recipes-container {
-            padding: 12px 16px;
+            padding: 8px 16px 30px;
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -130,165 +129,105 @@
             margin: 0 auto;
         }
 
-        /* CARD DA RECEITA */
+        /* CARD TRADICIONAL CLEAN */
         .recipe-card {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-            overflow: hidden;
-            border: 1px solid #eef2f5;
-            transition: all 0.2s;
+            border-radius: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+            padding: 20px;
+            border: 1px solid #f0f2f5;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .recipe-card:active {
+            transform: scale(0.99);
         }
 
-        .card-header-main {
-            padding: 18px 16px;
+        .card-main-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .recipe-info-left {
+        .card-info-left {
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            flex: 1;
-            padding-right: 12px;
+            gap: 6px;
+        }
+
+        .recipe-title {
+            font-size: 22px;
+            color: #0f172a;
+            font-weight: 700;
         }
 
         .recipe-category {
             font-size: 11px;
             color: #ff5e00;
-            font-weight: bold;
+            background: #fff0ea;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            width: fit-content;
         }
 
-        .recipe-title {
-            font-size: 20px;
-            color: #1e293b;
-            font-weight: 700;
-        }
-
-        /* BOTÕES DA DIREITA CIRCULADOS - MAIORES, VISÍVEIS E COM EXCELENTE ESPAÇO DE TOQUE */
         .card-actions-right {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 12px;
         }
 
-        .btn-action {
-            background: transparent;
-            border: none;
-            width: 46px;  /* Área de toque expandida */
-            height: 46px; /* Área de toque expandida */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px; /* Ícone consideravelmente maior */
-            cursor: pointer;
-            border-radius: 50%;
-            transition: all 0.2s;
-        }
-        
         .btn-star {
-            color: #3b82f6; /* Azul original da sua foto */
+            color: #3b82f6;
+            font-size: 22px;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
         .btn-star.favorited {
-            color: #ffb300; /* Vira ouro ao favoritar */
-            font-weight: bold;
+            color: #ffb300;
         }
 
-        .btn-arrow {
+        .arrow-icon {
             color: #cbd5e1;
-            transform: rotate(0deg);
+            font-size: 14px;
+            transition: transform 0.2s;
         }
-        .recipe-card.expanded .btn-arrow {
-            transform: rotate(180deg); /* Gira suavemente ao abrir */
+        .recipe-card.expanded .arrow-icon {
+            transform: rotate(180deg);
             color: #ff5e00;
         }
 
-        /* CONTEÚDO EXPANSÍVEL (SÓ APARECE AO CLICAR NA SETA) */
-        .card-expanded-content {
+        /* LISTA EXPANSÍVEL INTERNA */
+        .card-dropdown-content {
             display: none;
+            margin-top: 16px;
             border-top: 1px solid #f1f5f9;
-            background: #fafbfc;
-            padding: 16px;
+            padding-top: 14px;
         }
-        .recipe-card.expanded .card-expanded-content {
+        .recipe-card.expanded .card-dropdown-content {
             display: block;
         }
 
-        /* CALCULADORA DE PORÇÕES ACESSÍVEL */
-        .portion-control {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 8px;
-            margin-bottom: 16px;
-        }
-        .portion-label {
-            font-size: 13px;
-            font-weight: bold;
-            color: #64748b;
-            margin-bottom: 6px;
-            text-align: center;
-        }
-        .portion-btns {
-            display: flex;
-            gap: 6px;
-        }
-        .btn-scale {
-            flex: 1;
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            padding: 10px 4px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 8px;
-            color: #334155;
-            cursor: pointer;
-        }
-        .btn-scale.active {
-            background: #e62222;
-            border-color: #e62222;
-            color: white;
-        }
-
-        /* INGREDIENTES */
-        .ingredients-box {
-            margin-bottom: 16px;
-        }
-        .ingredient-row {
+        .variation-row {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
             font-size: 16px;
-            border-bottom: 1px dashed #e2e8f0;
+            color: #334155;
+            border-bottom: 1px solid #f8fafc;
         }
-        .ingredient-row:last-child {
+        .variation-row:last-child {
             border-bottom: none;
         }
-        .ing-name { color: #475569; }
-        .ing-qty { font-weight: bold; color: #000; }
-
-        /* SEGREDO DO CHEF DA FAMÍLIA */
-        .family-secret-box {
-            background: #fff9db;
-            border-left: 5px solid #fab005;
-            padding: 12px;
-            border-radius: 6px;
+        .variation-name {
+            font-weight: 500;
         }
-        .secret-hdr {
-            font-size: 14px;
-            font-weight: bold;
-            color: #c97d00;
-            margin-bottom: 4px;
-        }
-        .secret-txt {
-            font-size: 15px;
-            color: #444;
-            line-height: 1.4;
-            font-style: italic;
+        .variation-detail {
+            font-weight: 700;
+            color: #000;
         }
     </style>
 </head>
@@ -296,49 +235,52 @@
 
     <div class="header">
         <div class="header-top">
-            <div class="logo-container">
-                <h1>Sem Receitas</h1>
-            </div>
-            <a href="sugestoes.html" class="btn-menu" aria-label="Menu de sugestões">☰</a>
+            <h1>Sem Receitas</h1>
+            <a href="sugestoes.html" class="btn-menu">☰</a>
         </div>
-        
-        <input type="text" id="searchInput" class="search-input" placeholder="Buscar pratos, ingredientes...">
-        
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar pratos, ingredientes ou categorias..">
+        </div>
         <div class="pills-container" id="pillsContainer"></div>
     </div>
 
-    <div class="counter-text" id="counterText">Exibindo 0 de 0 pratos únicos</div>
-
+    <div class="counter-text" id="counterText">Carregando receitas...</div>
     <div class="recipes-container" id="recipesContainer"></div>
 
     <script>
-        // BANCO DE DADOS INTEGRADO COM PREPARO ADAPTADO PARA CHEFS DA FAMÍLIA
-        const bancoDeDados = [
-            { id: 1, nome: "Pudim de Leite", categoria: "Doces", segredo: "Bata tudo na mão bem devagar com fouet. Liquidificador gera bolhas de ar e tira a textura lisa tradicional.", ingredientes: [{nome: "Leite condensado", base: 1, un: "lata"}, {nome: "Leite integral", base: 1, un: "medida"}, {nome: "Ovos caipiras", base: 3, un: "unid"}] },
-            { id: 2, nome: "Bolo de Cenoura", categoria: "Doces", segredo: "Não exagere na cenoura! Passar do peso deixa o bolo solado. Pese exatamente as cenouras antes de bater.", ingredientes: [{nome: "Cenouras médias", base: 3, un: "unid"}, {nome: "Farinha de trigo", base: 2, un: "xícaras"}, {nome: "Açúcar", base: 1.5, un: "xícaras"}, {nome: "Óleo", base: 0.5, un: "xícara"}] },
-            { id: 3, nome: "Lasanha à Bolonhesa", categoria: "Massas", segredo: "O molho precisa apurar por no mínimo 2 horas em fogo baixo adicionando leite integral para quebrar a acidez do tomate.", ingredientes: [{nome: "Massa fresca de lasanha", base: 500, un: "g"}, {nome: "Carne moída (acém/patinho)", base: 700, un: "g"}, {nome: "Molho de tomate artesanal", base: 1, un: "litro"}] },
-            { id: 4, nome: "Feijoada Completa", categoria: "Carnes", segredo: "Dessalgue as carnes por 24h trocando a água de 4 em 4 horas. Cozinhe com laranjas inteiras cortadas ao meio para amaciar.", ingredientes: [{nome: "Feijão preto", base: 1, un: "kg"}, {nome: "Carne seca", base: 500, un: "g"}, {nome: "Costelinha de porco", base: 500, un: "g"}] },
-            { id: 5, nome: "Arroz de Carreteiro", categoria: "Arroz", segredo: "Frite bem a carne de sol até quase grudar no fundo da panela de ferro. Esse queimadinho é o que dá a cor dourada ao arroz.", ingredientes: [{nome: "Arroz agulhinha", base: 2, un: "xícaras"}, {nome: "Charque desfiado", base: 400, un: "g"}, {nome: "Calabresa em cubos", base: 1, un: "unid"}] },
-            { id: 6, nome: "Tapioca Recheada", categoria: "Lanches", segredo: "Peneire a goma direto na frigideira fria. Só ligue o fogo depois, isso evita que a massa rache ou fique borrachuda.", ingredientes: [{nome: "Goma de tapioca hidratada", base: 4, un: "colheres"}, {nome: "Queijo coalho ralado", base: 60, un: "g"}] }
-        ];
-
-        // Estados de Controle do Aplicativo
+        // Array global que receberá os dados externos
+        let bancoDeDados = [];
         let categoriaAtiva = "Todos";
-        const statusMultiplicadores = {};
         const favoritos = {};
-        
-        // Inicializa cada receita no estado padrão (multiplicador 1 e não favoritado)
-        bancoDeDados.forEach(r => {
-            statusMultiplicadores[r.id] = 1;
-            favoritos[r.id] = false;
-        });
+        const cardsExpandidos = {};
 
         const recipesContainer = document.getElementById('recipesContainer');
         const searchInput = document.getElementById('searchInput');
         const pillsContainer = document.getElementById('pillsContainer');
         const counterText = document.getElementById('counterText');
 
-        // Geração Automática das Cápsulas de Filtro superiores
+        // TECNOLOGIA DE CARREGAMENTO DINÂMICO (Para aguentar mais de 200 pratos sem pesar)
+        async function carregarDados() {
+            try {
+                // Ele vai buscar o arquivo receitas.json contendo a lista pura de dados
+                const resposta = await fetch('receitas.json');
+                bancoDeDados = await resposta.json();
+                
+                // Inicializa os estados de controle
+                bancoDeDados.forEach(r => {
+                    favoritos[r.id] = false;
+                    cardsExpandidos[r.id] = false;
+                });
+
+                renderPills();
+                renderRecipes();
+            } catch (erro) {
+                console.error("Erro ao carregar o arquivo de receitas JSON:", erro);
+                counterText.innerHTML = "Erro ao carregar a lista de receitas.";
+            }
+        }
+
         function renderPills() {
             const categorias = ["Todos", ...new Set(bancoDeDados.map(r => r.categoria))];
             pillsContainer.innerHTML = categorias.map(cat => `
@@ -352,112 +294,77 @@
             renderRecipes();
         }
 
-        // Alterna o ícone de Favoritos (Estrela)
         window.toggleFavorite = function(id, event) {
-            event.stopPropagation(); // Impede que abra o card sem querer ao favoritar
-            favoritos[id] = !favoritos[id];
-            const btn = document.getElementById(`star-${id}`);
-            if(favoritos[id]) {
-                btn.classList.add('favorited');
-                btn.innerHTML = "★";
-            } else {
-                btn.classList.remove('favorited');
-                btn.innerHTML = "☆";
-            }
-        }
-
-        // Alterna a abertura/fechamento do card clicando na seta ou no cabeçalho
-        window.toggleCard = function(id) {
-            const card = document.getElementById(`card-${id}`);
-            card.classList.toggle('expanded');
-        }
-
-        // Altera a escala da receita (Metade, Normal, Dobrar)
-        window.mudarPorcao = function(id, valor, event) {
             event.stopPropagation();
-            statusMultiplicadores[id] = valor;
+            favoritos[id] = !favoritos[id];
             renderRecipes();
         }
 
-        // RENDERIZAÇÃO GERAL DOS CARDS
+        window.toggleCard = function(id) {
+            cardsExpandidos[id] = !cardsExpandidos[id];
+            renderRecipes();
+        }
+
         function renderRecipes() {
             const busca = searchInput.value.toLowerCase();
             recipesContainer.innerHTML = "";
 
-            // Filtro duplo: Por Categoria e por Digitação
             const filtrados = bancoDeDados.filter(r => {
                 const matchesCategory = (categoriaAtiva === "Todos" || r.categoria === categoriaAtiva);
                 const matchesSearch = r.nome.toLowerCase().includes(busca) || r.categoria.toLowerCase().includes(busca);
                 return matchesCategory && matchesSearch;
             });
 
-            // Atualiza Contador
             counterText.innerHTML = `Exibindo ${filtrados.length} de ${bancoDeDados.length} pratos únicos`;
 
             if(filtrados.length === 0) {
-                recipesContainer.innerHTML = `<p style="text-align:center; padding:30px; color:#666; font-weight:bold;">Nenhum prato encontrado.</p>`;
+                recipesContainer.innerHTML = `<p style="text-align:center; padding:40px; color:#888; font-weight:bold;">Nenhum prato encontrado.</p>`;
                 return;
             }
 
             filtrados.forEach(recipe => {
-                const mult = statusMultiplicadores[recipe.id];
+                const isExpanded = cardsExpandidos[recipe.id];
                 const card = document.createElement('div');
-                card.className = 'recipe-card';
-                card.id = `card-${recipe.id}`;
+                card.className = `recipe-card ${isExpanded ? 'expanded' : ''}`;
+                card.setAttribute('onclick', `toggleCard(${recipe.id})`);
 
-                // Monta as linhas de ingredientes calculadas automaticamente
-                let ingHtml = "";
-                recipe.ingredientes.forEach(ing => {
-                    ingHtml += `
-                        <div class="ingredient-row">
-                            <span class="ing-name">${ing.nome}</span>
-                            <span class="ing-qty">${ing.base * mult} ${ing.un}</span>
-                        </div>
-                    `;
-                });
+                let variationsHtml = "";
+                if(recipe.variações && recipe.variações.length > 0) {
+                    recipe.variações.forEach(v => {
+                        variationsHtml += `
+                            <div class="variation-row">
+                                <span class="variation-name">${v.nome}</span>
+                                <span class="variation-detail">${v.detalhe}</span>
+                            </div>
+                        `;
+                    });
+                }
 
                 card.innerHTML = `
-                    <div class="card-header-main" onclick="toggleCard(${recipe.id})">
-                        <div class="recipe-info-left">
-                            <span class="recipe-category">${recipe.categoria}</span>
+                    <div class="card-main-row">
+                        <div class="card-info-left">
                             <h2 class="recipe-title">${recipe.nome}</h2>
+                            <span class="recipe-category">${recipe.categoria}</span>
                         </div>
                         <div class="card-actions-right">
-                            <button id="star-${recipe.id}" class="btn-action btn-star ${favoritos[recipe.id] ? 'favorited' : ''}" onclick="toggleFavorite(${recipe.id}, event)">
+                            <button class="btn-star ${favoritos[recipe.id] ? 'favorited' : ''}" onclick="toggleFavorite(${recipe.id}, event)">
                                 ${favoritos[recipe.id] ? '★' : '☆'}
                             </button>
-                            <button class="btn-action btn-arrow">▼</button>
+                            <span class="arrow-icon">▼</span>
                         </div>
                     </div>
-                    
-                    <div class="card-expanded-content">
-                        <div class="portion-control">
-                            <div class="portion-label">Dimensionar Medidas:</div>
-                            <div class="portion-btns">
-                                <button class="btn-scale ${mult === 0.5 ? 'active' : ''}" onclick="mudarPorcao(${recipe.id}, 0.5, event)">Metade</button>
-                                <button class="btn-scale ${mult === 1 ? 'active' : ''}" onclick="mudarPorcao(${recipe.id}, 1, event)">Normal</button>
-                                <button class="btn-scale ${mult === 2 ? 'active' : ''}" onclick="mudarPorcao(${recipe.id}, 2, event)">Dobrar</button>
-                            </div>
-                        </div>
-                        <div class="ingredients-box">
-                            ${ingHtml}
-                        </div>
-                        <div class="family-secret-box">
-                            <div class="secret-hdr">💡 Pulo do Gato do Chef:</div>
-                            <div class="secret-txt">"${recipe.segredo}"</div>
-                        </div>
+                    <div class="card-dropdown-content">
+                        ${variationsHtml}
                     </div>
                 `;
                 recipesContainer.appendChild(card);
             });
         }
 
-        // Escuta digitação na busca
         searchInput.addEventListener('input', renderRecipes);
 
-        // Inicialização do App
-        renderPills();
-        renderRecipes();
+        // Inicia o carregamento assíncrono
+        carregarDados();
     </script>
 </body>
 </html>
