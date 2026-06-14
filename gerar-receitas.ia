@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Receitas IA — Sem Receitas</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+
+        body { background: #f7f9fc; color: #1e293b; min-height: 100vh; }
+
+        .header {
+            background: linear-gradient(135deg, #ff5e00, #e62222);
+            padding: 25px 20px;
+            display: flex; align-items: center; gap: 15px;
+        }
+        .header h1 { color: white; font-size: 22px; font-weight: 700; }
+        .header span { font-size: 28px; }
+
+        .container { padding: 20px 16px 60px; max-width: 600px; margin: 0 auto; }
+
+        /* — CARD DE CONFIGURAÇÃO — */
+        .config-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 18px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
+        }
+        .config-title { font-size: 18px; font-weight: 700; color: #ff5e00; margin-bottom: 6px; }
+        .config-desc { font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 18px; }
+
+        .info-row {
+            display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;
+        }
+        .info-badge {
+            background: #fff0ea; color: #ff5e00;
+            padding: 6px 14px; border-radius: 20px;
+            font-size: 13px; font-weight: 700;
+        }
+
+        .btn-gerar {
+            width: 100%;
+            background: linear-gradient(135deg, #ff5e00, #e62222);
+            color: white; border: none;
+            padding: 16px; border-radius: 14px;
+            font-size: 17px; font-weight: 700;
+            cursor: pointer; transition: opacity 0.2s;
+        }
+        .btn-gerar:hover { opacity: 0.92; }
+        .btn-gerar:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* — PROGRESSO — */
+        .progress-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 18px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
+            display: none;
+        }
+        .progress-card.visible { display: block; }
+
+        .progress-title { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 14px; }
+
+        .progress-bar-bg {
+            background: #f1f5f9; border-radius: 10px; height: 12px; overflow: hidden; margin-bottom: 8px;
+        }
+        .progress-bar-fill {
+            background: linear-gradient(135deg, #ff5e00, #e62222);
+            height: 100%; border-radius: 10px;
+            transition: width 0.4s ease; width: 0%;
+        }
+        .progress-info {
+            display: flex; justify-content: space-between;
+            font-size: 13px; color: #64748b; margin-bottom: 16px;
+        }
+
+        .log-box {
+            background: #f8fafc; border-radius: 12px;
+            padding: 14px; max-height: 220px; overflow-y: auto;
+            font-size: 12px; color: #475569; line-height: 1.6;
+            border: 1px solid #e2e8f0;
+        }
+        .log-line { margin-bottom: 2px; }
+        .log-line.ok { color: #16a34a; }
+        .log-line.err { color: #dc2626; }
+        .log-line.info { color: #2563eb; }
+
+        /* — RESULTADO — */
+        .result-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 18px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            display: none;
+        }
+        .result-card.visible { display: block; }
+
+        .result-title { font-size: 18px; font-weight: 700; color: #16a34a; margin-bottom: 6px; }
+        .result-desc { font-size: 13px; color: #64748b; margin-bottom: 18px; line-height: 1.5; }
+
+        .stats-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+        .stat-box {
+            flex: 1; min-width: 100px;
+            background: #f8fafc; border-radius: 12px; padding: 12px;
+            text-align: center; border: 1px solid #e2e8f0;
+        }
+        .stat-num { font-size: 24px; font-weight: 800; color: #ff5e00; }
+        .stat-label { font-size: 11px; color: #64748b; font-weight: 600; margin-top: 2px; }
+
+        .btn-download {
+            width: 100%;
+            background: #16a34a;
+            color: white; border: none;
+            padding: 16px; border-radius: 14px;
+            font-size: 17px; font-weight: 700;
+            cursor: pointer; margin-bottom: 10px;
+            transition: opacity 0.2s;
+        }
+        .btn-download:hover { opacity: 0.9; }
+
+        .btn-instrucoes {
+            width: 100%;
+            background: #f1f5f9;
+            color: #475569; border: none;
+            padding: 14px; border-radius: 14px;
+            font-size: 15px; font-weight: 600;
+            cursor: pointer; transition: opacity 0.2s;
+        }
+
+        /* — INSTRUÇÕES — */
+        .instrucoes-card {
+            background: #fff7ed;
+            border-radius: 20px;
+            padding: 22px 18px;
+            border: 1px solid #fed7aa;
+            margin-top: 16px;
+            display: none;
+        }
+        .instrucoes-card.visible { display: block; }
+        .instrucoes-title { font-size: 16px; font-weight: 700; color: #ea580c; margin-bottom: 12px; }
+        .instrucoes-step {
+            display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start;
+        }
+        .step-num {
+            background: #ff5e00; color: white;
+            width: 26px; height: 26px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 700; flex-shrink: 0;
+        }
+        .step-txt { font-size: 14px; color: #7c2d12; line-height: 1.5; }
+        .step-code {
+            background: #1e293b; color: #f1f5f9;
+            border-radius: 8px; padding: 8px 12px;
+            font-size: 12px; font-family: monospace;
+            margin-top: 6px; word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <span>🤖</span>
+    <h1>Gerador de Receitas com IA</h1>
+</div>
+
+<div class="container">
+
+    <!-- CONFIG -->
+    <div class="config-card">
+        <div class="config-title">Geração Automática</div>
+        <div class="config-desc">
+            A IA vai gerar receitas reais em lotes de 25, com ingredientes específicos,
+            variações típicas e modos de preparo detalhados. 50% brasileiras, 50% internacionais.
+        </div>
+        <div class="info-row">
+            <span class="info-badge">🇧🇷 50% Brasil</span>
+            <span class="info-badge">🌍 50% Internacional</span>
+            <span class="info-badge">⚡ 25 por lote</span>
+            <span class="info-badge">🎯 600+ receitas</span>
+        </div>
+        <button class="btn-gerar" id="btnGerar" onclick="iniciarGeracao()">
+            🚀 Gerar 600 Receitas Agora
+        </button>
+    </div>
+
+    <!-- PROGRESSO -->
+    <div class="progress-card" id="progressCard">
+        <div class="progress-title">⏳ Gerando receitas...</div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <div class="progress-info">
+            <span id="progressText">Iniciando...</span>
+            <span id="progressPct">0%</span>
+        </div>
+        <div class="log-box" id="logBox"></div>
+    </div>
+
+    <!-- RESULTADO -->
+    <div class="result-card" id="resultCard">
+        <div class="result-title">✅ Receitas Geradas!</div>
+        <div class="result-desc">Seu arquivo está pronto para ser colocado no projeto.</div>
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-num" id="statTotal">0</div>
+                <div class="stat-label">Receitas</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num" id="statVariacoes">0</div>
+                <div class="stat-label">Variações</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num" id="statCats">0</div>
+                <div class="stat-label">Categorias</div>
+            </div>
+        </div>
+        <button class="btn-download" onclick="baixarJSON()">⬇️ Baixar receitas.json</button>
+        <button class="btn-instrucoes" onclick="toggleInstrucoes()">📋 Como usar no projeto</button>
+        <div class="instrucoes-card" id="instrucoesCard">
+            <div class="instrucoes-title">📋 Como colocar no index.html</div>
+            <div class="instrucoes-step">
+                <div class="step-num">1</div>
+                <div class="step-txt">Baixe o <strong>receitas.json</strong> acima e coloque na mesma pasta do seu <strong>index.html</strong></div>
+            </div>
+            <div class="instrucoes-step">
+                <div class="step-num">2</div>
+                <div class="step-txt">No seu <strong>index.html</strong>, substitua o bloco <code>const bancoDeDados = [...]</code> pelo código abaixo:</div>
+            </div>
+            <div class="step-code">let bancoDeDados = [];
+fetch('receitas.json')
+  .then(r => r.json())
+  .then(data => {
+    bancoDeDados = data;
+    data.forEach(r => favoritos[r.id] = false);
+    renderPills();
+    renderRecipes();
+  });</div>
+            <div class="instrucoes-step">
+                <div class="step-num">3</div>
+                <div class="step-txt">Remova o array hardcoded antigo (de <code>const bancoDeDados = [</code> até o <code>];</code> que fecha) e cole o fetch no lugar.</div>
+            </div>
+            <div class="instrucoes-step">
+                <div class="step-num">4</div>
+                <div class="step-txt">⚠️ Se estiver no <strong>GitHub Pages</strong>, o fetch funciona direto. Se abrir o arquivo local (file://), use um servidor local ou o Live Server do VSCode.</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // =============================================
+    // CONFIGURAÇÃO DE LOTES
+    // =============================================
+    const TOTAL_RECEITAS_ALVO = 624; // 24 lotes × 26 receitas ≈ 624
+    const RECEITAS_POR_LOTE = 26;
+    const TOTAL_LOTES = Math.ceil(TOTAL_RECEITAS_ALVO / RECEITAS_POR_LOTE);
+
+    // Temas por lote para diversificar o conteúdo
+    const TEMAS_BR = [
+        "pratos típicos do Nordeste brasileiro (moqueca, vatapá, carne de sol, feijão verde, macaxeira)",
+        "culinária mineira (feijão tropeiro, frango com quiabo, tutu, angu, torresmo, pão de queijo)",
+        "pratos do Sul do Brasil (churrasco gaúcho, arroz de carreteiro, barreado, sequência de camarão, marreco recheado)",
+        "comida carioca e paulistana (virado à paulista, coxinha, esfirra, feijoada, bolinho de bacalhau)",
+        "sobremesas e doces brasileiros (brigadeiro, beijinho, pudim, bolo de rolo, quindim, canjica, cocada)",
+        "receitas com frango à moda brasileira (galinhada caipira, frango ao molho pardo, frango xadrez, fricassê, frango com catupiry)",
+        "peixes e frutos do mar brasileiros (peixe na telha, filé de tilápia, caldeirada, peixe com banana, siri mole)",
+        "receitas fitness e saudáveis brasileiras (frango grelhado, salada tropical, tapioca recheada, smoothies de frutas, aveia com frutas)",
+    ];
+
+    const TEMAS_INT = [
+        "pratos italianos clássicos (carbonara, risotto ai funghi, ossobuco, tiramisu, panna cotta, bruschetta)",
+        "culinária japonesa (sushi, ramen, yakitori, gyoza, miso soup, teriyaki, onigiri, tempura)",
+        "pratos mexicanos (tacos al pastor, guacamole, enchiladas, pozole, mole, chiles rellenos, carnitas)",
+        "culinária francesa (coq au vin, ratatouille, quiche lorraine, bouillabaisse, crème brûlée, croissant)",
+        "pratos indianos (butter chicken, dal makhani, biryani, tikka masala, samosa, palak paneer, korma)",
+        "comida árabe e mediterrânea (hummus, falafel, shawarma, kebab, tabbouleh, baklava, kafta)",
+        "culinária tailandesa (pad thai, green curry, tom yum, papaya salad, mango sticky rice, massaman curry)",
+        "pratos americanos e tex-mex (burger artesanal, BBQ ribs, mac and cheese, chili, nachos, clam chowder)",
+        "culinária espanhola (paella valenciana, gazpacho, tortilla española, croquetas, patatas bravas, churros)",
+        "comida chinesa (pato laqueado, dim sum, mapo tofu, wonton soup, kung pao chicken, char siu)",
+        "culinária peruana (ceviche, lomo saltado, aji de gallina, causa limeña, arroz con leche, anticuchos)",
+        "pratos gregos e turcos (moussaka, spanakopita, souvlaki, baklava turco, börek, köfte, tzatziki)",
+    ];
+
+    // Intercalar BR e Internacional
+    const TEMAS_TODOS = [];
+    let iBR = 0, iINT = 0;
+    for (let i = 0; i < TOTAL_LOTES; i++) {
+        if (i % 2 === 0) {
+            TEMAS_TODOS.push({ tipo: 'BR', tema: TEMAS_BR[iBR % TEMAS_BR.length] });
+            iBR++;
+        } else {
+            TEMAS_TODOS.push({ tipo: 'INT', tema: TEMAS_INT[iINT % TEMAS_INT.length] });
+            iINT++;
+        }
+    }
+
+    let todasReceitas = [];
+    let emExecucao = false;
+
+    function log(msg, tipo = '') {
+        const box = document.getElementById('logBox');
+        const line = document.createElement('div');
+        line.className = `log-line ${tipo}`;
+        const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        line.textContent = `[${hora}] ${msg}`;
+        box.appendChild(line);
+        box.scrollTop = box.scrollHeight;
+    }
+
+    function setProgress(loteAtual) {
+        const pct = Math.round((loteAtual / TOTAL_LOTES) * 100);
+        document.getElementById('progressBar').style.width = pct + '%';
+        document.getElementById('progressPct').textContent = pct + '%';
+        document.getElementById('progressText').textContent =
+            `Lote ${loteAtual} de ${TOTAL_LOTES} — ${todasReceitas.length} receitas`;
+    }
+
+    async function gerarLote(loteIdx) {
+        const { tipo, tema } = TEMAS_TODOS[loteIdx];
+        const origemLabel = tipo === 'BR' ? '🇧🇷 Brasileira' : '🌍 Internacional';
+        const idInicio = todasReceitas.length + 1;
+
+        const prompt = `Você é um chef e escritor culinário especialista. Gere EXATAMENTE ${RECEITAS_POR_LOTE} receitas de ${tema}.
+
+REGRAS ABSOLUTAS:
+- Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown, sem backticks
+- Cada receita deve ter ingredientes REAIS e ESPECÍFICOS com quantidades exatas
+- Cada receita deve ter 2 a 3 variações com nomes distintos
+- Os passos devem ser detalhados e práticos
+- IDs começam em ${idInicio}
+
+FORMATO OBRIGATÓRIO (array JSON puro):
+[
+  {
+    "id": ${idInicio},
+    "nome": "Nome Real do Prato",
+    "categoria": "UMA das categorias: Arroz, Massas, Carnes, Frango, Peixes, Churrasco, Lanches, Doces, Bolos, Tortas, Sobremesas, Saladas, Sopas, Fitness, Vegano, Regional, Café da Manhã, Petiscos, Bebidas, Molhos",
+    "descricao": "Descrição apetitosa de 1 frase",
+    "variacoes": [
+      {
+        "nome": "Nome da Variação (ex: Clássica, Com Creme, Versão Light)",
+        "ingredientes": ["200g de ingrediente específico", "2 colheres de sopa de azeite extra virgem", "3 dentes de alho picados"],
+        "passos": ["Passo detalhado 1.", "Passo detalhado 2.", "Passo detalhado 3.", "Passo detalhado 4."],
+        "finalizacao": ["Dica de apresentação ou finalização específica."]
+      }
+    ]
+  }
+]
+
+Gere as ${RECEITAS_POR_LOTE} receitas agora. Apenas o JSON, nada mais.`;
+
+        const response = await fetch("https://api.anthropic.com/v1/messages", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                model: "claude-sonnet-4-6",
+                max_tokens: 8000,
+                messages: [{ role: "user", content: prompt }]
+            })
+        });
+
+        if (!response.ok) {
+            const err = await response.text();
+            throw new Error(`HTTP ${response.status}: ${err.slice(0, 100)}`);
+        }
+
+        const data = await response.json();
+        const texto = data.content.map(b => b.text || '').join('');
+
+        // Limpar possíveis backticks residuais
+        const limpo = texto.replace(/```json|```/g, '').trim();
+
+        // Extrair JSON mesmo se vier com texto extra
+        const match = limpo.match(/\[[\s\S]*\]/);
+        if (!match) throw new Error('JSON não encontrado na resposta');
+
+        const receitas = JSON.parse(match[0]);
+
+        // Reindexar IDs pra garantir sequência correta
+        receitas.forEach((r, i) => { r.id = idInicio + i; });
+
+        return receitas;
+    }
+
+    async function iniciarGeracao() {
+        if (emExecucao) return;
+        emExecucao = true;
+        todasReceitas = [];
+
+        document.getElementById('btnGerar').disabled = true;
+        document.getElementById('progressCard').classList.add('visible');
+        document.getElementById('resultCard').classList.remove('visible');
+
+        log(`🚀 Iniciando geração de ${TOTAL_LOTES} lotes (${TOTAL_RECEITAS_ALVO} receitas)`, 'info');
+        log(`📋 50% culinária brasileira | 50% internacional`, 'info');
+
+        for (let i = 0; i < TOTAL_LOTES; i++) {
+            const { tipo, tema } = TEMAS_TODOS[i];
+            const flag = tipo === 'BR' ? '🇧🇷' : '🌍';
+
+            log(`${flag} Lote ${i + 1}/${TOTAL_LOTES}: ${tema.split('(')[0].trim()}...`);
+            setProgress(i);
+
+            let tentativas = 0;
+            let sucesso = false;
+
+            while (tentativas < 3 && !sucesso) {
+                try {
+                    const novas = await gerarLote(i);
+                    todasReceitas.push(...novas);
+                    log(`✅ Lote ${i + 1} OK — +${novas.length} receitas (total: ${todasReceitas.length})`, 'ok');
+                    sucesso = true;
+                } catch (e) {
+                    tentativas++;
+                    log(`⚠️ Tentativa ${tentativas}/3 falhou: ${e.message}`, 'err');
+                    if (tentativas < 3) {
+                        log(`🔄 Aguardando 3s antes de tentar novamente...`);
+                        await sleep(3000);
+                    }
+                }
+            }
+
+            if (!sucesso) {
+                log(`❌ Lote ${i + 1} pulado após 3 falhas`, 'err');
+            }
+
+            // Pausa entre lotes pra não sobrecarregar a API
+            if (i < TOTAL_LOTES - 1) await sleep(800);
+        }
+
+        setProgress(TOTAL_LOTES);
+        finalizarGeracao();
+    }
+
+    function finalizarGeracao() {
+        emExecucao = false;
+        document.getElementById('btnGerar').disabled = false;
+
+        const totalVariacoes = todasReceitas.reduce((acc, r) => acc + r.variacoes.length, 0);
+        const categorias = new Set(todasReceitas.map(r => r.categoria));
+
+        document.getElementById('statTotal').textContent = todasReceitas.length;
+        document.getElementById('statVariacoes').textContent = totalVariacoes;
+        document.getElementById('statCats').textContent = categorias.size;
+
+        document.getElementById('resultCard').classList.add('visible');
+
+        log(`🎉 Concluído! ${todasReceitas.length} receitas | ${totalVariacoes} variações | ${categorias.size} categorias`, 'ok');
+    }
+
+    function baixarJSON() {
+        const blob = new Blob([JSON.stringify(todasReceitas, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'receitas.json';
+        a.click();
+    }
+
+    function toggleInstrucoes() {
+        document.getElementById('instrucoesCard').classList.toggle('visible');
+    }
+
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+</script>
+
+</body>
+</html>
